@@ -29,7 +29,8 @@ class Dashboard : AppCompatActivity() {
             val selectedFragment: Fragment? = when (item.itemId) {
                 R.id.nav_home -> Home()
                 R.id.nav_history -> History()
-                R.id.nav_profile -> Profil()
+                R.id.nav_settings -> Settings()
+                R.id.nav_graph -> Chart()
                 else -> null
             }
             selectedFragment?.let {

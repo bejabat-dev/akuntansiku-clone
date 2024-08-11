@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.moliyafinance.databinding.FragmentProfilBinding
+import com.example.moliyafinance.databinding.FragmentSettingsBinding
 
-class Profil : Fragment(){
-    private lateinit var bind : FragmentProfilBinding
+class Settings : Fragment(){
+    private lateinit var bind : FragmentSettingsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        bind = FragmentProfilBinding.inflate(layoutInflater,container,false)
+        bind = FragmentSettingsBinding.inflate(layoutInflater,container,false)
         return bind.root
     }
 }

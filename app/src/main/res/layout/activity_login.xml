@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="#FFf2f2f2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:context=".Login">
+
+    <TextView
+        android:layout_marginTop="180dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="36dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Masuk untuk melanjutkan" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/input"
+        android:drawableStart="@drawable/mail_24px"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="text"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/input"
+        android:drawableStart="@drawable/password_2_24px"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="Kata sandi"
+        android:inputType="text"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:layout_marginBottom="8dp"
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:gravity="center"
+        android:text="Masuk"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_marginBottom="8dp"
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:gravity="center"
+        android:text="Daftar"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

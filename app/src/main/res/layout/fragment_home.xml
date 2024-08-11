@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,17 +17,45 @@
         android:padding="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/bmw" />
 
         <TextView
+            android:textColor="@color/button"
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="8dp"
-            android:text="TextView" />
+            android:text="Konek rebus" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/calendar_month_24px" />
+
+        <TextView
+            android:textColor="@color/button"
+            android:padding="8dp"
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hari ini" />
 
     </LinearLayout>
 
@@ -59,6 +88,9 @@
         android:orientation="vertical">
 
         <TextView
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:focusable="true"
+            android:clickable="true"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -61,7 +61,8 @@
         android:text="Masuk"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/register"
@@ -76,7 +77,8 @@
         android:text="Daftar"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
 </LinearLayout>

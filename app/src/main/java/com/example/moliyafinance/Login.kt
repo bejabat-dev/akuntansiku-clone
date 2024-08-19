@@ -17,5 +17,4 @@ class Login : AppCompatActivity() {
             startActivity(i)
         }
     }
-
 }

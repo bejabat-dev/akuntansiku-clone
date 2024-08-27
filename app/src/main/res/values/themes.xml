@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.MoliyaFinance" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/grey</item>
         <item name="colorControlActivated">@color/blue</item>
+        <item name="fontFamily">@font/open_sans</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

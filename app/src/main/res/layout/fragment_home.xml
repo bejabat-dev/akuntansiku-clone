@@ -125,7 +125,6 @@ android:padding="8dp"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:gravity="center"
-            android:padding="16dp"
             android:text="Tambah transaksi"
             android:textColor="@color/white"
             android:textStyle="bold" />

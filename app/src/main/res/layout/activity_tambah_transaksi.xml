@@ -53,7 +53,7 @@
                 android:text="Tanggal" />
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/tanggal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -81,7 +81,7 @@
                 android:text="Waktu" />
 
             <EditText
-                android:id="@+id/editTextText2"
+                android:id="@+id/waktu"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="4dp"
@@ -135,7 +135,9 @@
             android:layout_marginBottom="2dp"
             android:text="Untuk biaya(Debit)" />
 
-        <Spinner
+        <EditText
+            android:focusable="false"
+            android:id="@+id/debit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -150,7 +152,9 @@
             android:layout_marginBottom="2dp"
             android:text="Diambil dari(Kredit)" />
 
-        <Spinner
+        <EditText
+            android:focusable="false"
+            android:id="@+id/kredit"
             android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -222,7 +226,6 @@
         android:layout_margin="16dp"
         android:background="@drawable/button"
         style="@style/button_text"
-        android:padding="16dp"
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="@color/white"

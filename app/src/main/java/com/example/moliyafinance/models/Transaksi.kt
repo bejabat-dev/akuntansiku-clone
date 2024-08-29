@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 
 data class Transaksi(
+    val uid: String,
     val tanggal: String,
     val waktu: String,
     val jenisTransaksi: String,
@@ -15,11 +16,12 @@ data class Transaksi(
     val nominal: Int
 )
 
-fun updateTransaksi(context: Context, transaksi: Transaksi, documentPath: String) {
+fun updateTransaksi(context: Context, transaksi: Transaksi,path:String?) {
     val db = FirebaseFirestore.getInstance()
-    val documentRef =
-        db.collection("Transactions").document(documentPath) // Replace w
+    val collection =
+        db.collection("Transactions") // Replace w
     val transaksiMap = mapOf(
+        "uid" to transaksi.uid,
         "tanggal" to transaksi.tanggal,
         "waktu" to transaksi.waktu,
         "jenisTransaksi" to transaksi.jenisTransaksi,
@@ -28,9 +30,9 @@ fun updateTransaksi(context: Context, transaksi: Transaksi, documentPath: String
         "catatan" to transaksi.catatan,
         "nominal" to transaksi.nominal
     )
-    documentRef.get().addOnSuccessListener {
+    collection.document("asd").get().addOnSuccessListener {
         if (it.exists()) {
-            documentRef.update(transaksiMap)
+            collection.document("asd").update(transaksiMap)
                 .addOnSuccessListener {
                     showToast(context, "Berhasil simpan")
                     if (context is Activity) {
@@ -41,7 +43,7 @@ fun updateTransaksi(context: Context, transaksi: Transaksi, documentPath: String
                     println("Error updating transaction: ${e.message}")
                 }
         } else {
-            documentRef.set(transaksiMap)
+            collection.document().set(transaksiMap)
                 .addOnSuccessListener {
                     showToast(context, "Berhasil simpan")
                     if (context is Activity) {

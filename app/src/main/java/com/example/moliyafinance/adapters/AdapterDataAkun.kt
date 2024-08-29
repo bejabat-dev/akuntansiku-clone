@@ -1,10 +1,12 @@
-package com.example.moliyafinance
+package com.example.moliyafinance.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moliyafinance.R
+import com.example.moliyafinance.Variables
 import java.util.ArrayList
 
 

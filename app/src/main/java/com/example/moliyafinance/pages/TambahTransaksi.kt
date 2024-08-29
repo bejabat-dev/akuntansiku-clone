@@ -8,15 +8,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moliyafinance.AdapterDataAkun
+import com.example.moliyafinance.adapters.AdapterDataAkun
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.Variables
 import com.example.moliyafinance.databinding.ActivityTambahTransaksiBinding
 import com.example.moliyafinance.databinding.DialogTransaksiBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.updateTransaksi
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.FirebaseAuth
 
 class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener {
     private lateinit var selectedJenisTransaksi: String
@@ -68,6 +67,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
     }
 
     private fun initClicks() {
+        val auth = FirebaseAuth.getInstance()
         bind.back.setOnClickListener {
             finish()
         }
@@ -101,6 +101,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                     Toast.makeText(this, "Harap penuhi semua kolom", Toast.LENGTH_SHORT).show()
                 } else {
                     val data = Transaksi(
+                        auth.currentUser!!.uid,
                         tanggal,
                         waktu,
                         selectedJenisTransaksi,
@@ -109,7 +110,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                         catatan,
                         nominal
                     )
-                    updateTransaksi(this, data, "Novan")
+                    updateTransaksi(this, data,null)
                 }
             }
         }

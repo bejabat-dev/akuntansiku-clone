@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "409327045377",
+    "project_id": "moliya-finance",
+    "storage_bucket": "moliya-finance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409327045377:android:49388f9f25b5830b172900",
+        "android_client_info": {
+          "package_name": "com.example.laporankeuangan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLCm_Zm5mM_CTMIXBUV7Ppwt4ILeUxTWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409327045377:android:34f9ac7396d5f618172900",
+        "android_client_info": {
+          "package_name": "com.example.moliyafinance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLCm_Zm5mM_CTMIXBUV7Ppwt4ILeUxTWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

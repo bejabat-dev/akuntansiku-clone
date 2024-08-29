@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.databinding.ActivityRegisterBinding
+import com.example.moliyafinance.models.LoadingDialog
 import com.example.moliyafinance.models.showToast
 import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Register : AppCompatActivity() {
     private lateinit var bind: ActivityRegisterBinding
@@ -36,12 +38,23 @@ class Register : AppCompatActivity() {
     }
 
     private fun register(email: String, password: String, nama: String) {
+        LoadingDialog.showDialog(this, "Mendaftarkan akun")
         val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
             if (it.user != null) {
-                val i = Intent(this, Dashboard::class.java)
-                startActivity(i)
-                finish()
+                val uid = it.user!!.uid
+                val map  = hashMapOf("nama" to nama)
+                FirebaseFirestore.getInstance().collection("Users").document(uid).set(map).addOnSuccessListener {
+                    val i = Intent(this,Dashboard::class.java)
+                    startActivity(i)
+                    finish()
+                }
+
+            }
+        }.addOnFailureListener { e ->
+            run {
+                LoadingDialog.dialog.dismiss()
+                showToast(this, e.toString())
             }
         }
     }

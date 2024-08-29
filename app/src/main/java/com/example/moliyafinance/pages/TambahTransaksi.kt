@@ -14,6 +14,7 @@ import com.example.moliyafinance.Variables
 import com.example.moliyafinance.databinding.ActivityTambahTransaksiBinding
 import com.example.moliyafinance.databinding.DialogTransaksiBinding
 import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.models.tambahTransaksi
 import com.example.moliyafinance.models.updateTransaksi
 import com.google.firebase.auth.FirebaseAuth
 
@@ -68,6 +69,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
 
     private fun initClicks() {
         val auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid
         bind.back.setOnClickListener {
             finish()
         }
@@ -100,8 +102,9 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                 if (nominal == null) {
                     Toast.makeText(this, "Harap penuhi semua kolom", Toast.LENGTH_SHORT).show()
                 } else {
+                    val id = System.currentTimeMillis()
                     val data = Transaksi(
-                        auth.currentUser!!.uid,
+                        id, uid!!,
                         tanggal,
                         waktu,
                         selectedJenisTransaksi,
@@ -110,7 +113,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                         catatan,
                         nominal
                     )
-                    updateTransaksi(this, data,null)
+                    tambahTransaksi(this, data)
                 }
             }
         }
@@ -118,11 +121,11 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
 
     override fun onItemClick(item: Variables.DataAkun) {
         if (type == "debit") {
-            selectedDebit = item.nomor + " | " + item.jenis
+            selectedDebit = item.jenis
             bind.debit.setText(item.jenis)
             dialog.dismiss()
         } else if (type == "kredit") {
-            selectedKredit = item.nomor + " | " + item.jenis
+            selectedKredit = item.jenis
             bind.kredit.setText(item.jenis)
             dialog.dismiss()
         }

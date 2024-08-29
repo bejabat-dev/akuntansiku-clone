@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.FragmentHomeBinding
 import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.models.User
+import com.example.moliyafinance.models.getTransaksi
+import com.example.moliyafinance.models.showToast
 import com.example.moliyafinance.pages.TambahTransaksi
 
 class Home : Fragment() {
-    companion object{
-        lateinit var transaksi : Transaksi
-    }
+
     private lateinit var bind: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,8 +30,31 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bind.tambahTransaksi.setOnClickListener {
-            val i = Intent(requireContext(),TambahTransaksi::class.java)
+            val i = Intent(requireContext(), TambahTransaksi::class.java)
             startActivity(i)
         }
+        init()
+    }
+
+    private fun init() {
+        User.getUserData(requireContext(), onResult = {
+            data ->
+            run {
+                if (data != null) {
+                    User.userData = data
+                    bind.nama.text = data.nama
+                }
+            }
+        });
+        bind.nama.text = User.userData.nama
+        getTransaksi(requireContext(), onResult = { list ->
+            run {
+                val adapter = AdapterTransaksi(list)
+                bind.recycler.adapter = adapter
+                bind.recycler.layoutManager = LinearLayoutManager(requireContext())
+            }
+        }, onError = {
+            showToast(requireContext(), "Terjadi kesalahan")
+        })
     }
 }

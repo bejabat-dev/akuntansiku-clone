@@ -14,8 +14,7 @@
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-android:padding="8dp"
-        >
+        android:padding="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="40dp"
@@ -26,16 +25,17 @@ android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp">
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/nama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Konek rebus"
                 android:textColor="@color/button"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -99,6 +99,7 @@ android:padding="8dp"
         tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

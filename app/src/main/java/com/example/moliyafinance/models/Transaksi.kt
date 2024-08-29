@@ -4,23 +4,27 @@ import android.app.Activity
 import android.content.Context
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
+import java.text.NumberFormat
+import java.util.Locale
 
 data class Transaksi(
-    val uid: String,
-    val tanggal: String,
-    val waktu: String,
-    val jenisTransaksi: String,
-    val debit: String,
-    val kredit: String,
-    val catatan: String,
-    val nominal: Int
+    val id: Long = 0,
+    val uid: String = "",
+    val tanggal: String = "",
+    val waktu: String = "",
+    val jenisTransaksi: String = "",
+    val debit: String = "",
+    val kredit: String = "",
+    val catatan: String = "",
+    val nominal: Int = 0
 )
 
-fun updateTransaksi(context: Context, transaksi: Transaksi,path:String?) {
-    val db = FirebaseFirestore.getInstance()
-    val collection =
-        db.collection("Transactions") // Replace w
+fun tambahTransaksi(context: Context, transaksi: Transaksi) {
+    LoadingDialog.showDialog(context, null)
+    val db = FirebaseFirestore.getInstance().collection("Transactions")
     val transaksiMap = mapOf(
+        "id" to transaksi.id,
         "uid" to transaksi.uid,
         "tanggal" to transaksi.tanggal,
         "waktu" to transaksi.waktu,
@@ -30,32 +34,66 @@ fun updateTransaksi(context: Context, transaksi: Transaksi,path:String?) {
         "catatan" to transaksi.catatan,
         "nominal" to transaksi.nominal
     )
-    collection.document("asd").get().addOnSuccessListener {
-        if (it.exists()) {
-            collection.document("asd").update(transaksiMap)
-                .addOnSuccessListener {
-                    showToast(context, "Berhasil simpan")
-                    if (context is Activity) {
-                        context.finish()
-                    }
-                }
-                .addOnFailureListener { e ->
-                    println("Error updating transaction: ${e.message}")
-                }
-        } else {
-            collection.document().set(transaksiMap)
-                .addOnSuccessListener {
-                    showToast(context, "Berhasil simpan")
-                    if (context is Activity) {
-                        context.finish()
-                    }
-                    println("Transaction updated successfully!")
-                }
-                .addOnFailureListener { e ->
-                    println("Error updating transaction: ${e.message}")
-                }
+    db.document(transaksi.id.toString()).set(transaksiMap).addOnSuccessListener {
+        LoadingDialog.dialog.dismiss()
+        if (context is Activity) {
+            context.finish()
         }
-    }.addOnFailureListener { e -> println("Gagal") }
+    }.addOnFailureListener { e ->
+        showToast(context, e.toString())
+        LoadingDialog.dialog.dismiss()
+    }
+}
+
+fun updateTransaksi(context: Context, transaksi: Transaksi) {
+    LoadingDialog.showDialog(context, null)
+    val db = FirebaseFirestore.getInstance().collection("Transactions")
+    val transaksiMap = mapOf(
+        "id" to transaksi.id,
+        "uid" to transaksi.uid,
+        "tanggal" to transaksi.tanggal,
+        "waktu" to transaksi.waktu,
+        "jenisTransaksi" to transaksi.jenisTransaksi,
+        "debit" to transaksi.debit,
+        "kredit" to transaksi.kredit,
+        "catatan" to transaksi.catatan,
+        "nominal" to transaksi.nominal
+    )
+    db.document(transaksi.id.toString()).update(transaksiMap).addOnSuccessListener {
+        LoadingDialog.dialog.dismiss()
+        if (context is Activity) {
+            context.finish()
+        }
+    }.addOnFailureListener { e ->
+        showToast(context, e.toString())
+        LoadingDialog.dialog.dismiss()
+    }
+}
+
+fun getTransaksi(
+    context: Context,
+    onResult: (List<Transaksi>) -> Unit,
+    onError: (Exception) -> Unit
+) {
+    val db = FirebaseFirestore.getInstance().collection("Transactions")
+    db.get()
+        .addOnSuccessListener { querySnapshot ->
+            val transaksiList = querySnapshot.documents.mapNotNull { document ->
+                document.toObject(Transaksi::class.java)
+            }
+            onResult(transaksiList)
+        }
+        .addOnFailureListener { exception ->
+            showToast(context, exception.toString())
+        }
+}
+
+fun formatToRupiah(amount: Int): String {
+    val localeID = Locale("in", "ID") // Indonesian locale
+    val numberFormat =
+        NumberFormat.getCurrencyInstance(localeID) // Currency formatter for Indonesia
+    numberFormat.maximumFractionDigits = 0 // Remove decimal places
+    return numberFormat.format(amount).replace("Rp ", "Rp")
 }
 
 fun showToast(context: Context, s: String) {

@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.moliyafinance.databinding.FragmentHomeBinding
+import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.pages.TambahTransaksi
 
 class Home : Fragment() {
+    companion object{
+        lateinit var transaksi : Transaksi
+    }
     private lateinit var bind: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater,

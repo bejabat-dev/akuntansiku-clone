@@ -89,6 +89,7 @@ fun getTransaksi(
         }
         .addOnFailureListener { exception ->
             showToast(context, exception.toString())
+            onError(exception)
         }
 }
 

@@ -4,10 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.R
-import com.example.moliyafinance.models.User
 import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.core.UserData
 
 class Splash : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

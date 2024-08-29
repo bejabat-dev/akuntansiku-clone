@@ -8,14 +8,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moliyafinance.adapters.AdapterDataAkun
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.Variables
+import com.example.moliyafinance.adapters.AdapterDataAkun
 import com.example.moliyafinance.databinding.ActivityTambahTransaksiBinding
 import com.example.moliyafinance.databinding.DialogTransaksiBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.tambahTransaksi
-import com.example.moliyafinance.models.updateTransaksi
 import com.google.firebase.auth.FirebaseAuth
 
 class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener {

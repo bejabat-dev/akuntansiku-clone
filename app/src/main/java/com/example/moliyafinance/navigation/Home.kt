@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.FragmentHomeBinding
-import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.User
 import com.example.moliyafinance.models.getTransaksi
 import com.example.moliyafinance.models.showToast
@@ -45,7 +44,7 @@ class Home : Fragment() {
                     bind.nama.text = data.nama
                 }
             }
-        });
+        })
         bind.nama.text = User.userData.nama
         getTransaksi(requireContext(), onResult = { list ->
             run {

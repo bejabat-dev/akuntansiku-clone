@@ -144,6 +144,7 @@
             android:layout_marginTop="2dp"
             android:background="@drawable/input"
             android:focusable="false"
+            android:inputType="text"
             android:padding="4dp"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -162,6 +163,7 @@
             android:layout_marginBottom="4dp"
             android:background="@drawable/input"
             android:focusable="false"
+            android:inputType="text"
             android:padding="4dp"
             tools:ignore="TouchTargetSizeCheck" />
 

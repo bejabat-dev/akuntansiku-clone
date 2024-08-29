@@ -11,7 +11,6 @@ import java.util.Locale
 class Utils {
     private val calendar = Calendar.getInstance()
 
-
     fun showDatePickerDialog(context: Context, textView: TextView) {
         val datePickerDialog = DatePickerDialog(
             context,
@@ -31,17 +30,15 @@ class Utils {
         val timePickerDialog = TimePickerDialog(
             context,
             { _, hourOfDay, minute ->
-                // Update the calendar with the selected time
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 calendar.set(Calendar.MINUTE, minute)
 
-                // Format and display the selected time
                 val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
                 textView.text = timeFormat.format(calendar.time)
             },
             calendar.get(Calendar.HOUR_OF_DAY),
             calendar.get(Calendar.MINUTE),
-            true // Use 24-hour format
+            true
         )
         timePickerDialog.show()
     }

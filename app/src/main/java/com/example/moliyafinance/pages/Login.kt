@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.databinding.ActivityLoginBinding
-import com.example.moliyafinance.models.LoadingDialog
+import com.example.moliyafinance.LoadingDialog
 import com.example.moliyafinance.models.showToast
 import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth

@@ -49,7 +49,7 @@ class Home : Fragment() {
         bind.nama.text = User.userData.nama
         getTransaksi(requireContext(), onResult = { list ->
             run {
-                val adapter = AdapterTransaksi(list)
+                val adapter = AdapterTransaksi(requireContext(),list)
                 bind.recycler.adapter = adapter
                 bind.recycler.layoutManager = LinearLayoutManager(requireContext())
             }

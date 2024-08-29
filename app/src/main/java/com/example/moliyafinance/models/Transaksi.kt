@@ -3,8 +3,8 @@ package com.example.moliyafinance.models
 import android.app.Activity
 import android.content.Context
 import android.widget.Toast
+import com.example.moliyafinance.LoadingDialog
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.toObject
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -19,6 +19,10 @@ data class Transaksi(
     val catatan: String = "",
     val nominal: Int = 0
 )
+
+object TransaksiDetails {
+    lateinit var detailTransaksi: Transaksi
+}
 
 fun tambahTransaksi(context: Context, transaksi: Transaksi) {
     LoadingDialog.showDialog(context, null)

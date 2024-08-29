@@ -15,35 +15,37 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
+            android:id="@+id/back"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/arrow_back_ios_24px" />
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:baselineAligned="false"
             android:text="Tambah transaksi"
             android:textColor="@color/button"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
+
     <LinearLayout
-        android:baselineAligned="false"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginEnd="4dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -110,21 +112,21 @@
 
     <Spinner
         android:id="@+id/spinner_jenis_transaksi"
-        android:padding="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/input"
+        android:padding="4dp"
         tools:ignore="TouchTargetSizeCheck" />
 
     <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/input"
         android:orientation="vertical">
 
@@ -136,12 +138,12 @@
             android:text="Untuk biaya(Debit)" />
 
         <EditText
-            android:focusable="false"
             android:id="@+id/debit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:background="@drawable/input"
+            android:focusable="false"
             android:padding="4dp"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -153,13 +155,13 @@
             android:text="Diambil dari(Kredit)" />
 
         <EditText
-            android:focusable="false"
             android:id="@+id/kredit"
-            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/input"
+            android:focusable="false"
             android:padding="4dp"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -176,15 +178,15 @@
         android:text="Catatan" />
 
     <EditText
-        android:hint="Masukkan catatan"
-        android:id="@+id/editTextText3"
-        android:gravity="start"
+        android:id="@+id/catatan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/input"
         android:ems="10"
+        android:gravity="start"
+        android:hint="Masukkan catatan"
         android:inputType="textMultiLine"
         android:maxLines="3"
         android:minLines="3"
@@ -193,45 +195,45 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_marginTop="8dp"
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="Nominal" />
 
     <EditText
-        android:hint="Rp"
-        android:id="@+id/editTextText4"
+        android:id="@+id/nominal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/input"
         android:ems="10"
+        android:hint="Rp"
         android:inputType="number"
         android:padding="4dp"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <View
-        android:layout_weight="1"
-        android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
-        android:layout_margin="16dp"
-        android:background="@drawable/button"
+        android:id="@+id/simpan"
         style="@style/button_text"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Simpan" />
+        android:layout_margin="16dp"
+        android:background="@drawable/button"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:text="Simpan"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 </LinearLayout>

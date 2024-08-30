@@ -28,10 +28,6 @@ class Home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bind.tambahTransaksi.setOnClickListener {
-            val i = Intent(requireContext(), TambahTransaksi::class.java)
-            startActivity(i)
-        }
         bind.swipe.setOnRefreshListener {
             init()
         }
@@ -41,6 +37,7 @@ class Home : Fragment() {
     override fun onResume() {
         super.onResume()
         init()
+        initClicks()
     }
 
     private fun init() {
@@ -72,6 +69,14 @@ class Home : Fragment() {
             }
         })
         bind.nama.text = User.userData.nama
+    }
+
+    private fun initClicks(){
+        bind.tambahTransaksi.setOnClickListener {
+            Dashboard.editing = false
+            val i = Intent(requireContext(), TambahTransaksi::class.java)
+            startActivity(i)
+        }
     }
 
     private fun fadeIn(view: View) {

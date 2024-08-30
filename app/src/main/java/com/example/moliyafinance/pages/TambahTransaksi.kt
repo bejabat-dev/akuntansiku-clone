@@ -1,5 +1,6 @@
 package com.example.moliyafinance.pages
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -14,7 +15,10 @@ import com.example.moliyafinance.adapters.AdapterDataAkun
 import com.example.moliyafinance.databinding.ActivityTambahTransaksiBinding
 import com.example.moliyafinance.databinding.DialogTransaksiBinding
 import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.models.TransaksiDetails
+import com.example.moliyafinance.models.createTimestamp
 import com.example.moliyafinance.models.tambahTransaksi
+import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth
 
 class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener {
@@ -33,6 +37,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
         initListeners()
         initDialog()
         initClicks()
+        checkEditing()
     }
 
     private fun init() {
@@ -54,6 +59,23 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
 
                 }
             }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun checkEditing() {
+        if (Dashboard.editing) {
+            bind.judul.text = "Edit Transaksi"
+            val ts = TransaksiDetails.detailTransaksi
+            bind.tanggal.setText(ts.tanggal)
+            bind.waktu.setText(ts.waktu)
+            val jenisTransaksi = ts.jenisTransaksi
+            val index = Variables.jenis_transaksi.indexOf(jenisTransaksi)
+            bind.spinnerJenisTransaksi.setSelection(index)
+            bind.debit.setText(ts.debit)
+            bind.kredit.setText(ts.kredit)
+            bind.catatan.setText(ts.catatan)
+            bind.nominal.setText(ts.nominal.toString())
+        }
     }
 
     private fun initDialog() {
@@ -94,7 +116,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
             val catatan = bind.catatan.text.toString().trim()
             val nominalStr = bind.nominal.text.toString().trim()
 
-            if (tanggal.isEmpty() || waktu.isEmpty() || debit.isEmpty() || kredit.isEmpty() || nominalStr.isEmpty()) {
+            if (tanggal.isEmpty() || waktu.isEmpty() || debit.isEmpty() || kredit.isEmpty() || catatan.isEmpty() || nominalStr.isEmpty()) {
                 Toast.makeText(this, "Harap penuhi semua kolom", Toast.LENGTH_SHORT).show()
             } else {
                 val nominal = nominalStr.toIntOrNull()
@@ -103,14 +125,16 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                 } else {
                     val id = System.currentTimeMillis()
                     val data = Transaksi(
-                        id, uid!!,
+                        id,
+                        uid!!,
                         tanggal,
                         waktu,
                         selectedJenisTransaksi,
                         selectedDebit,
                         selectedKredit,
                         catatan,
-                        nominal
+                        nominal,
+                        createTimestamp(tanggal, waktu)
                     )
                     tambahTransaksi(this, data)
                 }

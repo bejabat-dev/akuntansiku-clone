@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.widget.Toast
 import com.example.moliyafinance.LoadingDialog
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -20,12 +21,23 @@ data class Transaksi(
     val kredit: String = "",
     val catatan: String = "",
     val nominal: Int = 0,
-
+    val timestamp: Timestamp? = null,
     var date: Date? = null
 )
 
 object TransaksiDetails {
     lateinit var detailTransaksi: Transaksi
+}
+
+fun createTimestamp(dateString: String, timeString: String): Timestamp {
+    val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+    val dateTimeString = "$dateString $timeString"
+    val date: Date? = dateFormat.parse(dateTimeString)
+    return if (date != null) {
+        Timestamp(date)
+    } else {
+        throw IllegalArgumentException("Invalid date or time format")
+    }
 }
 
 fun tambahTransaksi(context: Context, transaksi: Transaksi) {
@@ -40,7 +52,8 @@ fun tambahTransaksi(context: Context, transaksi: Transaksi) {
         "debit" to transaksi.debit,
         "kredit" to transaksi.kredit,
         "catatan" to transaksi.catatan,
-        "nominal" to transaksi.nominal
+        "nominal" to transaksi.nominal,
+        "timestamp" to createTimestamp(transaksi.tanggal,transaksi.waktu)
     )
     db.document(transaksi.id.toString()).set(transaksiMap).addOnSuccessListener {
         LoadingDialog.dialog.dismiss()

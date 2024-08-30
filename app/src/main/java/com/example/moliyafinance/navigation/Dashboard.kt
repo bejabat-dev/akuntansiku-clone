@@ -11,6 +11,10 @@ class Dashboard : AppCompatActivity() {
     private lateinit var bind: ActivityDashboardBinding
     private lateinit var fragmentManager: FragmentManager
 
+    companion object{
+        var editing = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityDashboardBinding.inflate(layoutInflater)

@@ -16,7 +16,6 @@ import com.example.moliyafinance.models.showToast
 import com.example.moliyafinance.pages.TambahTransaksi
 
 class Home : Fragment() {
-
     private lateinit var bind: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +32,9 @@ class Home : Fragment() {
             val i = Intent(requireContext(), TambahTransaksi::class.java)
             startActivity(i)
         }
+        bind.swipe.setOnRefreshListener {
+            init()
+        }
         init()
     }
 
@@ -44,6 +46,7 @@ class Home : Fragment() {
     }
 
     private fun init() {
+        bind.swipe.isRefreshing = true
         User.getUserData(requireContext(), onResult = {
             data ->
             run {
@@ -63,9 +66,11 @@ class Home : Fragment() {
                     fadeIn(bind.recycler)
                     bind.recycler.adapter = adapter
                     bind.recycler.layoutManager = LinearLayoutManager(requireContext())
+                    bind.swipe.isRefreshing = false
                 }
             }
         }, onError = {
+            bind.swipe.isRefreshing = false
             showToast(requireContext(), "Terjadi kesalahan")
         })
     }

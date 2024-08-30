@@ -18,7 +18,7 @@
         android:layout_marginBottom="36dp"
         android:text="Masuk untuk melanjutkan"
         android:textColor="#4D4D4D"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <EditText
@@ -32,6 +32,7 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:textSize="16sp"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -45,6 +46,7 @@
         android:ems="10"
         android:hint="Kata sandi"
         android:inputType="textPassword"
+        android:textSize="16sp"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
@@ -57,9 +59,10 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:gravity="center"
+        android:padding="12dp"
         android:text="Masuk"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -73,9 +76,10 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:gravity="center"
+        android:padding="12dp"
         android:text="Daftar"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         tools:ignore="TouchTargetSizeCheck" />
 

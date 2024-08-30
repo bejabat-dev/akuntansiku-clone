@@ -3,8 +3,8 @@ package com.example.moliyafinance.pages
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.moliyafinance.databinding.ActivityRegisterBinding
 import com.example.moliyafinance.LoadingDialog
+import com.example.moliyafinance.databinding.ActivityRegisterBinding
 import com.example.moliyafinance.models.showToast
 import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth
@@ -34,6 +34,9 @@ class Register : AppCompatActivity() {
                     register(email, password, nama)
                 }
             }
+        }
+        bind.back.setOnClickListener {
+            finish()
         }
     }
 

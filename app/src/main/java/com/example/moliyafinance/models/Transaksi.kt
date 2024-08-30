@@ -6,6 +6,8 @@ import android.widget.Toast
 import com.example.moliyafinance.LoadingDialog
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 data class Transaksi(
@@ -17,7 +19,9 @@ data class Transaksi(
     val debit: String = "",
     val kredit: String = "",
     val catatan: String = "",
-    val nominal: Int = 0
+    val nominal: Int = 0,
+
+    var date: Date? = null
 )
 
 object TransaksiDetails {
@@ -75,17 +79,25 @@ fun updateTransaksi(context: Context, transaksi: Transaksi) {
 }
 
 fun getTransaksi(
+
     context: Context,
     onResult: (List<Transaksi>) -> Unit,
     onError: (Exception) -> Unit
 ) {
+
+    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     val db = FirebaseFirestore.getInstance().collection("Transactions")
     db.get()
         .addOnSuccessListener { querySnapshot ->
             val transaksiList = querySnapshot.documents.mapNotNull { document ->
-                document.toObject(Transaksi::class.java)
+                val dateString = document.getString("tanggal") ?: ""
+                val date = dateFormat.parse(dateString)
+                document.toObject(Transaksi::class.java)?.apply {
+                    this.date = date
+                }
             }
-            onResult(transaksiList)
+            val sortedList = transaksiList.sortedBy { it.date }
+            onResult(sortedList)
         }
         .addOnFailureListener { exception ->
             showToast(context, exception.toString())

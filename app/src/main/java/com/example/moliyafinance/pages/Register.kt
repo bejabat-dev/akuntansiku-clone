@@ -46,7 +46,7 @@ class Register : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
             if (it.user != null) {
                 val uid = it.user!!.uid
-                val map  = hashMapOf("nama" to nama)
+                val map  = hashMapOf("nama" to nama,"uid" to uid,"email" to email)
                 FirebaseFirestore.getInstance().collection("Users").document(uid).set(map).addOnSuccessListener {
                     val i = Intent(this,Dashboard::class.java)
                     startActivity(i)

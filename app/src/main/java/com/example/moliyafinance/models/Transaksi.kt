@@ -87,7 +87,7 @@ fun getTransaksi(
 
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     val db = FirebaseFirestore.getInstance().collection("Transactions")
-    db.get()
+    db.whereEqualTo("uid",User.userData.uid).get()
         .addOnSuccessListener { querySnapshot ->
             val transaksiList = querySnapshot.documents.mapNotNull { document ->
                 val dateString = document.getString("tanggal") ?: ""

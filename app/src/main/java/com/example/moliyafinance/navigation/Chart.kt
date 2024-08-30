@@ -66,7 +66,21 @@ class Chart : Fragment() {
 
         bind.kasDanBank.xAxis.valueFormatter = object : ValueFormatter() {
             override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                return "${value.toInt()}"
+                return when(value.toInt()){
+                    1 -> "Jan"
+                    2 -> "Feb"
+                    3 -> "Mar"
+                    4 -> "Apr"
+                    5 -> "May"
+                    6 -> "Jun"
+                    7 -> "Jul"
+                    8 -> "Agu"
+                    9 -> "Sep"
+                    10 -> "Okt"
+                    11 -> "Nov"
+                    12-> "Des"
+                    else -> ""
+                }
             }
         }
         bind.kasDanBank.axisLeft.valueFormatter = object : ValueFormatter() {

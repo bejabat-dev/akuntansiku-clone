@@ -24,6 +24,7 @@ object User {
 }
 
 data class UserModel(
+    val uid: String = "",
     val nama: String = "",
     val email: String = "",
     val nohp: String = ""

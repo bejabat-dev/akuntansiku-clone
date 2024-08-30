@@ -1,13 +1,14 @@
 package com.example.moliyafinance.pages
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.databinding.ActivityDetailTransaksiBinding
 import com.example.moliyafinance.models.TransaksiDetails
+import com.example.moliyafinance.models.User
 
 class DetailTransaksi : AppCompatActivity() {
     private lateinit var bind: ActivityDetailTransaksiBinding
+    private lateinit var transaksi : TransaksiDetails
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityDetailTransaksiBinding.inflate(layoutInflater)
@@ -16,6 +17,10 @@ class DetailTransaksi : AppCompatActivity() {
     }
 
     private fun init() {
-        Log.e("Tes","Jenis: ${TransaksiDetails.detailTransaksi.jenisTransaksi}")
+        val ts = transaksi.detailTransaksi
+        bind.catatan.text = ts.catatan
+        bind.tanggal.text = ts.tanggal
+        bind.transaksi.text = ts.jenisTransaksi
+        bind.pembuat.text = User.userData.nama
     }
 }

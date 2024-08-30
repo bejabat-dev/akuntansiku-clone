@@ -40,18 +40,15 @@ class Home : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(bind.recycler.adapter ==null){
-            init()
-        }
+        init()
     }
 
     private fun init() {
         bind.swipe.isRefreshing = true
-        User.getUserData(requireContext(), onResult = {
-            data ->
+        User.getUserData(requireContext(), onResult = { data ->
             run {
                 if (data != null) {
-                    if(isAdded){
+                    if (isAdded) {
                         User.userData = data
                         bind.nama.text = data.nama
                     }
@@ -61,8 +58,8 @@ class Home : Fragment() {
         bind.nama.text = User.userData.nama
         getTransaksi(requireContext(), onResult = { list ->
             run {
-                if(isAdded){
-                    val adapter = AdapterTransaksi(requireContext(),list)
+                if (isAdded) {
+                    val adapter = AdapterTransaksi(requireContext(), list)
                     fadeIn(bind.recycler)
                     bind.recycler.adapter = adapter
                     bind.recycler.layoutManager = LinearLayoutManager(requireContext())

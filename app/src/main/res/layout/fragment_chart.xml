@@ -6,14 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:background="@color/app_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+
         tools:context=".navigation.Chart">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white"
             android:padding="16sp"
             android:text="Chart"
             android:textColor="@color/blacker"
@@ -23,6 +27,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="8dp"
             android:text="Kas dan Bank"
             android:textColor="@color/blacker"
@@ -32,11 +37,14 @@
         <com.github.mikephil.charting.charts.ScatterChart
             android:id="@+id/kas_dan_bank"
             android:layout_width="match_parent"
-            android:layout_height="168dp" />
+            android:layout_height="168dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="8dp"
             android:text="Piutang"
             android:textColor="@color/blacker"
@@ -46,11 +54,14 @@
         <com.github.mikephil.charting.charts.ScatterChart
             android:id="@+id/piutang"
             android:layout_width="match_parent"
-            android:layout_height="168dp" />
+            android:layout_height="168dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="8dp"
             android:text="Hutang"
             android:textColor="@color/blacker"
@@ -60,11 +71,14 @@
         <com.github.mikephil.charting.charts.ScatterChart
             android:id="@+id/hutang"
             android:layout_width="match_parent"
-            android:layout_height="168dp" />
+            android:layout_height="168dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="8dp"
             android:text="Laba Rugi"
             android:textColor="@color/blacker"
@@ -74,11 +88,14 @@
         <com.github.mikephil.charting.charts.ScatterChart
             android:id="@+id/laba_rugi"
             android:layout_width="match_parent"
-            android:layout_height="168dp" />
+            android:layout_height="168dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="8dp"
             android:text="Beban Operasional"
             android:textColor="@color/blacker"
@@ -88,11 +105,14 @@
         <com.github.mikephil.charting.charts.ScatterChart
             android:id="@+id/beban_operasional"
             android:layout_width="match_parent"
-            android:layout_height="168dp" />
+            android:layout_height="168dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="8dp"
             android:text="Arus Kas"
             android:textColor="@color/blacker"
@@ -102,7 +122,9 @@
         <com.github.mikephil.charting.charts.ScatterChart
             android:id="@+id/arus_kas"
             android:layout_width="match_parent"
-            android:layout_height="168dp" />
+            android:layout_height="168dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white" />
     </LinearLayout>
 
 </ScrollView>

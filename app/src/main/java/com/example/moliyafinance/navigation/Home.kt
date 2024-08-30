@@ -1,5 +1,6 @@
 package com.example.moliyafinance.navigation
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,25 +36,46 @@ class Home : Fragment() {
         init()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(bind.recycler.adapter ==null){
+            init()
+        }
+    }
+
     private fun init() {
         User.getUserData(requireContext(), onResult = {
             data ->
             run {
                 if (data != null) {
-                    User.userData = data
-                    bind.nama.text = data.nama
+                    if(isAdded){
+                        User.userData = data
+                        bind.nama.text = data.nama
+                    }
                 }
             }
         })
         bind.nama.text = User.userData.nama
         getTransaksi(requireContext(), onResult = { list ->
             run {
-                val adapter = AdapterTransaksi(requireContext(),list)
-                bind.recycler.adapter = adapter
-                bind.recycler.layoutManager = LinearLayoutManager(requireContext())
+                if(isAdded){
+                    val adapter = AdapterTransaksi(requireContext(),list)
+                    fadeIn(bind.recycler)
+                    bind.recycler.adapter = adapter
+                    bind.recycler.layoutManager = LinearLayoutManager(requireContext())
+                }
             }
         }, onError = {
             showToast(requireContext(), "Terjadi kesalahan")
         })
+    }
+
+    private fun fadeIn(view: View) {
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
+        ObjectAnimator.ofFloat(view, "alpha", 0f, 1f).apply {
+            duration = 500 // Duration of the animation in milliseconds
+            start()
+        }
     }
 }

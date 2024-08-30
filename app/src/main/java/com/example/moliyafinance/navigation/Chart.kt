@@ -35,12 +35,12 @@ class Chart : Fragment() {
 
     private fun init() {
         val entries = mutableListOf<Entry>()
-        entries.add(Entry(2010f, 1500000f))
-        entries.add(Entry(2011f, 2500000f))
-        entries.add(Entry(2012f, 4000000f))
-        entries.add(Entry(2013f, 6700000f))
-        entries.add(Entry(2014f, 1250000f))
-        entries.add(Entry(2015f, 3400000f))
+        entries.add(Entry(1f, 1500000f))
+        entries.add(Entry(2f, 2500000f))
+        entries.add(Entry(3f, 4000000f))
+        entries.add(Entry(4f, 6700000f))
+        entries.add(Entry(5f, 1250000f))
+        entries.add(Entry(6f, 3400000f))
 
         val dataset = ScatterDataSet(entries, "Kas dan Bank")
         dataset.scatterShapeSize = 10f

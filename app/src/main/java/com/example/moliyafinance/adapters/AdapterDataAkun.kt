@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
 import com.example.moliyafinance.Variables
-import java.util.ArrayList
 
 
 class AdapterDataAkun(
@@ -15,7 +14,6 @@ class AdapterDataAkun(
     private val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<AdapterDataAkun.ViewHolder>() {
 
-    // Define the interface for click events
     interface OnItemClickListener {
         fun onItemClick(item: Variables.DataAkun)
     }
@@ -26,7 +24,6 @@ class AdapterDataAkun(
 
         init {
             view.setOnClickListener {
-                // Notify the listener of the click event
                 itemClickListener.onItemClick(dataSet[adapterPosition]) //dataSet undefined
             }
         }

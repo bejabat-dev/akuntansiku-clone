@@ -5,13 +5,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 object User {
-    var userData = UserModel("", "", "")
+    var userData = UserModel("", "", "","")
     fun getUserData(
         context: Context, onResult: (UserModel?) -> Unit
     ) {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val db = FirebaseFirestore.getInstance().collection("Users")
-        db.document(uid)// Limit to 1 document
+        db.document(uid)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 val user = querySnapshot?.toObject(UserModel::class.java)

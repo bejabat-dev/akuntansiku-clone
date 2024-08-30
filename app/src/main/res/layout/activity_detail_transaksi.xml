@@ -32,86 +32,229 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Transaksi"
+            android:textColor="@color/blacker"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/transaksi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TextView"
+            android:textColor="@color/blacker"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal"
+            android:textColor="@color/blacker"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TextView"
+            android:textColor="@color/blacker"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pembuat"
+            android:textColor="@color/blacker"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/pembuat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TextView"
+            android:textColor="@color/blacker"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Catatan"
+            android:textColor="@color/blacker"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/catatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TextView"
+            android:textColor="@color/blacker"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_top"
+            android:orientation="horizontal"
+            android:translationY="2dp">
+
+            <TextView
+
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="Akun"
+                android:textColor="@color/blacker" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Transaksi"
-                android:textColor="@color/blacker"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="Debit"
+                android:textColor="@color/blacker" />
 
             <TextView
-                android:id="@+id/transaksi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="Kredit"
+                android:textColor="@color/blacker" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/judulDebit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
                 android:text="TextView"
-                android:textColor="@color/blacker"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/blacker" />
 
             <TextView
+                android:id="@+id/debit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tanggal"
-                android:textColor="@color/blacker"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tanggal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:padding="4dp"
                 android:text="TextView"
-                android:textColor="@color/blacker"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/blacker" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pembuat"
-                android:textColor="@color/blacker"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="0"
+                android:textColor="@color/blacker" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_bottom"
+            android:orientation="horizontal"
+            android:translationY="-2dp">
 
             <TextView
-                android:id="@+id/pembuat"
+                android:id="@+id/judulKredit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:padding="4dp"
                 android:text="TextView"
-                android:textColor="@color/blacker"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/blacker" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Catatan"
-                android:textColor="@color/blacker"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="0"
+                android:textColor="@color/blacker" />
 
             <TextView
-                android:id="@+id/catatan"
+                android:id="@+id/kredit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="TextView"
-                android:textColor="@color/blacker"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="023"
+                android:textColor="@color/blacker" />
 
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/hapus"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:backgroundTint="#CF0000"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="Hapus"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_marginStart="5dp"
+            android:id="@+id/edit"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="Edit"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </LinearLayout>

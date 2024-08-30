@@ -14,6 +14,7 @@ class DetailTransaksi : AppCompatActivity() {
         bind = ActivityDetailTransaksiBinding.inflate(layoutInflater)
         setContentView(bind.root)
         init()
+        initClicks()
     }
 
     private fun init() {
@@ -22,5 +23,19 @@ class DetailTransaksi : AppCompatActivity() {
         bind.tanggal.text = ts.tanggal
         bind.transaksi.text = ts.jenisTransaksi
         bind.pembuat.text = User.userData.nama
+        bind.judulDebit.text = ts.debit
+        bind.judulKredit.text = ts.kredit
+        bind.debit.text = ts.nominal.toString()
+        bind.kredit.text = ts.nominal.toString()
+    }
+
+    private fun initClicks(){
+        bind.hapus.setOnClickListener {
+
+        }
+
+        bind.edit.setOnClickListener {
+
+        }
     }
 }

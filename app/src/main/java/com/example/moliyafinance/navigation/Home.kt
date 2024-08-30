@@ -51,25 +51,27 @@ class Home : Fragment() {
                     if (isAdded) {
                         User.userData = data
                         bind.nama.text = data.nama
+
+                        getTransaksi(requireContext(), onResult = { list ->
+                            run {
+                                if (isAdded) {
+                                    val adapter = AdapterTransaksi(requireContext(), list)
+                                    fadeIn(bind.recycler)
+                                    bind.recycler.adapter = adapter
+                                    bind.recycler.layoutManager = LinearLayoutManager(requireContext())
+                                    bind.swipe.isRefreshing = false
+                                }
+                            }
+                        }, onError = {
+                            bind.swipe.isRefreshing = false
+                            showToast(requireContext(), "Terjadi kesalahan")
+                        })
                     }
                 }
+
             }
         })
         bind.nama.text = User.userData.nama
-        getTransaksi(requireContext(), onResult = { list ->
-            run {
-                if (isAdded) {
-                    val adapter = AdapterTransaksi(requireContext(), list)
-                    fadeIn(bind.recycler)
-                    bind.recycler.adapter = adapter
-                    bind.recycler.layoutManager = LinearLayoutManager(requireContext())
-                    bind.swipe.isRefreshing = false
-                }
-            }
-        }, onError = {
-            bind.swipe.isRefreshing = false
-            showToast(requireContext(), "Terjadi kesalahan")
-        })
     }
 
     private fun fadeIn(view: View) {

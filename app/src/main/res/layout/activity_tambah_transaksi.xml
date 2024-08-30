@@ -147,6 +147,8 @@
             android:focusable="false"
             android:inputType="text"
             android:padding="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
@@ -166,6 +168,8 @@
             android:focusable="false"
             android:inputType="text"
             android:padding="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>

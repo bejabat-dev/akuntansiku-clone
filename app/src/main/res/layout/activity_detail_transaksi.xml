@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             app:srcCompat="@drawable/arrow_back_ios_24px" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Transaksi"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="16sp" />
 
         <TextView
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="TextView"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tanggal"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="16sp" />
 
         <TextView
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="TextView"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Waktu"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="16sp" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="TextView"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pembuat"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="16sp" />
 
         <TextView
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="TextView"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Catatan"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="16sp" />
 
         <TextView
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="TextView"
-            android:textColor="@color/blacker"
+            android:textColor="#575757"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -141,7 +141,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="Akun"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -149,7 +149,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="Debit"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -157,7 +157,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="Kredit"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
         </LinearLayout>
 
         <LinearLayout
@@ -173,7 +173,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="TextView"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
 
             <TextView
                 android:id="@+id/debit"
@@ -182,7 +182,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="TextView"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -190,7 +190,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="0"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
         </LinearLayout>
 
         <LinearLayout
@@ -207,7 +207,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="TextView"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -215,7 +215,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="0"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
 
             <TextView
                 android:id="@+id/kredit"
@@ -224,7 +224,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="023"
-                android:textColor="@color/blacker" />
+                android:textColor="#575757" />
 
         </LinearLayout>
 

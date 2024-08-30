@@ -30,7 +30,7 @@ object TransaksiDetails {
 }
 
 fun createTimestamp(dateString: String, timeString: String): Timestamp {
-    val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+    val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
     val dateTimeString = "$dateString $timeString"
     val date: Date? = dateFormat.parse(dateTimeString)
     return if (date != null) {

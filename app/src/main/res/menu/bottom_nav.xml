@@ -8,9 +8,14 @@
         android:id="@+id/nav_graph"
         android:icon="@drawable/monitoring_24px"
         android:title=""/>
+
     <item
-        android:id="@+id/nav_history"
-        android:icon="@drawable/history_24px"
+        android:id="@+id/nav_master_data"
+        android:icon="@drawable/database"
+        android:title=""/>
+    <item
+        android:id="@+id/nav_report"
+        android:icon="@drawable/laporan"
         android:title="" />
     <item
         android:id="@+id/nav_settings"

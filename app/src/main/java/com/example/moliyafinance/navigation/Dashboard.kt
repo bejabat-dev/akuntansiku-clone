@@ -32,7 +32,8 @@ class Dashboard : AppCompatActivity() {
         bind.bottomNav.setOnItemSelectedListener { item ->
             val selectedFragment: Fragment? = when (item.itemId) {
                 R.id.nav_home -> Home()
-                R.id.nav_history -> History()
+                R.id.nav_report -> Report()
+                R.id.nav_master_data -> MasterData()
                 R.id.nav_settings -> Settings()
                 R.id.nav_graph -> Chart()
                 else -> null

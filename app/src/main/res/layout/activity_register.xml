@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:background="@drawable/input"
-        android:drawableStart="@drawable/mail_24px"
+        android:drawableStart="@drawable/person_24px"
         android:drawablePadding="6dp"
         android:ems="10"
         android:hint="Nama"

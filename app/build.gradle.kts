@@ -50,6 +50,9 @@ dependencies {
     implementation(libs.circleimageview)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth)
+
+    implementation(libs.mpandroidchart)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

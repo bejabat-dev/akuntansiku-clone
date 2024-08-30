@@ -14,7 +14,7 @@
         android:padding="16dp"
         android:text="Pengaturan"
         android:textColor="@color/button"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <ScrollView
@@ -42,7 +42,7 @@
                 android:paddingBottom="12dp"
                 android:text="Profil"
                 android:textColor="@color/button"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -61,7 +61,7 @@
                 android:paddingBottom="12dp"
                 android:text="Kunci aplikasi"
                 android:textColor="@color/button"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -80,7 +80,7 @@
                 android:paddingBottom="12dp"
                 android:text="Reset data"
                 android:textColor="@color/button"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -99,7 +99,7 @@
                 android:paddingBottom="12dp"
                 android:text="Kontak kami"
                 android:textColor="@color/button"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -118,7 +118,7 @@
                 android:paddingBottom="12dp"
                 android:text="Keluar"
                 android:textColor="#E53A3A"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>

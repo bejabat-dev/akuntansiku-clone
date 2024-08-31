@@ -1,6 +1,5 @@
 package com.example.moliyafinance.navigation
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.FragmentHomeBinding
 import com.example.moliyafinance.models.User
+import com.example.moliyafinance.models.fadeIn
 import com.example.moliyafinance.models.getTransaksi
 import com.example.moliyafinance.models.showToast
 import com.example.moliyafinance.pages.TambahTransaksi
@@ -76,15 +76,6 @@ class Home : Fragment() {
             Dashboard.editing = false
             val i = Intent(requireContext(), TambahTransaksi::class.java)
             startActivity(i)
-        }
-    }
-
-    private fun fadeIn(view: View) {
-        view.alpha = 0f
-        view.visibility = View.VISIBLE
-        ObjectAnimator.ofFloat(view, "alpha", 0f, 1f).apply {
-            duration = 500 // Duration of the animation in milliseconds
-            start()
         }
     }
 }

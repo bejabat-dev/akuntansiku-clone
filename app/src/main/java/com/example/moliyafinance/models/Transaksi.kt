@@ -1,7 +1,9 @@
 package com.example.moliyafinance.models
 
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Context
+import android.view.View
 import android.widget.Toast
 import com.example.moliyafinance.LoadingDialog
 import com.google.firebase.Timestamp
@@ -126,4 +128,13 @@ fun formatToRupiah(amount: Int): String {
 
 fun showToast(context: Context, s: String) {
     Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
+}
+
+fun fadeIn(view: View) {
+    view.alpha = 0f
+    view.visibility = View.VISIBLE
+    ObjectAnimator.ofFloat(view, "alpha", 0f, 1f).apply {
+        duration = 500 // Duration of the animation in milliseconds
+        start()
+    }
 }

@@ -11,14 +11,19 @@ import com.example.moliyafinance.models.formatToRupiah
 
 class AdapterJurnalUmum(private val dataSet: List<Transaksi>) :
     RecyclerView.Adapter<AdapterJurnalUmum.ViewHolder>() {
+    private var totalDebit = 0
+    private var totalKredit = 0
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val jenisTransaksi : TextView = v.findViewById(R.id.jenisTransaksi)
-        val catatan : TextView = v.findViewById(R.id.catatan)
-        val debit : TextView = v.findViewById(R.id.debit)
-        val nomorDebit : TextView = v.findViewById(R.id.nomorDebit)
-        val kredit : TextView = v.findViewById(R.id.kredit)
-        val nomorKredit : TextView = v.findViewById(R.id.nomorKredit)
+        val jenisTransaksi: TextView = v.findViewById(R.id.jenisTransaksi)
+        val catatan: TextView = v.findViewById(R.id.catatan)
+        val debit: TextView = v.findViewById(R.id.debit)
+        val nominalDebit: TextView = v.findViewById(R.id.nominalDebit)
+        val nomorDebit: TextView = v.findViewById(R.id.nomorDebit)
+        val nominalKredit: TextView = v.findViewById(R.id.nominalKredit)
+        val kredit: TextView = v.findViewById(R.id.kredit)
+        val nomorKredit: TextView = v.findViewById(R.id.nomorKredit)
+        val tanggal: TextView = v.findViewById(R.id.tanggal)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -27,16 +32,30 @@ class AdapterJurnalUmum(private val dataSet: List<Transaksi>) :
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(v: ViewHolder, pos: Int) {
-        val nominal = formatToRupiah(dataSet[pos].nominal)
-        v.jenisTransaksi.text = dataSet[pos].jenisTransaksi
-        v.catatan.text = dataSet[pos].catatan
-        v.debit.text = dataSet[pos].debit
-        v.nomorKredit.text = dataSet[pos].kredit
-        v.nomorDebit.text = dataSet[pos].debit
-        v.kredit.text = dataSet[pos].kredit
+        val data = dataSet[pos]
+        totalDebit += data.nominal
+        totalKredit += data.nominal
+        val nominal = formatToRupiah(data.nominal)
+        v.jenisTransaksi.text = data.jenisTransaksi
+        v.catatan.text = data.catatan
+        v.debit.text = data.debit
+        v.nomorKredit.text = data.nomorKredit
+        v.nomorDebit.text = data.nomorDebit
+        v.kredit.text = data.kredit
+        v.nominalDebit.text = nominal
+        v.nominalKredit.text = nominal
+        v.tanggal.text = data.tanggal
     }
 
     override fun getItemCount() = dataSet.size
+    fun getTotalDebit(): Int {
+        return totalDebit
+    }
+
+    fun getTotalKredit(): Int {
+        return totalKredit
+    }
 
 }

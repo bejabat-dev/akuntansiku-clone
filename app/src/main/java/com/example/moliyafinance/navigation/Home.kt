@@ -52,6 +52,7 @@ class Home : Fragment() {
                         getTransaksi(requireContext(), onResult = { list ->
                             run {
                                 if (isAdded) {
+                                    Dashboard.listTransaksi = list
                                     val adapter = AdapterTransaksi(requireContext(), list)
                                     fadeIn(bind.recycler)
                                     bind.recycler.adapter = adapter

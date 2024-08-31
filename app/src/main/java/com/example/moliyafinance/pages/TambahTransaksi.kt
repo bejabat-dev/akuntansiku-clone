@@ -29,6 +29,8 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
     private lateinit var type: String
     private lateinit var selectedDebit: String
     private lateinit var selectedKredit: String
+    private lateinit var selectedNomorDebit: String
+    private lateinit var selectedNomorKredit: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityTambahTransaksiBinding.inflate(layoutInflater)
@@ -134,6 +136,8 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                         selectedKredit,
                         catatan,
                         nominal,
+                        selectedNomorDebit,
+                        selectedNomorKredit,
                         createTimestamp(tanggal, waktu)
                     )
                     tambahTransaksi(this, data)
@@ -144,10 +148,12 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
 
     override fun onItemClick(item: Variables.DataAkun) {
         if (type == "debit") {
+            selectedNomorDebit = item.nomor
             selectedDebit = item.jenis
             bind.debit.setText(item.jenis)
             dialog.dismiss()
         } else if (type == "kredit") {
+            selectedNomorKredit = item.nomor
             selectedKredit = item.jenis
             bind.kredit.setText(item.jenis)
             dialog.dismiss()

@@ -23,6 +23,8 @@ data class Transaksi(
     val kredit: String = "",
     val catatan: String = "",
     val nominal: Int = 0,
+    val nomorDebit: String = "",
+    val nomorKredit: String = "",
     val timestamp: Timestamp? = null,
     var date: Date? = null
 )
@@ -54,8 +56,10 @@ fun tambahTransaksi(context: Context, transaksi: Transaksi) {
         "debit" to transaksi.debit,
         "kredit" to transaksi.kredit,
         "catatan" to transaksi.catatan,
+        "nomorDebit" to transaksi.nomorDebit,
+        "nomorKredit" to transaksi.nomorKredit,
         "nominal" to transaksi.nominal,
-        "timestamp" to createTimestamp(transaksi.tanggal,transaksi.waktu)
+        "timestamp" to createTimestamp(transaksi.tanggal, transaksi.waktu)
     )
     db.document(transaksi.id.toString()).set(transaksiMap).addOnSuccessListener {
         LoadingDialog.dialog.dismiss()

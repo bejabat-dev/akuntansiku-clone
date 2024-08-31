@@ -6,13 +6,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.moliyafinance.R
 import com.example.moliyafinance.databinding.ActivityDashboardBinding
+import com.example.moliyafinance.models.Transaksi
 
 class Dashboard : AppCompatActivity() {
     private lateinit var bind: ActivityDashboardBinding
     private lateinit var fragmentManager: FragmentManager
 
-    companion object{
+    companion object {
         var editing = false
+        lateinit var listTransaksi: List<Transaksi>
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +27,7 @@ class Dashboard : AppCompatActivity() {
     private fun init(savedInstanceState: Bundle?) {
         fragmentManager = supportFragmentManager
         if (savedInstanceState == null) {
-            fragmentManager.beginTransaction()
-                .replace(R.id.dashboard_fragment, Home())
-                .commit()
+            fragmentManager.beginTransaction().replace(R.id.dashboard_fragment, Home()).commit()
         }
         bind.bottomNav.setOnItemSelectedListener { item ->
             val selectedFragment: Fragment? = when (item.itemId) {
@@ -39,9 +39,7 @@ class Dashboard : AppCompatActivity() {
                 else -> null
             }
             selectedFragment?.let {
-                fragmentManager.beginTransaction()
-                    .replace(R.id.dashboard_fragment, it)
-                    .commit()
+                fragmentManager.beginTransaction().replace(R.id.dashboard_fragment, it).commit()
             }
             true
         }

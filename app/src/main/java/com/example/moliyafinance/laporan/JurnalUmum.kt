@@ -3,11 +3,11 @@ package com.example.moliyafinance.laporan
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moliyafinance.adapters.AdapterTransaksi
+import com.example.moliyafinance.adapters.AdapterJurnalUmum
 import com.example.moliyafinance.databinding.ActivityJurnalUmumBinding
 import com.example.moliyafinance.models.fadeIn
-import com.example.moliyafinance.models.getTransaksi
-import com.example.moliyafinance.models.showToast
+import com.example.moliyafinance.models.formatToRupiah
+import com.example.moliyafinance.navigation.Dashboard
 
 class JurnalUmum : AppCompatActivity() {
     private lateinit var bind: ActivityJurnalUmumBinding
@@ -20,18 +20,15 @@ class JurnalUmum : AppCompatActivity() {
 
     private fun init() {
         bind.swipe.isRefreshing = true
-        getTransaksi(this, onResult = { list ->
-            run {
-                    val adapter = AdapterTransaksi(this, list)
-                    fadeIn(bind.recycler)
-                    bind.recycler.adapter = adapter
-                    bind.recycler.layoutManager = LinearLayoutManager(this)
-                    bind.swipe.isRefreshing = false
+        val adapter = AdapterJurnalUmum(Dashboard.listTransaksi)
+        fadeIn(bind.recycler)
+        bind.recycler.adapter = adapter
+        bind.recycler.layoutManager = LinearLayoutManager(this)
+        bind.swipe.isRefreshing = false
 
-            }
-        }, onError = {
-            bind.swipe.isRefreshing = false
-            showToast(this, "Terjadi kesalahan")
-        })
+        bind.recycler.post {
+            bind.totalDebit.text = formatToRupiah(adapter.getTotalDebit())
+            bind.totalKredit.text = formatToRupiah(adapter.getTotalKredit())
+        }
     }
 }

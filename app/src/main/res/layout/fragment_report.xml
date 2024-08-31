@@ -27,24 +27,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:background="@color/white"
-                android:clickable="true"
-                android:elevation="2dp"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:paddingStart="16dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="12dp"
-                android:text="Transaksi"
-                android:textColor="@color/button"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
+                android:id="@+id/jurnal_umum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -63,6 +46,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/buku_besar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -81,6 +65,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/neraca_saldo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -99,6 +84,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/laba_rugi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -117,6 +103,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/perubahan_modal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -135,6 +122,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/neraca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -153,6 +141,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/periode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -171,6 +160,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/arus_kas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -184,42 +174,6 @@
                 android:paddingEnd="16dp"
                 android:paddingBottom="12dp"
                 android:text="Arus Kas"
-                android:textColor="@color/button"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:background="@color/white"
-                android:clickable="true"
-                android:elevation="2dp"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:paddingStart="16dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="12dp"
-                android:text="Hutang Piutang"
-                android:textColor="@color/button"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:background="@color/white"
-                android:clickable="true"
-                android:elevation="2dp"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:paddingStart="16dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="12dp"
-                android:text="Periode"
                 android:textColor="@color/button"
                 android:textSize="16sp"
                 android:textStyle="bold" />

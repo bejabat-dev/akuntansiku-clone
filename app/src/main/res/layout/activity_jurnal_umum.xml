@@ -55,23 +55,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="November 2024" />
-
     </LinearLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-        </androidx.recyclerview.widget.RecyclerView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
     <LinearLayout
@@ -95,7 +87,7 @@
                 android:text="Debit" />
 
             <TextView
-                android:id="@+id/debit"
+                android:id="@+id/totalDebit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -118,7 +110,7 @@
                 android:text="Kredit" />
 
             <TextView
-                android:id="@+id/kredit"
+                android:id="@+id/totalKredit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"

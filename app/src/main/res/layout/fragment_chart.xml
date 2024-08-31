@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:padding="8dp"
-            android:text="Piutang"
+            android:text="Beban Operasional"
             android:textColor="@color/blacker"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:padding="8dp"
-            android:text="Hutang"
+            android:text="Arus Kas"
             android:textColor="@color/blacker"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -75,56 +75,6 @@
             android:layout_marginBottom="2dp"
             android:background="@color/white" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="8dp"
-            android:text="Laba Rugi"
-            android:textColor="@color/blacker"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <com.github.mikephil.charting.charts.ScatterChart
-            android:id="@+id/laba_rugi"
-            android:layout_width="match_parent"
-            android:layout_height="168dp"
-            android:layout_marginBottom="2dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="8dp"
-            android:text="Beban Operasional"
-            android:textColor="@color/blacker"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <com.github.mikephil.charting.charts.ScatterChart
-            android:id="@+id/beban_operasional"
-            android:layout_width="match_parent"
-            android:layout_height="168dp"
-            android:layout_marginBottom="2dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="8dp"
-            android:text="Arus Kas"
-            android:textColor="@color/blacker"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <com.github.mikephil.charting.charts.ScatterChart
-            android:id="@+id/arus_kas"
-            android:layout_width="match_parent"
-            android:layout_height="168dp"
-            android:layout_marginBottom="2dp"
-            android:background="@color/white" />
     </LinearLayout>
 
 </ScrollView>

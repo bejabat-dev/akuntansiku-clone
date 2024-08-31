@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MoliyaFinance"
         tools:targetApi="31">
         <activity
+            android:name=".laporan.JurnalUmum"
+            android:exported="false" />
+        <activity
             android:name=".pages.DaftarAkun"
             android:exported="false" />
         <activity

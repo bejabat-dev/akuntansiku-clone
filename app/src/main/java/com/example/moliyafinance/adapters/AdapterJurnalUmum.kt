@@ -1,5 +1,6 @@
 package com.example.moliyafinance.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class AdapterJurnalUmum(private val dataSet: List<Transaksi>) :
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(v: ViewHolder, pos: Int) {
         val data = dataSet[pos]
         totalDebit += data.nominal
@@ -40,10 +42,10 @@ class AdapterJurnalUmum(private val dataSet: List<Transaksi>) :
         val nominal = formatToRupiah(data.nominal)
         v.jenisTransaksi.text = data.jenisTransaksi
         v.catatan.text = data.catatan
-        v.debit.text = data.debit
+        v.debit.text = "${data.debit} (D)"
+        v.kredit.text = "${data.kredit} (C)"
         v.nomorKredit.text = data.nomorKredit
         v.nomorDebit.text = data.nomorDebit
-        v.kredit.text = data.kredit
         v.nominalDebit.text = nominal
         v.nominalKredit.text = nominal
         v.tanggal.text = data.tanggal

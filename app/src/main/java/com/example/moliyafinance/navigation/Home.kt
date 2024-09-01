@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.FragmentHomeBinding
+import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.User
 import com.example.moliyafinance.models.fadeIn
 import com.example.moliyafinance.models.getTransaksi
@@ -58,6 +59,19 @@ class Home : Fragment() {
                                     bind.recycler.adapter = adapter
                                     bind.recycler.layoutManager = LinearLayoutManager(requireContext())
                                     bind.swipe.isRefreshing = false
+
+                                    val groupedByDebit: Map<String, List<Transaksi>> = list.groupBy { it.debit }
+
+                                    val listOfMaps: List<Map<String, Any>> = groupedByDebit.map { (debit, transactions) ->
+                                        mapOf(
+                                            "debit" to debit,
+                                            "transactions" to transactions
+                                        )
+                                    }
+
+                                    listOfMaps.forEach { map ->
+                                        println(map)
+                                    }
                                 }
                             }
                         }, onError = {

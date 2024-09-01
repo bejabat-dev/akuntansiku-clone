@@ -1,7 +1,5 @@
 package com.example.moliyafinance
 
-import kotlin.collections.ArrayList
-
 object Variables {
     val jenis_transaksi = listOf(
         "Pemasukan",
@@ -58,6 +56,18 @@ object Variables {
         DataAkun("1-10045", "Aset Tetap - Peralatan Kantor", kategori5),
         DataAkun("1-10046", "Aset Tetap - Aset Sewaan", kategori5),
         DataAkun("1-10047", "Aset Tetap - Aset Tidak Berwujud", kategori5),
+        DataAkun("1-10051", "Akumulasi Penyusutan - Bangunan", kategori6),
+        DataAkun("1-10052", "Akumulasi Penyusutan - Pengembangan Bangunan", kategori6),
+        DataAkun("1-10053", "Akumulasi Penyusutan - Kendaraan", kategori6),
+        DataAkun("1-10054", "Akumulasi Penyusutan - Mesin & Peralatan", kategori6),
+        DataAkun("1-10055", "Akumulasi Penyusutan - Peralatan Kantor", kategori6),
+        DataAkun("1-10056", "Akumulasi Penyusutan - Aset Sewaan", kategori6),
+        DataAkun("1-10057", "Akumulasi Armotisasi", kategori6),
+        DataAkun("1-10061", "Investasi", kategori8),
+        DataAkun("2-10071", "Hutang Usaha", kategori9),
+        DataAkun("2-10072", "Hutang Belum Ditagih ", kategori9),
+        DataAkun("2-10081", "Hutang Lainnya ", kategori9),
+
     )
 
     data class DataAkun(

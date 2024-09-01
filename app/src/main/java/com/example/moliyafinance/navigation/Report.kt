@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.moliyafinance.databinding.FragmentReportBinding
+import com.example.moliyafinance.laporan.BukuBesar
 import com.example.moliyafinance.laporan.JurnalUmum
 
 class Report: Fragment(){
@@ -24,6 +25,10 @@ class Report: Fragment(){
         super.onViewCreated(view, savedInstanceState)
         bind.jurnalUmum.setOnClickListener {
             val i = Intent(requireContext(),JurnalUmum::class.java)
+            requireContext().startActivity(i)
+        }
+        bind.bukuBesar.setOnClickListener {
+            val i = Intent(requireContext(),BukuBesar::class.java)
             requireContext().startActivity(i)
         }
     }

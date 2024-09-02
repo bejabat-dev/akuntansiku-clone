@@ -29,6 +29,12 @@ data class Transaksi(
     var date: Date? = null
 )
 
+fun getFilteredTransaksi(list : List<Transaksi>,s:String): List<Transaksi> {
+    val data = list.filter { it.debit == s || it.kredit == s}
+    println(data)
+    return data
+}
+
 object TransaksiDetails {
     lateinit var detailTransaksi: Transaksi
 }

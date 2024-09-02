@@ -8,132 +8,78 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
 import com.example.moliyafinance.models.Transaksi
 
-data class TransactionGroup(
-    val header: String,
-    val transactions: List<Transaksi>
-)
-
-
-class DebitAdapter(private val groups: List<TransactionGroup>) :
-    RecyclerView.Adapter<DebitAdapter.DebitViewHolder>() {
-
-    class DebitViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val headerTextView: TextView = view.findViewById(R.id.debitHeaderTextView)
-        val nominalTextView: TextView = view.findViewById(R.id.debitNominalTextView)
-        val jenisTransaksiTextView: TextView = view.findViewById(R.id.debitJenisTransaksiTextView)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DebitViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_debit, parent, false)
-        return DebitViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: DebitViewHolder, position: Int) {
-        val group = groups[position]
-        holder.headerTextView.text = group.header
-        if (group.transactions.isNotEmpty()) {
-            val transaction = group.transactions.first()
-            holder.nominalTextView.text = transaction.nominal.toString()
-            holder.jenisTransaksiTextView.text = transaction.jenisTransaksi
-        }
-    }
-
-    override fun getItemCount() = groups.size
+fun getDistinctValues(transaksiList: List<Transaksi>): List<String> {
+    val debitValues = transaksiList.map { it.debit }
+    val kreditValues = transaksiList.map { it.kredit }
+    val allValues = debitValues + kreditValues
+    return allValues.distinct()
 }
 
-class CreditAdapter(private val groups: List<TransactionGroup>) :
-    RecyclerView.Adapter<CreditAdapter.CreditViewHolder>() {
+fun groupTransaksiByValue(transaksiList: List<Transaksi>, distinctValues: List<String>): Map<String, List<Transaksi>> {
+    val groupedData = mutableMapOf<String, MutableList<Transaksi>>()
 
-    class CreditViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val headerTextView: TextView = view.findViewById(R.id.creditHeaderTextView)
-        val nominalTextView: TextView = view.findViewById(R.id.creditNominalTextView)
-        val jenisTransaksiTextView: TextView = view.findViewById(R.id.creditJenisTransaksiTextView)
+    distinctValues.forEach { value ->
+        groupedData[value] = transaksiList.filter {
+            it.debit == value || it.kredit == value
+        }.toMutableList()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreditViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_credit, parent, false)
-        return CreditViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: CreditViewHolder, position: Int) {
-        val group = groups[position]
-        holder.headerTextView.text = group.header
-        if (group.transactions.isNotEmpty()) {
-            val transaction = group.transactions.first()
-            holder.nominalTextView.text = transaction.nominal.toString()
-            holder.jenisTransaksiTextView.text = transaction.jenisTransaksi
-        }
-    }
-
-    override fun getItemCount() = groups.size
+    return groupedData
 }
 
+class TransaksiAdapter(private val groupedData: Map<String, List<Transaksi>>) : RecyclerView.Adapter<TransaksiAdapter.TransaksiViewHolder>() {
 
-class CombinedAdapter(
-    private val debitGroups: List<TransactionGroup>,
-    private val creditGroups: List<TransactionGroup>
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    inner class TransaksiViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(transaksiList: List<Transaksi>, groupName: String) {
+            val groupNameTextView = itemView.findViewById<TextView>(R.id.textViewGroupName)
+            val transaksiRecyclerView = itemView.findViewById<RecyclerView>(R.id.recyclerViewTransaksi)
 
-    companion object {
-        private const val VIEW_TYPE_DEBIT_HEADER = 0
-        private const val VIEW_TYPE_CREDIT_HEADER = 1
-        private const val VIEW_TYPE_TRANSACTION = 2
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return when {
-            position < debitGroups.size -> VIEW_TYPE_DEBIT_HEADER
-            position < debitGroups.size + creditGroups.size -> VIEW_TYPE_CREDIT_HEADER
-            else -> VIEW_TYPE_TRANSACTION
+            groupNameTextView.text = groupName
+            transaksiRecyclerView.adapter = TransaksiListAdapter(transaksiList)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            VIEW_TYPE_DEBIT_HEADER -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_debit, parent, false)
-                DebitAdapter.DebitViewHolder(view)
-            }
-            VIEW_TYPE_CREDIT_HEADER -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_credit, parent, false)
-                CreditAdapter.CreditViewHolder(view)
-            }
-            else -> throw IllegalArgumentException("Invalid view type")
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransaksiViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_transaksi_group, parent, false)
+        return TransaksiViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (getItemViewType(position)) {
-            VIEW_TYPE_DEBIT_HEADER -> {
-                val group = debitGroups[position]
-                (holder as DebitAdapter.DebitViewHolder).apply {
-                    headerTextView.text = group.header
-                    if (group.transactions.isNotEmpty()) {
-                        val transaction = group.transactions.first()
-                        nominalTextView.text = transaction.nominal.toString()
-                        jenisTransaksiTextView.text = transaction.jenisTransaksi
-                    }
-                }
-            }
-            VIEW_TYPE_CREDIT_HEADER -> {
-                val group = creditGroups[position - debitGroups.size]
-                (holder as CreditAdapter.CreditViewHolder).apply {
-                    headerTextView.text = group.header
-                    if (group.transactions.isNotEmpty()) {
-                        val transaction = group.transactions.first()
-                        nominalTextView.text = transaction.nominal.toString()
-                        jenisTransaksiTextView.text = transaction.jenisTransaksi
-                    }
-                }
-            }
-        }
+    override fun onBindViewHolder(holder: TransaksiViewHolder, position: Int) {
+        val groupName = groupedData.keys.elementAt(position)
+        val transaksiList = groupedData[groupName] ?: emptyList()
+        holder.bind(transaksiList, groupName)
     }
 
     override fun getItemCount(): Int {
-        return debitGroups.size + creditGroups.size
+        return groupedData.size
+    }
+}
+
+class TransaksiListAdapter(private val transaksiList: List<Transaksi>) : RecyclerView.Adapter<TransaksiListAdapter.TransaksiListViewHolder>() {
+
+    inner class TransaksiListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(transaksi: Transaksi) {
+            val debitTextView = itemView.findViewById<TextView>(R.id.textViewDebit)
+            val kreditTextView = itemView.findViewById<TextView>(R.id.textViewKredit)
+            val nominalTextView = itemView.findViewById<TextView>(R.id.textViewNominal)
+
+            debitTextView.text = transaksi.debit
+            kreditTextView.text = transaksi.kredit
+            nominalTextView.text = transaksi.nominal.toString()
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransaksiListViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_transaksi_detail, parent, false)
+        return TransaksiListViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: TransaksiListViewHolder, position: Int) {
+        val transaksi = transaksiList[position]
+        holder.bind(transaksi)
+    }
+
+    override fun getItemCount(): Int {
+        return transaksiList.size
     }
 }

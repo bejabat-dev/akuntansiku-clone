@@ -73,6 +73,8 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
             val jenisTransaksi = ts.jenisTransaksi
             val index = Variables.jenis_transaksi.indexOf(jenisTransaksi)
             bind.spinnerJenisTransaksi.setSelection(index)
+            selectedDebit = ts.debit
+            selectedKredit = ts.kredit
             bind.debit.setText(ts.debit)
             bind.kredit.setText(ts.kredit)
             bind.catatan.setText(ts.catatan)

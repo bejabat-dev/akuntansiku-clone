@@ -1,85 +1,87 @@
 package com.example.moliyafinance.adapters
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
 import com.example.moliyafinance.models.Transaksi
 
-fun getDistinctValues(transaksiList: List<Transaksi>): List<String> {
-    val debitValues = transaksiList.map { it.debit }
-    val kreditValues = transaksiList.map { it.kredit }
-    val allValues = debitValues + kreditValues
-    return allValues.distinct()
+class AdapterBukuBesar(
+    private val context: Context,
+    private val dataSet: ArrayList<HashMap<String, List<Transaksi>>>,
+    private val keys: List<String>
+) :
+    RecyclerView.Adapter<AdapterBukuBesar.ViewHolder>() {
+    private var totalDebit = 0
+    private var totalKredit = 0
+
+    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        val r: RecyclerView = v.findViewById(R.id.recycler)
+        val judul: TextView = v.findViewById(R.id.judul)
+    }
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.recycler_buku_besar, viewGroup, false)
+        return ViewHolder(view)
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    override fun onBindViewHolder(v: ViewHolder, pos: Int) {
+        val adapter = InnerAdapter(dataSet[pos][keys[pos]]!!)
+        v.r.adapter = adapter
+        v.r.layoutManager = LinearLayoutManager(context)
+        v.judul.text = keys[pos]
+    }
+
+    override fun getItemCount() = dataSet.size
+    fun getTotalDebit(): Int {
+        return totalDebit
+    }
+
+    fun getTotalKredit(): Int {
+        return totalKredit
+    }
+
 }
 
-fun groupTransaksiByValue(transaksiList: List<Transaksi>, distinctValues: List<String>): Map<String, List<Transaksi>> {
-    val groupedData = mutableMapOf<String, MutableList<Transaksi>>()
+class InnerAdapter(private val dataSet: List<Transaksi>) :
+    RecyclerView.Adapter<InnerAdapter.ViewHolder>() {
+    private var totalDebit = 0
+    private var totalKredit = 0
 
-    distinctValues.forEach { value ->
-        groupedData[value] = transaksiList.filter {
-            it.debit == value || it.kredit == value
-        }.toMutableList()
+    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        val tanggal: TextView = v.findViewById(R.id.tanggal)
+        val debit: TextView = v.findViewById(R.id.debit)
+        val kredit: TextView = v.findViewById(R.id.kredit)
     }
 
-    return groupedData
-}
-
-class TransaksiAdapter(private val groupedData: Map<String, List<Transaksi>>) : RecyclerView.Adapter<TransaksiAdapter.TransaksiViewHolder>() {
-
-    inner class TransaksiViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(transaksiList: List<Transaksi>, groupName: String) {
-            val groupNameTextView = itemView.findViewById<TextView>(R.id.textViewGroupName)
-            val transaksiRecyclerView = itemView.findViewById<RecyclerView>(R.id.recyclerViewTransaksi)
-
-            groupNameTextView.text = groupName
-            transaksiRecyclerView.adapter = TransaksiListAdapter(transaksiList)
-        }
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.item_buku_besar, viewGroup, false)
+        return ViewHolder(view)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransaksiViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_transaksi_group, parent, false)
-        return TransaksiViewHolder(view)
+
+    @SuppressLint("SetTextI18n")
+    override fun onBindViewHolder(v: ViewHolder, pos: Int) {
+        v.tanggal.text = dataSet[pos].tanggal
+        v.debit.text = dataSet[pos].catatan
     }
 
-    override fun onBindViewHolder(holder: TransaksiViewHolder, position: Int) {
-        val groupName = groupedData.keys.elementAt(position)
-        val transaksiList = groupedData[groupName] ?: emptyList()
-        holder.bind(transaksiList, groupName)
+    override fun getItemCount() = dataSet.size
+    fun getTotalDebit(): Int {
+        return totalDebit
     }
 
-    override fun getItemCount(): Int {
-        return groupedData.size
-    }
-}
-
-class TransaksiListAdapter(private val transaksiList: List<Transaksi>) : RecyclerView.Adapter<TransaksiListAdapter.TransaksiListViewHolder>() {
-
-    inner class TransaksiListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(transaksi: Transaksi) {
-            val debitTextView = itemView.findViewById<TextView>(R.id.textViewDebit)
-            val kreditTextView = itemView.findViewById<TextView>(R.id.textViewKredit)
-            val nominalTextView = itemView.findViewById<TextView>(R.id.textViewNominal)
-
-            debitTextView.text = transaksi.debit
-            kreditTextView.text = transaksi.kredit
-            nominalTextView.text = transaksi.nominal.toString()
-        }
+    fun getTotalKredit(): Int {
+        return totalKredit
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransaksiListViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_transaksi_detail, parent, false)
-        return TransaksiListViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: TransaksiListViewHolder, position: Int) {
-        val transaksi = transaksiList[position]
-        holder.bind(transaksi)
-    }
-
-    override fun getItemCount(): Int {
-        return transaksiList.size
-    }
 }

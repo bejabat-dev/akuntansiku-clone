@@ -2,6 +2,7 @@ package com.example.moliyafinance.pages
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.databinding.ActivityDetailTransaksiBinding
 import com.example.moliyafinance.models.TransaksiDetails
@@ -34,7 +35,23 @@ class DetailTransaksi : AppCompatActivity() {
 
     private fun initClicks() {
         bind.hapus.setOnClickListener {
+            val b = AlertDialog.Builder(this)
+            b.setTitle("Peringatan")
+            b.setMessage("Hapus transaksi ?")
 
+            b.setPositiveButton("Ya") { dialog, _ ->
+                run {
+                    dialog.dismiss()
+                }
+            }
+            b.setNegativeButton("Batal") { dialog, _ ->
+                run {
+                    dialog.dismiss()
+                }
+            }
+
+            val dialog = b.create()
+            dialog.show()
         }
 
         bind.edit.setOnClickListener {

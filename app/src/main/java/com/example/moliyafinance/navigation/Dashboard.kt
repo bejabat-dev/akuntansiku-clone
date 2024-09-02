@@ -15,6 +15,7 @@ class Dashboard : AppCompatActivity() {
     companion object {
         var editing = false
         lateinit var listTransaksi: List<Transaksi>
+        var isLoaded = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

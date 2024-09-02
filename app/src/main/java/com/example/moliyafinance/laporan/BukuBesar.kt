@@ -7,6 +7,7 @@ import com.example.moliyafinance.adapters.AdapterBukuBesar
 import com.example.moliyafinance.databinding.ActivityBukuBesarBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.navigation.Dashboard
+import com.example.moliyafinance.navigation.Dashboard.Companion.isLoaded
 
 class BukuBesar : AppCompatActivity() {
     private lateinit var bind: ActivityBukuBesarBinding
@@ -14,38 +15,29 @@ class BukuBesar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityBukuBesarBinding.inflate(layoutInflater)
         setContentView(bind.root)
-        init()
+        if (isLoaded) {
+            init()
+        }
     }
 
     private fun init() {
         val transaksiList = Dashboard.listTransaksi
+        val listStringTransaksi = extractString(transaksiList)
+        val innerTransaksi = ArrayList<List<Transaksi>>()
 
-        // Get distinct debits and credits
-        val distinctDebits: List<String> = transaksiList.map { it.debit }.toSet().toList()
-        val distinctKredits: List<String> = transaksiList.map { it.kredit }.toSet().toList()
-
-        // Combine and get unique values
-        val combinedUniqueValues: List<String> = (distinctDebits + distinctKredits).toSet().toList()
-
-        // Sort unique values
-        val sortedUniqueValues = combinedUniqueValues.sorted()
-
-        // Create the map with unique values as keys
-        val mapByUniqueValues: Map<String, List<Transaksi>> = sortedUniqueValues.associateWith { uniqueValue ->
-            transaksiList.filter { it.debit == uniqueValue || it.kredit == uniqueValue }
+        for (s in listStringTransaksi) {
+            val newData = transaksiList.filter { it.debit == s || it.kredit == s }
+            innerTransaksi.add(newData)
         }
-
-        // Convert mapByUniqueValues to ArrayList<HashMap<String, List<Transaksi>>>
-        val arrayListOfHashMaps = ArrayList<HashMap<String, List<Transaksi>>>()
-        sortedUniqueValues.forEach { key ->
-            val transactions = mapByUniqueValues[key] ?: emptyList()
-            val hashMap = hashMapOf(key to transactions)
-            arrayListOfHashMaps.add(hashMap)
-        }
-
-        // Set up the adapter
-        val adapter = AdapterBukuBesar(this, arrayListOfHashMaps, sortedUniqueValues)
+        val adapter = AdapterBukuBesar(listStringTransaksi,innerTransaksi)
         bind.recycer.adapter = adapter
         bind.recycer.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun extractString(transaksiList: List<Transaksi>): List<String> {
+        val debitValues = transaksiList.map { it.debit }
+        val kreditValues = transaksiList.map { it.kredit }
+        val combinedValues = debitValues + kreditValues
+        return combinedValues.distinct()
     }
 }

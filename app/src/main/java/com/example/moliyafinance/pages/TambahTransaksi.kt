@@ -18,6 +18,7 @@ import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.TransaksiDetails
 import com.example.moliyafinance.models.createTimestamp
 import com.example.moliyafinance.models.tambahTransaksi
+import com.example.moliyafinance.models.updateTransaksi
 import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth
 
@@ -75,6 +76,8 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
             bind.spinnerJenisTransaksi.setSelection(index)
             selectedDebit = ts.debit
             selectedKredit = ts.kredit
+            selectedNomorDebit = ts.nomorDebit
+            selectedNomorKredit = ts.nomorKredit
             bind.debit.setText(ts.debit)
             bind.kredit.setText(ts.kredit)
             bind.catatan.setText(ts.catatan)
@@ -127,22 +130,42 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                 if (nominal == null) {
                     Toast.makeText(this, "Harap penuhi semua kolom", Toast.LENGTH_SHORT).show()
                 } else {
-                    val id = System.currentTimeMillis()
-                    val data = Transaksi(
-                        id,
-                        uid!!,
-                        tanggal,
-                        waktu,
-                        selectedJenisTransaksi,
-                        selectedDebit,
-                        selectedKredit,
-                        catatan,
-                        nominal,
-                        selectedNomorDebit,
-                        selectedNomorKredit,
-                        createTimestamp(tanggal, waktu)
-                    )
-                    tambahTransaksi(this, data)
+
+                    if (Dashboard.editing) {
+                        val id = TransaksiDetails.detailTransaksi.id
+                        val data = Transaksi(
+                            id,
+                            uid!!,
+                            tanggal,
+                            waktu,
+                            selectedJenisTransaksi,
+                            selectedDebit,
+                            selectedKredit,
+                            catatan,
+                            nominal,
+                            selectedNomorDebit,
+                            selectedNomorKredit,
+                            createTimestamp(tanggal, waktu)
+                        )
+                        updateTransaksi(this, data)
+                    } else {
+                        val id = System.currentTimeMillis()
+                        val data = Transaksi(
+                            id,
+                            uid!!,
+                            tanggal,
+                            waktu,
+                            selectedJenisTransaksi,
+                            selectedDebit,
+                            selectedKredit,
+                            catatan,
+                            nominal,
+                            selectedNomorDebit,
+                            selectedNomorKredit,
+                            createTimestamp(tanggal, waktu)
+                        )
+                        tambahTransaksi(this, data)
+                    }
                 }
             }
         }

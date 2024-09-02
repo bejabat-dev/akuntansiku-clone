@@ -29,8 +29,8 @@ data class Transaksi(
     var date: Date? = null
 )
 
-fun getFilteredTransaksi(list : List<Transaksi>,s:String): List<Transaksi> {
-    val data = list.filter { it.debit == s || it.kredit == s}
+fun getFilteredTransaksi(list: List<Transaksi>, s: String): List<Transaksi> {
+    val data = list.filter { it.debit == s || it.kredit == s }
     println(data)
     return data
 }
@@ -47,6 +47,20 @@ fun createTimestamp(dateString: String, timeString: String): Timestamp {
         Timestamp(date)
     } else {
         throw IllegalArgumentException("Invalid date or time format")
+    }
+}
+
+fun hapusTransaksi(context: Context, id: Long) {
+    LoadingDialog.showDialog(context, "Menghapus transaksi")
+    val db = FirebaseFirestore.getInstance().collection("Transactions")
+    db.document(id.toString()).delete().addOnSuccessListener {
+        if (context is Activity) {
+            LoadingDialog.dialog.dismiss()
+            context.finish()
+        }
+    }.addOnFailureListener {
+        LoadingDialog.dialog.dismiss()
+        showToast(context, "Terjadi kesalahan")
     }
 }
 
@@ -70,6 +84,7 @@ fun tambahTransaksi(context: Context, transaksi: Transaksi) {
     db.document(transaksi.id.toString()).set(transaksiMap).addOnSuccessListener {
         LoadingDialog.dialog.dismiss()
         if (context is Activity) {
+            LoadingDialog.dialog.dismiss()
             context.finish()
         }
     }.addOnFailureListener { e ->
@@ -90,11 +105,14 @@ fun updateTransaksi(context: Context, transaksi: Transaksi) {
         "debit" to transaksi.debit,
         "kredit" to transaksi.kredit,
         "catatan" to transaksi.catatan,
+        "nomorDebit" to transaksi.nomorDebit,
+        "nomorKredit" to transaksi.nomorKredit,
         "nominal" to transaksi.nominal
     )
     db.document(transaksi.id.toString()).update(transaksiMap).addOnSuccessListener {
         LoadingDialog.dialog.dismiss()
         if (context is Activity) {
+            LoadingDialog.dialog.dismiss()
             context.finish()
         }
     }.addOnFailureListener { e ->

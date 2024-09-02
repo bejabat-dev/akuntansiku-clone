@@ -8,6 +8,7 @@ import com.example.moliyafinance.databinding.ActivityJurnalUmumBinding
 import com.example.moliyafinance.models.fadeIn
 import com.example.moliyafinance.models.formatToRupiah
 import com.example.moliyafinance.navigation.Dashboard
+import com.example.moliyafinance.navigation.Dashboard.Companion.isLoaded
 
 class JurnalUmum : AppCompatActivity() {
     private lateinit var bind: ActivityJurnalUmumBinding
@@ -15,7 +16,9 @@ class JurnalUmum : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityJurnalUmumBinding.inflate(layoutInflater)
         setContentView(bind.root)
-        init()
+        if (isLoaded) {
+            init()
+        }
     }
 
     private fun init() {

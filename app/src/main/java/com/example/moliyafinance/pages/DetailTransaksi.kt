@@ -8,6 +8,7 @@ import com.example.moliyafinance.databinding.ActivityDetailTransaksiBinding
 import com.example.moliyafinance.models.TransaksiDetails
 import com.example.moliyafinance.models.User
 import com.example.moliyafinance.models.formatToRupiah
+import com.example.moliyafinance.models.hapusTransaksi
 import com.example.moliyafinance.navigation.Dashboard
 
 class DetailTransaksi : AppCompatActivity() {
@@ -34,14 +35,15 @@ class DetailTransaksi : AppCompatActivity() {
     }
 
     private fun initClicks() {
+        val id = TransaksiDetails.detailTransaksi.id
         bind.hapus.setOnClickListener {
             val b = AlertDialog.Builder(this)
             b.setTitle("Peringatan")
             b.setMessage("Hapus transaksi ?")
 
-            b.setPositiveButton("Ya") { dialog, _ ->
+            b.setPositiveButton("Ya") { _, _ ->
                 run {
-                    dialog.dismiss()
+                    hapusTransaksi(this,id)
                 }
             }
             b.setNegativeButton("Batal") { dialog, _ ->

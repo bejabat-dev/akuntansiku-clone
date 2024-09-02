@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.LoadingDialog
 import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.FragmentHomeBinding
 import com.example.moliyafinance.models.Transaksi
@@ -18,6 +19,7 @@ import com.example.moliyafinance.pages.TambahTransaksi
 
 class Home : Fragment() {
     private lateinit var bind: FragmentHomeBinding
+    private var firstLaunch = true
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +34,10 @@ class Home : Fragment() {
         bind.swipe.setOnRefreshListener {
             init()
         }
-        init()
+        if (firstLaunch) {
+            LoadingDialog.showDialog(requireContext(), "Memuat")
+            init()
+        }
     }
 
     override fun onResume() {
@@ -53,21 +58,28 @@ class Home : Fragment() {
                         getTransaksi(requireContext(), onResult = { list ->
                             run {
                                 if (isAdded) {
+                                    Dashboard.isLoaded = true
                                     Dashboard.listTransaksi = list
                                     val adapter = AdapterTransaksi(requireContext(), list)
                                     fadeIn(bind.recycler)
                                     bind.recycler.adapter = adapter
-                                    bind.recycler.layoutManager = LinearLayoutManager(requireContext())
+                                    bind.recycler.layoutManager =
+                                        LinearLayoutManager(requireContext())
                                     bind.swipe.isRefreshing = false
-
-                                    val groupedByDebit: Map<String, List<Transaksi>> = list.groupBy { it.debit }
-
-                                    val listOfMaps: List<Map<String, Any>> = groupedByDebit.map { (debit, transactions) ->
-                                        mapOf(
-                                            "debit" to debit,
-                                            "transactions" to transactions
-                                        )
+                                    if (firstLaunch) {
+                                        firstLaunch = false
+                                        LoadingDialog.dialog.dismiss()
                                     }
+                                    val groupedByDebit: Map<String, List<Transaksi>> =
+                                        list.groupBy { it.debit }
+
+                                    val listOfMaps: List<Map<String, Any>> =
+                                        groupedByDebit.map { (debit, transactions) ->
+                                            mapOf(
+                                                "debit" to debit,
+                                                "transactions" to transactions
+                                            )
+                                        }
 
                                     listOfMaps.forEach { map ->
                                         println(map)
@@ -75,6 +87,9 @@ class Home : Fragment() {
                                 }
                             }
                         }, onError = {
+                            if (firstLaunch) {
+                                LoadingDialog.dialog.dismiss()
+                            }
                             bind.swipe.isRefreshing = false
                             showToast(requireContext(), "Terjadi kesalahan")
                         })
@@ -86,7 +101,7 @@ class Home : Fragment() {
         bind.nama.text = User.userData.nama
     }
 
-    private fun initClicks(){
+    private fun initClicks() {
         bind.tambahTransaksi.setOnClickListener {
             Dashboard.editing = false
             val i = Intent(requireContext(), TambahTransaksi::class.java)

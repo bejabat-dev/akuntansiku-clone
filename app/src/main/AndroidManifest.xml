@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MoliyaFinance"
         tools:targetApi="31">
         <activity
+            android:name=".laporan.NeracaSaldo"
+            android:exported="false" />
+        <activity
             android:name=".laporan.BukuBesar"
             android:exported="false" />
         <activity

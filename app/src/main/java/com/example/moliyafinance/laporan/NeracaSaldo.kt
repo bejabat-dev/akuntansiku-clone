@@ -3,25 +3,20 @@ package com.example.moliyafinance.laporan
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moliyafinance.adapters.AdapterBukuBesar
-import com.example.moliyafinance.databinding.ActivityBukuBesarBinding
+import com.example.moliyafinance.adapters.AdapterNeracaSaldo
+import com.example.moliyafinance.databinding.ActivityNeracaSaldoBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.fadeIn
 import com.example.moliyafinance.navigation.Dashboard
-import com.example.moliyafinance.navigation.Dashboard.Companion.isLoaded
 
-class BukuBesar : AppCompatActivity() {
-    private lateinit var bind: ActivityBukuBesarBinding
+class NeracaSaldo : AppCompatActivity() {
+    private lateinit var bind: ActivityNeracaSaldoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bind = ActivityBukuBesarBinding.inflate(layoutInflater)
-        setContentView(bind.root)
-        if (isLoaded) {
-            init()
-        }
+        bind = ActivityNeracaSaldoBinding.inflate(layoutInflater)
+        setContentView(bind.getRoot())
+        init()
     }
-
-
 
     private fun init() {
         fadeIn(bind.recycer)
@@ -36,7 +31,8 @@ class BukuBesar : AppCompatActivity() {
             val newData = transaksiList.filter { it.debit == s || it.kredit == s }
             innerTransaksi.add(newData)
         }
-        val adapter = AdapterBukuBesar(listStringTransaksi,innerTransaksi)
+        val adapter = AdapterNeracaSaldo(listStringTransaksi, innerTransaksi)
+
         bind.recycer.adapter = adapter
         bind.recycer.layoutManager = LinearLayoutManager(this)
     }

@@ -21,6 +21,7 @@ class AdapterBukuBesar(
         val r: RecyclerView = v.findViewById(R.id.recycler)
         val judul: TextView = v.findViewById(R.id.judul)
         val saldoAkhir: TextView = v.findViewById(R.id.saldo_akhir)
+        val nomorAkun:TextView = v.findViewById(R.id.nomor_akun)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -41,8 +42,10 @@ class AdapterBukuBesar(
         for (data in innerDataSet[pos]) {
             if (data.debit == dataSet[pos]) {
                 total += data.nominal
+                v.nomorAkun.text = data.nomorDebit
             } else {
                 total -= data.nominal
+                v.nomorAkun.text = data.nomorKredit
             }
         }
         if (total < 0) {

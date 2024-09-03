@@ -24,11 +24,12 @@ class JurnalUmum : AppCompatActivity() {
     private fun init() {
         val adapter = AdapterJurnalUmum(Dashboard.listTransaksi)
         fadeIn(bind.recycler)
-        bind.recycler.adapter = adapter
-        bind.recycler.layoutManager = LinearLayoutManager(this)
         bind.back.setOnClickListener {
             finish()
         }
+        bind.recycler.adapter = adapter
+        bind.recycler.layoutManager = LinearLayoutManager(this)
+
         bind.recycler.post {
             bind.totalDebit.text = formatToRupiah(adapter.getTotalDebit())
             bind.totalKredit.text = formatToRupiah(adapter.getTotalKredit())

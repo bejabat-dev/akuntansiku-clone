@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
 import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.models.formatTanggalBukuBesar
 import com.example.moliyafinance.models.formatToRupiah
 
 class AdapterBukuBesar(
@@ -55,7 +56,6 @@ class AdapterBukuBesar(
             v.saldoAkhir.text = formatToRupiah(total)
         }
     }
-
     override fun getItemCount() = dataSet.size
 }
 
@@ -76,7 +76,6 @@ class InnerAdapter(private val dataSet: List<Transaksi>, private val checker: St
         return ViewHolder(view)
     }
 
-
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(view: ViewHolder, pos: Int) {
         val transaksi = dataSet[pos]
@@ -90,7 +89,7 @@ class InnerAdapter(private val dataSet: List<Transaksi>, private val checker: St
             view.saldo.text = "(${transaksi.nominal})"
         }
         view.catatan.text = transaksi.catatan
-        view.tanggal.text = transaksi.tanggal
+        view.tanggal.text = formatTanggalBukuBesar(transaksi.tanggal)
     }
 
     override fun getItemCount() = dataSet.size

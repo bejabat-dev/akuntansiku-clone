@@ -154,12 +154,18 @@ fun formatToRupiah(amount: Int): String {
     return numberFormat.format(amount).replace("Rp ", "Rp")
 }
 
+fun formatTanggalBukuBesar(s: String): String? {
+    val dateFormat = SimpleDateFormat("dd/MM/yy", Locale.getDefault())
+    val date = dateFormat.parse(s)
+    return date?.let { dateFormat.format(it) }
+}
+
 fun formatNominal(amount: Int): String {
     val localeID = Locale("in", "ID") // Indonesian locale
     val numberFormat =
         NumberFormat.getCurrencyInstance(localeID) // Currency formatter for Indonesia
     numberFormat.maximumFractionDigits = 0 // Remove decimal places
-    return numberFormat.format(amount).replace("Rp","")
+    return numberFormat.format(amount).replace("Rp", "")
 }
 
 fun showToast(context: Context, s: String) {

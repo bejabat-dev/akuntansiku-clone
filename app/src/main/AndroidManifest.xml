@@ -22,9 +22,6 @@
             android:name=".laporan.JurnalUmum"
             android:exported="false" />
         <activity
-            android:name=".laporan.Laporan"
-            android:exported="false" />
-        <activity
             android:name=".pages.DaftarAkun"
             android:exported="false" />
         <activity

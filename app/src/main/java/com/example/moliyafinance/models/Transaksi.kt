@@ -29,12 +29,6 @@ data class Transaksi(
     var date: Date? = null
 )
 
-fun getFilteredTransaksi(list: List<Transaksi>, s: String): List<Transaksi> {
-    val data = list.filter { it.debit == s || it.kredit == s }
-    println(data)
-    return data
-}
-
 object TransaksiDetails {
     lateinit var detailTransaksi: Transaksi
 }
@@ -176,7 +170,7 @@ fun fadeIn(view: View) {
     view.alpha = 0f
     view.visibility = View.VISIBLE
     ObjectAnimator.ofFloat(view, "alpha", 0f, 1f).apply {
-        duration = 500 // Duration of the animation in milliseconds
+        duration = 600 // Duration of the animation in milliseconds
         start()
     }
 }

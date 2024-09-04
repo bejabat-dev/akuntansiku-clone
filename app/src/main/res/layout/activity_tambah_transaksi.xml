@@ -136,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
-            android:text="Untuk biaya(Debit)" />
+            android:text="Debit" />
 
         <EditText
             android:id="@+id/debit"
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="2dp"
-            android:text="Diambil dari(Kredit)" />
+            android:text="Kredit" />
 
         <EditText
             android:id="@+id/kredit"

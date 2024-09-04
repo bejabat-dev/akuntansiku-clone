@@ -28,7 +28,7 @@ class AdapterDaftarAkun(private val dataSet: List<Variables.DataAkun>) :
 
     override fun onBindViewHolder(v: ViewHolder, pos: Int) {
         val data = dataSet[pos]
-        v.namaAkun.text = data.jenis
+        v.namaAkun.text = data.nama
         v.nomorAkun.text = data.nomor
         v.kategori.text = data.kategori
     }

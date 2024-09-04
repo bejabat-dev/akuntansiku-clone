@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.Variables
+import com.example.moliyafinance.Variables.akunList
 import com.example.moliyafinance.adapters.AdapterDataAkun
 import com.example.moliyafinance.databinding.ActivityTambahTransaksiBinding
 import com.example.moliyafinance.databinding.DialogTransaksiBinding
@@ -25,13 +26,16 @@ import com.google.firebase.auth.FirebaseAuth
 class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener {
     private lateinit var selectedJenisTransaksi: String
     private lateinit var bind: ActivityTambahTransaksiBinding
-    private lateinit var dialogBinding: DialogTransaksiBinding
-    private lateinit var dialog: AlertDialog
+    private lateinit var bindingDebit: DialogTransaksiBinding
+    private lateinit var bindingKredit: DialogTransaksiBinding
+    private lateinit var dialogDebit: AlertDialog
+    private lateinit var dialogKredit: AlertDialog
     private lateinit var type: String
     private lateinit var selectedDebit: String
     private lateinit var selectedKredit: String
     private lateinit var selectedNomorDebit: String
     private lateinit var selectedNomorKredit: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityTambahTransaksiBinding.inflate(layoutInflater)
@@ -86,13 +90,22 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
     }
 
     private fun initDialog() {
-        dialogBinding = DialogTransaksiBinding.inflate(layoutInflater)
-        val b = AlertDialog.Builder(this)
-        b.setView(dialogBinding.root)
-        val adapter = AdapterDataAkun(Variables.daftar_akun, this)
-        dialogBinding.recycler.adapter = adapter
-        dialogBinding.recycler.layoutManager = LinearLayoutManager(this)
-        dialog = b.create()
+        //  val debitAccounts = akunList.filter { it.jenis == "Debit" }
+        //   val creditAccounts = akunList.filter { it.jenis == "Kredit" }
+        bindingDebit = DialogTransaksiBinding.inflate(layoutInflater)
+        bindingKredit = DialogTransaksiBinding.inflate(layoutInflater)
+        val debit = AlertDialog.Builder(this)
+        val kredit = AlertDialog.Builder(this)
+        debit.setView(bindingDebit.root)
+        kredit.setView(bindingKredit.root)
+        val adapterDebit = AdapterDataAkun(akunList, this)
+        val adapterKredit = AdapterDataAkun(akunList, this)
+        bindingDebit.recycler.adapter = adapterDebit
+        bindingDebit.recycler.layoutManager = LinearLayoutManager(this)
+        bindingKredit.recycler.adapter = adapterKredit
+        bindingKredit.recycler.layoutManager = LinearLayoutManager(this)
+        dialogDebit = debit.create()
+        dialogKredit = kredit.create()
     }
 
     private fun initClicks() {
@@ -103,11 +116,11 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
         }
         bind.debit.setOnClickListener {
             type = "debit"
-            dialog.show()
+            dialogDebit.show()
         }
         bind.kredit.setOnClickListener {
             type = "kredit"
-            dialog.show()
+            dialogKredit.show()
         }
         bind.tanggal.setOnClickListener {
             Utils().showDatePickerDialog(this, bind.tanggal)
@@ -174,14 +187,14 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
     override fun onItemClick(item: Variables.DataAkun) {
         if (type == "debit") {
             selectedNomorDebit = item.nomor
-            selectedDebit = item.jenis
-            bind.debit.setText(item.jenis)
-            dialog.dismiss()
+            selectedDebit = item.nama
+            bind.debit.setText(item.nama)
+            dialogDebit.dismiss()
         } else if (type == "kredit") {
             selectedNomorKredit = item.nomor
-            selectedKredit = item.jenis
-            bind.kredit.setText(item.jenis)
-            dialog.dismiss()
+            selectedKredit = item.nama
+            bind.kredit.setText(item.nama)
+            dialogKredit.dismiss()
         }
     }
 }

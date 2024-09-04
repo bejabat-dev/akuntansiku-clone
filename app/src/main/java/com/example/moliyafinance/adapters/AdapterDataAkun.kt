@@ -10,7 +10,7 @@ import com.example.moliyafinance.Variables
 
 
 class AdapterDataAkun(
-    private val dataSet: ArrayList<Variables.DataAkun>,
+    private val dataSet: List<Variables.DataAkun>,
     private val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<AdapterDataAkun.ViewHolder>() {
 
@@ -19,7 +19,7 @@ class AdapterDataAkun(
     }
 
     inner class ViewHolder(view: View, private val itemClickListener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
-        val jenis: TextView = view.findViewById(R.id.jenis)
+        val namaAkun: TextView = view.findViewById(R.id.nama_akun)
         val kategori: TextView = view.findViewById(R.id.kategori)
 
         init {
@@ -36,8 +36,8 @@ class AdapterDataAkun(
     }
 
     override fun onBindViewHolder(v: ViewHolder, position: Int) {
-        val jenisText = dataSet[position].nomor + " | " + dataSet[position].jenis
-        v.jenis.text = jenisText
+        val namaText = dataSet[position].nomor + " | " + dataSet[position].nama
+        v.namaAkun.text = namaText
         v.kategori.text = dataSet[position].kategori
     }
 

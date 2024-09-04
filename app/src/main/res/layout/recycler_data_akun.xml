@@ -9,7 +9,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/jenis"
+        android:id="@+id/nama_akun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -26,6 +26,6 @@
         android:text="TextView"
         android:textColor="#333333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jenis" />
+        app:layout_constraintTop_toBottomOf="@+id/nama_akun" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

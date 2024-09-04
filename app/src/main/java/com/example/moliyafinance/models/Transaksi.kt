@@ -162,6 +162,10 @@ fun formatNominal(amount: Int): String {
     return numberFormat.format(amount).replace("Rp", "")
 }
 
+fun getMonth(date: String): String {
+    return date.substring(3, 5)
+}
+
 fun showToast(context: Context, s: String) {
     Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
 }

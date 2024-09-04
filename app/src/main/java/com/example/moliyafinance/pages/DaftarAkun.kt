@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.Variables
-import com.example.moliyafinance.Variables.daftar_akun
+import com.example.moliyafinance.Variables.akunList
 import com.example.moliyafinance.adapters.AdapterDaftarAkun
 import com.example.moliyafinance.databinding.ActivityDaftarAkunBinding
 import kotlinx.coroutines.CoroutineScope
@@ -35,7 +35,7 @@ class DaftarAkun : AppCompatActivity() {
         bind.back.setOnClickListener {
             finish()
         }
-        val adapter = AdapterDaftarAkun(daftar_akun)
+        val adapter = AdapterDaftarAkun(akunList)
         bind.recycler.adapter = adapter
         bind.recycler.layoutManager = LinearLayoutManager(this)
 
@@ -63,8 +63,8 @@ class DaftarAkun : AppCompatActivity() {
         val newData = ArrayList<Variables.DataAkun>()
         val adapter = AdapterDaftarAkun(newData)
         bind.recycler.adapter = adapter
-        for(data in daftar_akun){
-            if(data.jenis.lowercase().contains(s.lowercase())){
+        for(data in akunList){
+            if(data.nama.lowercase().contains(s.lowercase())){
                 newData.add(data)
             }
         }

@@ -43,6 +43,7 @@
             android:name=".pages.TambahTransaksi"
             android:exported="false" />
         <activity
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:name=".navigation.Dashboard"
             android:exported="false" />
         <activity

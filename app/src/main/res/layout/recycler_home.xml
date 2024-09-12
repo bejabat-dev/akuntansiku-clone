@@ -1,57 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="2dp"
-    android:background="@color/white"
-    android:padding="10dp"
-    tools:ignore="DisableBaselineAlignment">
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/catatan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gorengan"
-            android:textColor="#333333"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/nominal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rp250.000"
-            android:textColor="#333333" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:gravity="end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tanggal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="26 Aug 1923"
-            android:textColor="#333333" />
-
-        <TextView
-            android:id="@+id/jenisTransaksi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="Pemasukan"
-            android:textColor="#333333" />
-    </LinearLayout>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/linear2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingLeft="16dp"
+		android:paddingTop="10dp"
+		android:paddingRight="16dp"
+		android:paddingBottom="10dp"
+		android:orientation="horizontal">
+		<LinearLayout
+			android:id="@+id/linear3"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:layout_weight="1">
+			<TextView
+				android:id="@+id/catatan"
+				android:focusable="false"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="2dp"
+				android:text="TextView"
+				android:textSize="14sp"
+				android:textColor="#000000" />
+			<TextView
+				android:id="@+id/nominal"
+				android:focusable="false"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="TextView"
+				android:textSize="14sp"
+				android:textColor="#9E9E9E" />
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/linear4"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:gravity="right"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/tanggal"
+				android:focusable="false"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="2dp"
+				android:gravity="right"
+				android:text="TextView"
+				android:textSize="14sp"
+				android:textColor="#9E9E9E" />
+			<TextView
+				android:id="@+id/kategori"
+				android:focusable="false"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="right"
+				android:text="TextView"
+				android:textSize="14sp"
+				android:textColor="#9E9E9E" />
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
+		android:id="@+id/linear5"
+		android:layout_width="match_parent"
+		android:layout_height="2dp"
+		android:padding="8dp"
+		android:background="#F2F2F2"
+		android:orientation="vertical" />
 </LinearLayout>

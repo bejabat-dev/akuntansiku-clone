@@ -50,6 +50,14 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                     }
                 }
             }
+
+            "Pengeluaran" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Harga Pokok Penjualan" || data.kategori == "Beban" || data.kategori == "Beban Lainnya" || data.kategori == "Kas & Bank" || data.kategori == "Akun Piutang" || data.kategori == "Harta Tetap") {
+                        list.add(data)
+                    }
+                }
+            }
         }
         val adapter = AdapterDataAkun(list, this)
         return adapter
@@ -61,6 +69,13 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
             "Pemasukan" -> {
                 for (data in akunList) {
                     if (data.kategori == "Pendapatan" || data.kategori == "Pendapatan Lainnya") {
+                        list.add(data)
+                    }
+                }
+            }
+            "Pengeluaran" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Kas & Bank" || data.kategori == "Persediaan" || data.kategori == "Harta Lancar Lainnya" || data.kategori == "Harta Tetap" ||data.kategori == "Harta Lainnya" ) {
                         list.add(data)
                     }
                 }
@@ -88,13 +103,24 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
         bind.spinnerJenisTransaksi.adapter = adapterJenisTransaki
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun setDebitKredit(s:String){
+        if(s=="Pemasukan"){
+            bind.debitTeks.text = "Simpan ke (Debit)"
+            bind.kreditTeks.text = "Diterima dari (Kredit)"
+        }
+    }
+
     private fun initListeners() {
+        setDebitKredit("Pemasukan")
+        bind.spinnerJenisTransaksi.setSelection(0)
         bind.spinnerJenisTransaksi.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     val s = p0?.getItemAtPosition(p2).toString()
-                    setAdapter(bindingDebit.recycler,getDebitAdapter(s))
-                    setAdapter(bindingKredit.recycler,getKreditAdapter(s))
+                    setDebitKredit(s)
+                    setAdapter(bindingDebit.recycler, getDebitAdapter(s))
+                    setAdapter(bindingKredit.recycler, getKreditAdapter(s))
                     selectedJenisTransaksi = s
                 }
 
@@ -125,7 +151,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
         }
     }
 
-    private fun setAdapter(view: RecyclerView,adapterDataAkun: AdapterDataAkun){
+    private fun setAdapter(view: RecyclerView, adapterDataAkun: AdapterDataAkun) {
         view.adapter = adapterDataAkun
     }
 

@@ -11,6 +11,7 @@ import com.example.moliyafinance.models.formatToRupiah
 
 class AdapterLabaRugi {
     class AdapterPendapatan(
+        private val tipe: String,
         private val dataSet: List<Transaksi>
     ) : RecyclerView.Adapter<AdapterPendapatan.ViewHolder>() {
         private var total = 0
@@ -28,9 +29,14 @@ class AdapterLabaRugi {
 
         override fun onBindViewHolder(v: ViewHolder, position: Int) {
             val data = dataSet[position]
-            val nama = data.nomorKredit + " " + data.kredit
+            if (tipe == "Pemasukan") {
+                val nama = data.nomorKredit + " " + data.kredit
+                v.akun.text = nama
+            } else if (tipe == "Pengeluaran") {
+                val nama = data.nomorDebit + " " + data.debit
+                v.akun.text = nama
+            }
             val rp = formatToRupiah(data.nominal)
-            v.akun.text = nama
             v.nominal.text = rp
 
             total += data.nominal

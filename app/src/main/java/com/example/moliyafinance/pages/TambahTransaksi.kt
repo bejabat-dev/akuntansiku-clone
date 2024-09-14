@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.moliyafinance.R
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.Variables
 import com.example.moliyafinance.Variables.akunList
@@ -38,6 +40,36 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
     private lateinit var selectedNomorDebit: String
     private lateinit var selectedNomorKredit: String
 
+    private fun getDebitAdapter(jenis: String): AdapterDataAkun {
+        val list = ArrayList<Variables.DataAkun>()
+        when (jenis) {
+            "Pemasukan" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Kas & Bank" || data.kategori == "Persediaan") {
+                        list.add(data)
+                    }
+                }
+            }
+        }
+        val adapter = AdapterDataAkun(list, this)
+        return adapter
+    }
+
+    private fun getKreditAdapter(jenis: String): AdapterDataAkun {
+        val list = ArrayList<Variables.DataAkun>()
+        when (jenis) {
+            "Pemasukan" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Pendapatan" || data.kategori == "Pendapatan Lainnya") {
+                        list.add(data)
+                    }
+                }
+            }
+        }
+        val adapter = AdapterDataAkun(list, this)
+        return adapter
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityTambahTransaksiBinding.inflate(layoutInflater)
@@ -51,8 +83,8 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
 
     private fun init() {
         val adapterJenisTransaki =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, Variables.jenis_transaksi)
-        adapterJenisTransaki.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            ArrayAdapter(this, R.layout.spinner_jenis_transaksi, Variables.jenis_transaksi)
+        adapterJenisTransaki.setDropDownViewResource(R.layout.spinner_dropdown_jenis_transaksi)
         bind.spinnerJenisTransaksi.adapter = adapterJenisTransaki
     }
 
@@ -61,6 +93,8 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     val s = p0?.getItemAtPosition(p2).toString()
+                    setAdapter(bindingDebit.recycler,getDebitAdapter(s))
+                    setAdapter(bindingKredit.recycler,getKreditAdapter(s))
                     selectedJenisTransaksi = s
                 }
 
@@ -91,17 +125,19 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
         }
     }
 
+    private fun setAdapter(view: RecyclerView,adapterDataAkun: AdapterDataAkun){
+        view.adapter = adapterDataAkun
+    }
+
     private fun initDialog() {
-        //  val debitAccounts = akunList.filter { it.jenis == "Debit" }
-        //   val creditAccounts = akunList.filter { it.jenis == "Kredit" }
         bindingDebit = DialogTransaksiBinding.inflate(layoutInflater)
         bindingKredit = DialogTransaksiBinding.inflate(layoutInflater)
         val debit = AlertDialog.Builder(this)
         val kredit = AlertDialog.Builder(this)
         debit.setView(bindingDebit.root)
         kredit.setView(bindingKredit.root)
-        val adapterDebit = AdapterDataAkun(akunList, this)
-        val adapterKredit = AdapterDataAkun(akunList, this)
+        val adapterDebit = getDebitAdapter("Pemasukan")
+        val adapterKredit = getKreditAdapter("Pemasukan")
         bindingDebit.recycler.adapter = adapterDebit
         bindingDebit.recycler.layoutManager = LinearLayoutManager(this)
         bindingKredit.recycler.adapter = adapterKredit
@@ -153,7 +189,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                             uid!!,
                             tanggal,
                             waktu,
-                            kategoriDebit,kategoriKredit,
+                            kategoriDebit, kategoriKredit,
                             selectedJenisTransaksi,
                             selectedDebit,
                             selectedKredit,
@@ -171,7 +207,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                             uid!!,
                             tanggal,
                             waktu,
-                            kategoriDebit,kategoriKredit,
+                            kategoriDebit, kategoriKredit,
                             selectedJenisTransaksi,
                             selectedDebit,
                             selectedKredit,

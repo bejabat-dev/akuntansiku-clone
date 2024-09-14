@@ -22,7 +22,7 @@ class AdapterTransaksi(private val context:Context, private val dataSet: List<Tr
         val catatan: TextView = view.findViewById(R.id.catatan)
         val nominal: TextView = view.findViewById(R.id.nominal)
         val tanggal: TextView = view.findViewById(R.id.tanggal)
-        val jenisTransaksi: TextView = view.findViewById(R.id.jenisTransaksi)
+        val jenisTransaksi: TextView = view.findViewById(R.id.jenis_transaksi)
         val card: LinearLayout = view.findViewById(R.id.card)
     }
 

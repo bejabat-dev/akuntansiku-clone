@@ -5,12 +5,14 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
+
 	<ScrollView
 		android:id="@+id/vscroll1"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="#F2F2F2"
-		android:layout_weight="1">
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:background="#F2F2F2">
+
 		<LinearLayout
 			android:id="@+id/linear1"
 			android:layout_width="match_parent"
@@ -25,11 +27,13 @@
 				android:layout_margin="12dp"
 				android:scaleType="fitCenter"
 				android:src="@drawable/account_circle_24px" />
+
 			<LinearLayout
 				android:id="@+id/linear2"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical">
+
 				<TextView
 					android:id="@+id/textview2"
 					android:layout_width="wrap_content"
@@ -37,19 +41,21 @@
 					android:paddingLeft="12dp"
 					android:paddingRight="12dp"
 					android:text="Nama"
-					android:textSize="16sp"
-					android:textColor="#000000" />
+					android:textColor="#000000"
+					android:textSize="16sp" />
+
 				<EditText
 					android:id="@+id/edittext1"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="12dp"
 					android:background="@android:color/transparent"
-					android:textSize="16sp"
-					android:textColor="#000000"
 					android:hint="Belum disetel"
+					android:imeOptions="actionNext"
+					android:padding="12dp"
+					android:textColor="#000000"
 					android:textColorHint="#9E9E9E"
-					android:imeOptions="actionNext" />
+					android:textSize="16sp" />
+
 				<LinearLayout
 					android:id="@+id/linear5"
 					android:layout_width="match_parent"
@@ -57,15 +63,17 @@
 					android:layout_marginLeft="12dp"
 					android:layout_marginRight="12dp"
 					android:layout_marginBottom="10dp"
-					android:padding="8dp"
 					android:background="#9E9E9E"
-					android:orientation="vertical" />
+					android:orientation="vertical"
+					android:padding="8dp" />
 			</LinearLayout>
+
 			<LinearLayout
 				android:id="@+id/linear8"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical">
+
 				<TextView
 					android:id="@+id/textview4"
 					android:layout_width="wrap_content"
@@ -73,19 +81,21 @@
 					android:paddingLeft="12dp"
 					android:paddingRight="12dp"
 					android:text="Email"
-					android:textSize="16sp"
-					android:textColor="#000000" />
+					android:textColor="#000000"
+					android:textSize="16sp" />
+
 				<EditText
 					android:id="@+id/edittext3"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="12dp"
 					android:background="@android:color/transparent"
-					android:textSize="16sp"
-					android:textColor="#000000"
 					android:hint="Belum disetel"
+					android:imeOptions="actionNext"
+					android:padding="12dp"
+					android:textColor="#000000"
 					android:textColorHint="#9E9E9E"
-					android:imeOptions="actionNext" />
+					android:textSize="16sp" />
+
 				<LinearLayout
 					android:id="@+id/linear9"
 					android:layout_width="match_parent"
@@ -93,15 +103,17 @@
 					android:layout_marginLeft="12dp"
 					android:layout_marginRight="12dp"
 					android:layout_marginBottom="10dp"
-					android:padding="8dp"
 					android:background="#9E9E9E"
-					android:orientation="vertical" />
+					android:orientation="vertical"
+					android:padding="8dp" />
 			</LinearLayout>
+
 			<LinearLayout
 				android:id="@+id/linear10"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical">
+
 				<TextView
 					android:id="@+id/textview5"
 					android:layout_width="wrap_content"
@@ -109,20 +121,22 @@
 					android:paddingLeft="12dp"
 					android:paddingRight="12dp"
 					android:text="No. Handphone"
-					android:textSize="16sp"
-					android:textColor="#000000" />
+					android:textColor="#000000"
+					android:textSize="16sp" />
+
 				<EditText
 					android:id="@+id/edittext4"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="12dp"
 					android:background="@android:color/transparent"
-					android:textSize="16sp"
-					android:textColor="#000000"
 					android:hint="Belum disetel"
-					android:textColorHint="#9E9E9E"
+					android:imeOptions="actionDone"
 					android:inputType="phone"
-					android:imeOptions="actionDone" />
+					android:padding="12dp"
+					android:textColor="#000000"
+					android:textColorHint="#9E9E9E"
+					android:textSize="16sp" />
+
 				<LinearLayout
 					android:id="@+id/linear11"
 					android:layout_width="match_parent"
@@ -130,9 +144,9 @@
 					android:layout_marginLeft="12dp"
 					android:layout_marginRight="12dp"
 					android:layout_marginBottom="10dp"
-					android:padding="8dp"
 					android:background="#9E9E9E"
-					android:orientation="vertical" />
+					android:orientation="vertical"
+					android:padding="8dp" />
 			</LinearLayout>
 
 			<TextView

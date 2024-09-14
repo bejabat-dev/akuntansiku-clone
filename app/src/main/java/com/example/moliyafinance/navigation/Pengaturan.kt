@@ -10,7 +10,7 @@ import com.example.moliyafinance.databinding.FragmentSettingsBinding
 import com.example.moliyafinance.pages.Login
 import com.google.firebase.auth.FirebaseAuth
 
-class Settings : Fragment(){
+class Pengaturan : Fragment(){
     private lateinit var bind : FragmentSettingsBinding
     override fun onCreateView(
         inflater: LayoutInflater,

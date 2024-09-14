@@ -18,6 +18,8 @@ data class Transaksi(
     val uid: String = "",
     val tanggal: String = "",
     val waktu: String = "",
+    val kategoriDebit: String = "",
+    val kategoriKredit: String = "",
     val jenisTransaksi: String = "",
     val debit: String = "",
     val kredit: String = "",
@@ -73,6 +75,8 @@ fun tambahTransaksi(context: Context, transaksi: Transaksi) {
         "nomorDebit" to transaksi.nomorDebit,
         "nomorKredit" to transaksi.nomorKredit,
         "nominal" to transaksi.nominal,
+        "kategoriDebit" to transaksi.kategoriDebit,
+        "kategoriKredit" to transaksi.kategoriKredit,
         "timestamp" to createTimestamp(transaksi.tanggal, transaksi.waktu)
     )
     db.document(transaksi.id.toString()).set(transaksiMap).addOnSuccessListener {
@@ -101,7 +105,10 @@ fun updateTransaksi(context: Context, transaksi: Transaksi) {
         "catatan" to transaksi.catatan,
         "nomorDebit" to transaksi.nomorDebit,
         "nomorKredit" to transaksi.nomorKredit,
-        "nominal" to transaksi.nominal
+        "nominal" to transaksi.nominal,
+        "kategoriDebit" to transaksi.kategoriDebit,
+        "kategoriKredit" to transaksi.kategoriKredit,
+        "timestamp" to createTimestamp(transaksi.tanggal, transaksi.waktu)
     )
     db.document(transaksi.id.toString()).update(transaksiMap).addOnSuccessListener {
         LoadingDialog.dialog.dismiss()

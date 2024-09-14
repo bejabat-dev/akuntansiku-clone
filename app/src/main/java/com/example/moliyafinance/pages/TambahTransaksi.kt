@@ -31,6 +31,8 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
     private lateinit var dialogDebit: AlertDialog
     private lateinit var dialogKredit: AlertDialog
     private lateinit var type: String
+    private lateinit var kategoriDebit: String
+    private lateinit var kategoriKredit: String
     private lateinit var selectedDebit: String
     private lateinit var selectedKredit: String
     private lateinit var selectedNomorDebit: String
@@ -151,6 +153,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                             uid!!,
                             tanggal,
                             waktu,
+                            kategoriDebit,kategoriKredit,
                             selectedJenisTransaksi,
                             selectedDebit,
                             selectedKredit,
@@ -168,6 +171,7 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                             uid!!,
                             tanggal,
                             waktu,
+                            kategoriDebit,kategoriKredit,
                             selectedJenisTransaksi,
                             selectedDebit,
                             selectedKredit,
@@ -188,11 +192,13 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
         if (type == "debit") {
             selectedNomorDebit = item.nomor
             selectedDebit = item.nama
+            kategoriDebit = item.kategori
             bind.debit.setText(item.nama)
             dialogDebit.dismiss()
         } else if (type == "kredit") {
             selectedNomorKredit = item.nomor
             selectedKredit = item.nama
+            kategoriKredit = item.kategori
             bind.kredit.setText(item.nama)
             dialogKredit.dismiss()
         }

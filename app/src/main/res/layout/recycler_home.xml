@@ -1,76 +1,83 @@
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/card"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
 	android:background="@color/white"
 	android:orientation="vertical">
+
 	<LinearLayout
 		android:id="@+id/linear2"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:paddingStart="16dp"
+		android:baselineAligned="false"
+		android:orientation="horizontal"
+		android:paddingStart="16dp"
 		android:paddingTop="10dp"
 		android:paddingEnd="16dp"
-		android:paddingBottom="10dp"
-		android:orientation="horizontal">
+		android:paddingBottom="10dp">
+
 		<LinearLayout
 			android:id="@+id/linear3"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
-			android:orientation="vertical"
-			android:layout_weight="1">
+			android:layout_weight="1"
+			android:orientation="vertical">
+
 			<TextView
 				android:id="@+id/catatan"
-				android:focusable="false"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="2dp"
+				android:focusable="false"
 				android:text="TextView"
-				android:textSize="14sp"
-				android:textColor="#000000" />
+				android:textColor="#000000"
+				android:textSize="14sp" />
+
 			<TextView
 				android:id="@+id/nominal"
-				android:focusable="false"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:focusable="false"
 				android:text="TextView"
-				android:textSize="14sp"
-				android:textColor="#9E9E9E" />
+				android:textColor="#9E9E9E"
+				android:textSize="14sp" />
 		</LinearLayout>
+
 		<LinearLayout
 			android:id="@+id/linear4"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:gravity="end"
 			android:orientation="vertical">
+
 			<TextView
 				android:id="@+id/tanggal"
-				android:focusable="false"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="2dp"
+				android:focusable="false"
 				android:gravity="end"
 				android:text="TextView"
-				android:textSize="14sp"
-				android:textColor="#9E9E9E" />
+				android:textColor="#9E9E9E"
+				android:textSize="14sp" />
+
 			<TextView
 				android:id="@+id/jenis_transaksi"
-				android:focusable="false"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:focusable="false"
 				android:gravity="end"
 				android:text="TextView"
-				android:textSize="14sp"
-				android:textColor="#9E9E9E" />
+				android:textColor="#9E9E9E"
+				android:textSize="14sp" />
 		</LinearLayout>
 	</LinearLayout>
+
 	<LinearLayout
 		android:id="@+id/linear5"
 		android:layout_width="match_parent"
 		android:layout_height="2dp"
-		android:padding="8dp"
 		android:background="#F2F2F2"
-		android:orientation="vertical" />
+		android:orientation="vertical"
+		android:padding="8dp" />
 </LinearLayout>

@@ -9,7 +9,7 @@ import com.example.moliyafinance.R
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.formatToRupiah
 
-class AdapterLabaRugi {
+
     class AdapterPendapatan(
         private val tipe: String,
         private val dataSet: List<Transaksi>
@@ -48,4 +48,3 @@ class AdapterLabaRugi {
 
         override fun getItemCount() = dataSet.size
     }
-}

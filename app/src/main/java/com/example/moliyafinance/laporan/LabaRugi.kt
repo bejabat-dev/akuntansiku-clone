@@ -3,7 +3,7 @@ package com.example.moliyafinance.laporan
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moliyafinance.adapters.AdapterLabaRugi
+import com.example.moliyafinance.adapters.AdapterPendapatan
 import com.example.moliyafinance.databinding.ActivityLabaRugiBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.formatToRupiah
@@ -12,8 +12,9 @@ import com.example.moliyafinance.navigation.Dashboard
 class LabaRugi : AppCompatActivity() {
     private lateinit var bind: ActivityLabaRugiBinding
     private var totalLabaKotor = 0
-    private var totalBebanOperasional = 0
+    private var totalLabaBebanOperasional = 0
     private var totalPendapatanLainnya = 0
+    private var totalBebanLainnya = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityLabaRugiBinding.inflate(layoutInflater)
@@ -22,10 +23,14 @@ class LabaRugi : AppCompatActivity() {
     }
 
     private fun init() {
+        bind.back.setOnClickListener {
+            finish()
+        }
         initPendapatanDariPenjualan()
         initHargaPokokPenjualan()
         initBebanOperasional()
         initPendapatanLainnya()
+        initBebanLainnya()
     }
 
     private fun initPendapatanDariPenjualan() {
@@ -36,7 +41,7 @@ class LabaRugi : AppCompatActivity() {
                 newList.add(data)
             }
         }
-        val adapter = AdapterLabaRugi.AdapterPendapatan("Pemasukan", newList)
+        val adapter = AdapterPendapatan("Pemasukan", newList)
         bind.innerPendapatanPenjualan.adapter = adapter
         bind.innerPendapatanPenjualan.layoutManager = LinearLayoutManager(this)
         bind.innerPendapatanPenjualan.post {
@@ -55,7 +60,7 @@ class LabaRugi : AppCompatActivity() {
                 newList.add(data)
             }
         }
-        val adapter = AdapterLabaRugi.AdapterPendapatan("Pengeluaran", newList)
+        val adapter = AdapterPendapatan("Pengeluaran", newList)
         bind.innerHargaPokok.adapter = adapter
         bind.innerHargaPokok.layoutManager = LinearLayoutManager(this)
         bind.innerHargaPokok.post {
@@ -75,19 +80,19 @@ class LabaRugi : AppCompatActivity() {
                 newList.add(data)
             }
         }
-        val adapter = AdapterLabaRugi.AdapterPendapatan("Pengeluaran", newList)
+        val adapter = AdapterPendapatan("Pengeluaran", newList)
         bind.innerBebanOperasional.adapter = adapter
         bind.innerBebanOperasional.layoutManager = LinearLayoutManager(this)
         bind.innerBebanOperasional.post {
             val totalPengeluaran = formatToRupiah(adapter.getTotal())
             bind.totalBebanOperasional.text = totalPengeluaran
             bind.bebanOperasional.text = totalPengeluaran
-            totalBebanOperasional = totalLabaKotor - adapter.getTotal()
-            if (totalBebanOperasional < 0) {
-                val total = "(${formatToRupiah(totalBebanOperasional)})"
+            totalLabaBebanOperasional = totalLabaKotor - adapter.getTotal()
+            if (totalLabaBebanOperasional < 0) {
+                val total = "(${formatToRupiah(totalLabaBebanOperasional)})"
                 bind.labaBebanOperasional.text = total.replace("-", "")
             } else {
-                bind.labaBebanOperasional.text = formatToRupiah(totalBebanOperasional)
+                bind.labaBebanOperasional.text = formatToRupiah(totalLabaBebanOperasional)
             }
         }
     }
@@ -100,7 +105,7 @@ class LabaRugi : AppCompatActivity() {
                 newList.add(data)
             }
         }
-        val adapter = AdapterLabaRugi.AdapterPendapatan("Pemasukan", newList)
+        val adapter = AdapterPendapatan("Pemasukan", newList)
         bind.innerPendapatanLainnya.adapter = adapter
         bind.innerPendapatanLainnya.layoutManager = LinearLayoutManager(this)
         bind.innerPendapatanLainnya.post {
@@ -110,7 +115,29 @@ class LabaRugi : AppCompatActivity() {
         }
     }
 
-    private fun initBebanLainnya(){
+    private fun initBebanLainnya() {
+        val transaksiList = Dashboard.listTransaksi
+        val newList = ArrayList<Transaksi>()
+        for (data in transaksiList) {
+            if (data.kategoriDebit == "Beban Lainnya") {
+                newList.add(data)
+            }
+        }
+        val adapter = AdapterPendapatan("Pengeluaran", newList)
+        bind.innerBebanLainnya.adapter = adapter
+        bind.innerBebanLainnya.layoutManager = LinearLayoutManager(this)
+        bind.innerBebanLainnya.post {
+            totalBebanLainnya = adapter.getTotal()
+            bind.bebanLainnya.text = formatToRupiah(totalBebanLainnya)
+            bind.totalBebanLainnya.text = formatToRupiah(totalBebanLainnya)
 
+            val labaBersih = totalLabaBebanOperasional + totalPendapatanLainnya - totalBebanLainnya
+            if (labaBersih < 0) {
+                val total = "(${formatToRupiah(labaBersih)})"
+                bind.labaBersih.text = total
+            } else {
+                bind.labaBersih.text = formatToRupiah(labaBersih)
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ class AdapterBukuBesar(
         val r: RecyclerView = v.findViewById(R.id.recycler)
         val judul: TextView = v.findViewById(R.id.judul)
         val saldoAkhir: TextView = v.findViewById(R.id.saldo_akhir)
-        val nomorAkun:TextView = v.findViewById(R.id.nomor_akun)
+        val nomorAkun: TextView = v.findViewById(R.id.nomor_akun)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +30,6 @@ class AdapterBukuBesar(
             .inflate(R.layout.recycler_buku_besar, viewGroup, false)
         return ViewHolder(view)
     }
-
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(v: ViewHolder, pos: Int) {
@@ -50,17 +49,20 @@ class AdapterBukuBesar(
             }
         }
         if (total < 0) {
-            val newTotal = formatToRupiah(total).replace("-","")
-            v.saldoAkhir.text = "(${newTotal})"
+            val newTotal = formatToRupiah(total).replace("-", "")
+            v.saldoAkhir.text = newTotal
         } else {
             v.saldoAkhir.text = formatToRupiah(total)
         }
     }
+
     override fun getItemCount() = dataSet.size
 }
 
 class InnerAdapter(private val dataSet: List<Transaksi>, private val checker: String) :
     RecyclerView.Adapter<InnerAdapter.ViewHolder>() {
+
+    private var saldo = 0
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tanggal: TextView = view.findViewById(R.id.tanggal)
@@ -80,13 +82,18 @@ class InnerAdapter(private val dataSet: List<Transaksi>, private val checker: St
     override fun onBindViewHolder(view: ViewHolder, pos: Int) {
         val transaksi = dataSet[pos]
         if (transaksi.debit == checker) {
-            view.debit.text = transaksi.nominal.toString()
-            view.saldo.text = transaksi.nominal.toString()
+            saldo += transaksi.nominal
+            view.debit.text = transaksi.nominal.toString().replace("-","")
         }
-
         if (transaksi.kredit == checker) {
-            view.kredit.text = "(${transaksi.nominal})"
-            view.saldo.text = "(${transaksi.nominal})"
+            saldo -= transaksi.nominal
+            view.kredit.text = transaksi.nominal.toString().replace("-","")
+        }
+        if (saldo < 0) {
+            val totalSaldo = saldo.toString().replace("-","")
+            view.saldo.text = totalSaldo
+        } else {
+            view.saldo.text = saldo.toString().replace("-","")
         }
         view.catatan.text = transaksi.catatan
         view.tanggal.text = formatTanggalBukuBesar(transaksi.tanggal)

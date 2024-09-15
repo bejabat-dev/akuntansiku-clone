@@ -90,7 +90,7 @@ class LabaRugi : AppCompatActivity() {
             totalLabaBebanOperasional = totalLabaKotor - adapter.getTotal()
             if (totalLabaBebanOperasional < 0) {
                 val total = "(${formatToRupiah(totalLabaBebanOperasional)})"
-                bind.labaBebanOperasional.text = total.replace("-", "")
+                bind.labaBebanOperasional.text = total
             } else {
                 bind.labaBebanOperasional.text = formatToRupiah(totalLabaBebanOperasional)
             }

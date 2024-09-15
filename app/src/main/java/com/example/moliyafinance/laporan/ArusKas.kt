@@ -11,4 +11,6 @@ class ArusKas : AppCompatActivity() {
         bind = ActivityArusKasBinding.inflate(layoutInflater)
         setContentView(bind.root)
     }
+
+
 }

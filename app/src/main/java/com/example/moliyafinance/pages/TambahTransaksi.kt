@@ -58,6 +58,22 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                     }
                 }
             }
+
+            "Hutang" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Kas & Bank" || data.kategori == "Persediaan" || data.kategori == "Harta Lancar Lainnya" || data.kategori == "Harta Tetap" || data.kategori == "Harga Pokok Penjualan" || data.kategori == "Beban" || data.kategori == "Beban Lainnya") {
+                        list.add(data)
+                    }
+                }
+            }
+
+            "Piutang" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Akun Piutang") {
+                        list.add(data)
+                    }
+                }
+            }
         }
         val adapter = AdapterDataAkun(list, this)
         return adapter
@@ -73,13 +89,31 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                     }
                 }
             }
+
             "Pengeluaran" -> {
                 for (data in akunList) {
-                    if (data.kategori == "Kas & Bank" || data.kategori == "Persediaan" || data.kategori == "Harta Lancar Lainnya" || data.kategori == "Harta Tetap" ||data.kategori == "Harta Lainnya" ) {
+                    if (data.kategori == "Kas & Bank" || data.kategori == "Persediaan" || data.kategori == "Harta Lancar Lainnya" || data.kategori == "Harta Tetap" || data.kategori == "Harta Lainnya") {
                         list.add(data)
                     }
                 }
             }
+
+            "Hutang" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Akun Hutang" || data.kategori == "Kewajiban Lancar Lainnya" || data.kategori == "Kewajiban Jangka Panjang") {
+                        list.add(data)
+                    }
+                }
+            }
+
+            "Piutang" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Kas & Bank" || data.kategori == "Persediaan" || data.kategori == "Harta Lancar Lainnya" || data.kategori == "Pendapatan" || data.kategori == "Pendapatan Lainnya" || data.kategori == "Modal") {
+                        list.add(data)
+                    }
+                }
+            }
+
         }
         val adapter = AdapterDataAkun(list, this)
         return adapter
@@ -104,10 +138,42 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setDebitKredit(s:String){
-        if(s=="Pemasukan"){
-            bind.debitTeks.text = "Simpan ke (Debit)"
-            bind.kreditTeks.text = "Diterima dari (Kredit)"
+    private fun setDebitKredit(s: String) {
+        when (s) {
+            "Pemasukan" -> {
+                bind.debitTeks.text = "Simpan ke (Debit)"
+                bind.kreditTeks.text = "Diterima dari (Kredit)"
+            }
+
+            "Pengeluaran" -> {
+                bind.debitTeks.text = "Untuk biaya (Debit)"
+                bind.kreditTeks.text = "Diambil dari (Kredit)"
+            }
+
+            "Hutang" -> {
+                bind.debitTeks.text = "Simpan ke (Debit)"
+                bind.kreditTeks.text = "Hutang dari (Kredit)"
+            }
+
+            "Piutang" -> {
+                bind.debitTeks.text = "Simpan ke (Debit)"
+                bind.kreditTeks.text = "Dari (Kredit)"
+            }
+
+            "Tanam Modal" -> {
+                bind.debitTeks.text = "Simpan ke (Debit)"
+                bind.kreditTeks.text = "Modal (Kredit)"
+            }
+
+            "Tarik Modal" -> {
+                bind.debitTeks.text = "Modal (Debit)"
+                bind.kreditTeks.text = "Diambil dari (Kredit)"
+            }
+
+            "Transfer Uang" -> {
+                bind.debitTeks.text = "Ke (Debit)"
+                bind.kreditTeks.text = "Dari (Kredit)"
+            }
         }
     }
 
@@ -122,6 +188,8 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                     setAdapter(bindingDebit.recycler, getDebitAdapter(s))
                     setAdapter(bindingKredit.recycler, getKreditAdapter(s))
                     selectedJenisTransaksi = s
+                    bind.debit.text.clear()
+                    bind.kredit.text.clear()
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {

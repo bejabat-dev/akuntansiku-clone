@@ -10,5 +10,12 @@ class PerubahanModal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityPerubahanModalBinding.inflate(layoutInflater)
         setContentView(bind.root)
+        init()
+    }
+
+    private fun init(){
+        bind.back.setOnClickListener {
+            finish()
+        }
     }
 }

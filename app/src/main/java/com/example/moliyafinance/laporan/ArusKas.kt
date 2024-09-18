@@ -10,7 +10,12 @@ class ArusKas : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityArusKasBinding.inflate(layoutInflater)
         setContentView(bind.root)
+        init()
     }
 
-
+    private fun init(){
+        bind.back.setOnClickListener {
+            finish()
+        }
+    }
 }

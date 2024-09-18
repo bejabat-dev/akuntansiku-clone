@@ -53,6 +53,7 @@ class Home : Fragment() {
                 if (data != null) {
                     if (isAdded) {
                         User.userData = data
+                        Dashboard.userData = data
                         bind.nama.text = data.nama
 
                         getTransaksi(requireContext(), onResult = { list ->

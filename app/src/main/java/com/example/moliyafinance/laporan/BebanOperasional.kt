@@ -20,6 +20,9 @@ class BebanOperasional : AppCompatActivity() {
     }
 
     private fun init() {
+        bind.back.setOnClickListener {
+            finish()
+        }
         initBebanOperasional()
     }
 

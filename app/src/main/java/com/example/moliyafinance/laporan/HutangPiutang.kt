@@ -11,9 +11,12 @@ class HutangPiutang : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityHutangPiutangBinding.inflate(layoutInflater)
         setContentView(bind.root)
+        init()
     }
 
     private fun init() {
-
+        bind.back.setOnClickListener {
+            finish()
+        }
     }
 }

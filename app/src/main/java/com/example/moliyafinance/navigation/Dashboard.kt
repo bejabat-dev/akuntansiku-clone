@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.moliyafinance.R
 import com.example.moliyafinance.databinding.ActivityDashboardBinding
 import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.models.UserModel
 
 class Dashboard : AppCompatActivity() {
     private lateinit var bind: ActivityDashboardBinding
@@ -15,6 +16,7 @@ class Dashboard : AppCompatActivity() {
     companion object {
         var editing = false
         lateinit var listTransaksi: List<Transaksi>
+         var userData  = UserModel()
         var isLoaded = false
     }
 

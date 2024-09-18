@@ -41,7 +41,7 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/imageView4"

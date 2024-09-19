@@ -9,6 +9,7 @@ import com.example.moliyafinance.models.fadeIn
 import com.example.moliyafinance.models.formatToRupiah
 import com.example.moliyafinance.navigation.Dashboard
 import com.example.moliyafinance.navigation.Dashboard.Companion.isLoaded
+import com.example.moliyafinance.navigation.Home
 
 class JurnalUmum : AppCompatActivity() {
     private lateinit var bind: ActivityJurnalUmumBinding
@@ -18,6 +19,7 @@ class JurnalUmum : AppCompatActivity() {
         setContentView(bind.root)
         if (isLoaded) {
             init()
+            initClicks()
         }
     }
 
@@ -33,6 +35,13 @@ class JurnalUmum : AppCompatActivity() {
         bind.recycler.post {
             bind.totalDebit.text = formatToRupiah(adapter.getTotalDebit())
             bind.totalKredit.text = formatToRupiah(adapter.getTotalKredit())
+        }
+    }
+
+    private fun initClicks(){
+        val dialog = Home.dialogCompanion
+        bind.pilihTanggal.setOnClickListener {
+            dialog.show()
         }
     }
 }

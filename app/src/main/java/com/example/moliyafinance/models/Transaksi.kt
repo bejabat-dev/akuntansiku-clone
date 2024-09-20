@@ -6,6 +6,7 @@ import android.content.Context
 import android.view.View
 import android.widget.Toast
 import com.example.moliyafinance.LoadingDialog
+import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.NumberFormat
@@ -144,6 +145,29 @@ fun getTransaksi(
         .addOnFailureListener { exception ->
             showToast(context, exception.toString())
             onError(exception)
+        }
+}
+
+fun getFilteredTransaksi(
+    context: Context,
+    start:String,end:String
+) {
+    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    val db = FirebaseFirestore.getInstance().collection("Transactions")
+    db.whereEqualTo("uid", User.userData.uid).whereGreaterThanOrEqualTo("timestamp",start).whereLessThanOrEqualTo("timestamp",end).get()
+        .addOnSuccessListener { querySnapshot ->
+            val transaksiList = querySnapshot.documents.mapNotNull { document ->
+                val dateString = document.getString("tanggal") ?: ""
+                val date = dateFormat.parse(dateString)
+                document.toObject(Transaksi::class.java)?.apply {
+                    this.date = date
+                }
+            }
+            val sortedList = transaksiList.sortedBy { it.date }
+            Dashboard.listTransaksi = sortedList
+        }
+        .addOnFailureListener { exception ->
+            showToast(context, exception.toString())
         }
 }
 

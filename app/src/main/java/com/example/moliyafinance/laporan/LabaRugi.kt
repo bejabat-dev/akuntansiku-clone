@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.adapters.AdapterPendapatan
 import com.example.moliyafinance.databinding.ActivityLabaRugiBinding
+import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.formatToRupiah
 import com.example.moliyafinance.navigation.Dashboard
@@ -23,6 +24,10 @@ class LabaRugi : AppCompatActivity() {
     }
 
     private fun init() {
+        bind.pilihTanggal.setOnClickListener {
+            val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Dashboard.showDialog(this, dialogTanggalBinding)
+        }
         bind.back.setOnClickListener {
             finish()
         }

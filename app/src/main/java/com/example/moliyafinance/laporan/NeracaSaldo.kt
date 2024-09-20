@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.adapters.AdapterNeracaSaldo
 import com.example.moliyafinance.databinding.ActivityNeracaSaldoBinding
+import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.fadeIn
 import com.example.moliyafinance.navigation.Dashboard
@@ -19,6 +20,10 @@ class NeracaSaldo : AppCompatActivity() {
     }
 
     private fun init() {
+        bind.pilihTanggal.setOnClickListener {
+            val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Dashboard.showDialog(this, dialogTanggalBinding)
+        }
         fadeIn(bind.recycer)
         bind.back.setOnClickListener {
             finish()

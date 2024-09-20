@@ -5,14 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.adapters.AdapterJurnalUmum
 import com.example.moliyafinance.databinding.ActivityJurnalUmumBinding
+import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.fadeIn
 import com.example.moliyafinance.models.formatToRupiah
 import com.example.moliyafinance.navigation.Dashboard
 import com.example.moliyafinance.navigation.Dashboard.Companion.isLoaded
-import com.example.moliyafinance.navigation.Home
 
 class JurnalUmum : AppCompatActivity() {
     private lateinit var bind: ActivityJurnalUmumBinding
+    private lateinit var dialogTanggalBinding: DialogTanggalBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityJurnalUmumBinding.inflate(layoutInflater)
@@ -38,10 +39,10 @@ class JurnalUmum : AppCompatActivity() {
         }
     }
 
-    private fun initClicks(){
-        val dialog = Home.dialogCompanion
+    private fun initClicks() {
         bind.pilihTanggal.setOnClickListener {
-            dialog.show()
+            dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Dashboard.showDialog(this, dialogTanggalBinding)
         }
     }
 }

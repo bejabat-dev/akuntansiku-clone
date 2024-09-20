@@ -1,23 +1,49 @@
 package com.example.moliyafinance.navigation
 
+import android.content.Context
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.moliyafinance.R
 import com.example.moliyafinance.databinding.ActivityDashboardBinding
+import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.UserModel
 
 class Dashboard : AppCompatActivity() {
     private lateinit var bind: ActivityDashboardBinding
     private lateinit var fragmentManager: FragmentManager
-
     companion object {
         var editing = false
         lateinit var listTransaksi: List<Transaksi>
-         var userData  = UserModel()
+        var userData = UserModel()
         var isLoaded = false
+        fun showDialog(context: Context, dialogBinding: DialogTanggalBinding) {
+
+            val b = AlertDialog.Builder(context)
+            b.setView(dialogBinding.root)
+            dialogBinding.start.init(
+                dialogBinding.start.year, dialogBinding.start.month, dialogBinding.start.dayOfMonth
+            ) { _, year, month, day ->
+                val selectedDate = "$year/${month + 1}/$day"
+                var startDate = selectedDate
+            }
+
+            dialogBinding.end.init(
+                dialogBinding.end.year, dialogBinding.end.month, dialogBinding.end.dayOfMonth
+            ) { _, year, month, day ->
+                val selectedDate = "$year/${month + 1}/$day"
+                var endDate = selectedDate
+            }
+            val dialog = b.create()
+            dialog.show()
+
+            dialogBinding.simpan.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

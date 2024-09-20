@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.LoadingDialog
@@ -23,10 +22,7 @@ import com.example.moliyafinance.pages.TambahTransaksi
 
 class Home : Fragment() {
     private lateinit var bind: FragmentHomeBinding
-    private lateinit var dialogBinding: DialogTanggalBinding
-    private lateinit var dialog: AlertDialog
-    private lateinit var startDate: String
-    private lateinit var endDate: String
+    private lateinit var dialogTanggalBinding: DialogTanggalBinding
     private var firstLaunch = true
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,17 +30,7 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         bind = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        dialogBinding = DialogTanggalBinding.inflate(layoutInflater)
         return bind.root
-    }
-
-    fun setFilter(start: String, end: String) {
-        println(start)
-        println(end)
-    }
-
-    companion object {
-        lateinit var dialogCompanion: AlertDialog
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,28 +41,7 @@ class Home : Fragment() {
         if (firstLaunch) {
             LoadingDialog.showDialog(requireContext(), "Memuat")
             init()
-            createDialog()
         }
-    }
-
-    private fun createDialog() {
-        val b = AlertDialog.Builder(requireContext())
-        b.setView(dialogBinding.root)
-        dialogBinding.start.init(
-            dialogBinding.start.year, dialogBinding.start.month, dialogBinding.start.dayOfMonth
-        ) { _, year, month, day ->
-            val selectedDate = "$year/${month + 1}/$day"
-            startDate = selectedDate
-        }
-
-        dialogBinding.end.init(
-            dialogBinding.end.year, dialogBinding.end.month, dialogBinding.end.dayOfMonth
-        ) { _, year, month, day ->
-            val selectedDate = "$year/${month + 1}/$day"
-            endDate = selectedDate
-        }
-        dialogCompanion = b.create()
-        dialog = b.create()
     }
 
     override fun onResume() {
@@ -173,7 +138,8 @@ class Home : Fragment() {
 
     private fun initClicks() {
         bind.pilihTanggal.setOnClickListener {
-            dialog.show()
+            val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Dashboard.showDialog(requireContext(), dialogTanggalBinding)
         }
         bind.tambahTransaksi.setOnClickListener {
             Dashboard.editing = false

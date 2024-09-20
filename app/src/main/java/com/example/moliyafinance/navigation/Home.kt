@@ -2,6 +2,8 @@ package com.example.moliyafinance.navigation
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,8 +43,8 @@ class Home : Fragment() {
         println(end)
     }
 
-    companion object{
-        lateinit var dialogCompanion : AlertDialog
+    companion object {
+        lateinit var dialogCompanion: AlertDialog
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,6 +83,36 @@ class Home : Fragment() {
         super.onResume()
         init()
         initClicks()
+        initSearch()
+    }
+
+    private fun initSearch() {
+        bind.search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (s.toString().isEmpty()) {
+                    val adapter = AdapterTransaksi(requireContext(), Dashboard.listTransaksi)
+                    bind.recycler.adapter = adapter
+                    return
+                }
+
+                val filteredList = ArrayList<Transaksi>()
+                for (i in Dashboard.listTransaksi) {
+                    if (i.catatan.lowercase().contains(s.toString().lowercase())) {
+                        filteredList.add(i)
+                    }
+                }
+                val adapter = AdapterTransaksi(requireContext(), filteredList)
+                bind.recycler.adapter = adapter
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
     }
 
     private fun init() {

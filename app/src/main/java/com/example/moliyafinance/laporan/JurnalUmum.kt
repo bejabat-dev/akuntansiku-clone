@@ -42,7 +42,6 @@ class JurnalUmum : AppCompatActivity() {
     private fun initClicks() {
         bind.pilihTanggal.setOnClickListener {
             dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
-            Dashboard.showDialog(this, dialogTanggalBinding)
         }
     }
 }

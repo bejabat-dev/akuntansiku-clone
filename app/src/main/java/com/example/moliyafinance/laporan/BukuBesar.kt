@@ -26,7 +26,6 @@ class BukuBesar : AppCompatActivity() {
     private fun initClicks() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
-            Dashboard.showDialog(this, dialogTanggalBinding)
         }
     }
 

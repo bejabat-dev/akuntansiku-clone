@@ -22,7 +22,6 @@ class NeracaSaldo : AppCompatActivity() {
     private fun init() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
-            Dashboard.showDialog(this, dialogTanggalBinding)
         }
         fadeIn(bind.recycer)
         bind.back.setOnClickListener {

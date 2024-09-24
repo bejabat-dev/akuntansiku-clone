@@ -26,7 +26,6 @@ class LabaRugi : AppCompatActivity() {
     private fun init() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
-            Dashboard.showDialog(this, dialogTanggalBinding)
         }
         bind.back.setOnClickListener {
             finish()

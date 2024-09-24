@@ -23,6 +23,7 @@ import com.example.moliyafinance.pages.TambahTransaksi
 class Home : Fragment() {
     private lateinit var bind: FragmentHomeBinding
     private lateinit var dialogTanggalBinding: DialogTanggalBinding
+    private lateinit var adapter: AdapterTransaksi
     private var firstLaunch = true
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +59,7 @@ class Home : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (s.toString().isEmpty()) {
-                    val adapter = AdapterTransaksi(requireContext(), Dashboard.listTransaksi)
+                    adapter = AdapterTransaksi(requireContext(), Dashboard.listTransaksi)
                     bind.recycler.adapter = adapter
                     return
                 }
@@ -69,7 +70,7 @@ class Home : Fragment() {
                         filteredList.add(i)
                     }
                 }
-                val adapter = AdapterTransaksi(requireContext(), filteredList)
+                adapter = AdapterTransaksi(requireContext(), filteredList)
                 bind.recycler.adapter = adapter
 
             }
@@ -95,7 +96,7 @@ class Home : Fragment() {
                                 if (isAdded) {
                                     Dashboard.isLoaded = true
                                     Dashboard.listTransaksi = list
-                                    val adapter = AdapterTransaksi(requireContext(), list)
+                                    adapter = AdapterTransaksi(requireContext(), list)
                                     fadeIn(bind.recycler)
                                     bind.recycler.adapter = adapter
                                     bind.recycler.layoutManager =
@@ -139,7 +140,7 @@ class Home : Fragment() {
     private fun initClicks() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
-            Dashboard.showDialog(requireContext(), dialogTanggalBinding)
+            Dashboard.showDialog(requireContext(), dialogTanggalBinding, adapter)
         }
         bind.tambahTransaksi.setOnClickListener {
             Dashboard.editing = false

@@ -7,7 +7,7 @@ import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.navigation.Dashboard
 
 class PerubahanModal : AppCompatActivity() {
-    private lateinit var bind : ActivityPerubahanModalBinding
+    private lateinit var bind: ActivityPerubahanModalBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityPerubahanModalBinding.inflate(layoutInflater)
@@ -15,7 +15,9 @@ class PerubahanModal : AppCompatActivity() {
         init()
     }
 
-    private fun init(){
+    data class PerubahanModal(val namaAkun: String, val debit: Int, val kredit: Int)
+
+    private fun init() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
         }
@@ -23,8 +25,16 @@ class PerubahanModal : AppCompatActivity() {
             finish()
         }
 
-        for(data in Dashboard.listTransaksi){
-           println(data)
+        val adapterModal = ArrayList<PerubahanModal>()
+
+        for (data in Dashboard.listTransaksi) {
+            if (data.kategoriDebit == "Modal") {
+                val modal = PerubahanModal(data.debit, data.nominal, 0)
+                adapterModal.add(modal)
+            } else if (data.kategoriKredit == "Modal") {
+                val modal = PerubahanModal(data.kredit, 0, data.nominal)
+                adapterModal.add(modal)
+            }
         }
     }
 }

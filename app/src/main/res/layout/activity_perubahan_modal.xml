@@ -1,173 +1,170 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="#f2f2f2"
-	android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="back"
+            app:srcCompat="@drawable/arrow_back_ios_24px" />
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="2dp"
-		android:background="@color/white"
-		android:gravity="center_vertical"
-		android:orientation="horizontal"
-		android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Perubahan Modal"
+            android:textColor="@color/blacker"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-		<ImageView
-			android:id="@+id/back"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
-			app:srcCompat="@drawable/arrow_back_ios_24px" />
+    <LinearLayout
+        android:id="@+id/pilih_tanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="16dp"
-			android:text="Perubahan Modal"
-			android:textColor="@color/blacker"
-			android:textSize="20sp"
-			android:textStyle="bold" />
-	</LinearLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="date"
+            android:src="@drawable/calendar_month_24px" />
 
-	<LinearLayout
-		android:id="@+id/pilih_tanggal"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="2dp"
-		android:background="@color/white"
-		android:gravity="center_vertical"
-		android:orientation="horizontal"
-		android:padding="12dp">
+        <TextView
+            android:id="@+id/hari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="September"
+            android:textColor="@color/button" />
 
-		<ImageView
-			android:id="@+id/imageView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/calendar_month_24px" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" " />
 
-		<TextView
-			android:id="@+id/hari"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="8dp"
-			android:text="September"
-			android:textColor="@color/button" />
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2024"
+            android:textColor="@color/button" />
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text=" " />
+    </LinearLayout>
 
-		<TextView
-			android:id="@+id/tanggal"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="2024"
-			android:textColor="@color/button" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
-	</LinearLayout>
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="10dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="10dp"
+            android:text="Perubahan modal"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_weight="0"
-		android:background="#FFFFFF"
-		android:orientation="vertical">
+        <TextView
+            android:id="@+id/textview3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="8dp"
+            android:text="Modal"
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
-		<TextView
-			android:id="@+id/textview"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="16dp"
-			android:paddingTop="10dp"
-			android:paddingRight="16dp"
-			android:paddingBottom="10dp"
-			android:text="Perubahan modal"
-			android:textColor="#000000"
-			android:textSize="16sp"
-			android:textStyle="bold" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-		<TextView
-			android:id="@+id/textview3"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="24dp"
-			android:paddingRight="8dp"
-			android:text="Modal"
-			android:textColor="#000000"
-			android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/recycler"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/textview35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="24dp"
+                android:paddingEnd="8dp"
+                android:text="Total Modal"
+                android:textColor="#000000"
+                android:textSize="14sp" />
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textview36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:paddingStart="24dp"
+                android:paddingEnd="16dp"
+                android:text="Rp0"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-			<TextView
-				android:id="@+id/textview35"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:paddingLeft="24dp"
-				android:paddingRight="8dp"
-				android:text="Total Modal"
-				android:textColor="#000000"
-				android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-			<TextView
-				android:id="@+id/textview36"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="0"
-				android:paddingLeft="24dp"
-				android:paddingRight="16dp"
-				android:text="Rp0"
-				android:textColor="#000000"
-				android:textSize="14sp" />
-		</LinearLayout>
+            <TextView
+                android:id="@+id/textview37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingTop="10dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:text="Total perubahan modal"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_weight="0"
-			android:orientation="horizontal">
+            <TextView
+                android:id="@+id/total_perubahan_modal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:paddingLeft="16dp"
+                android:paddingTop="10dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:text="Rp0"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-			<TextView
-				android:id="@+id/textview37"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:paddingLeft="16dp"
-				android:paddingTop="10dp"
-				android:paddingRight="16dp"
-				android:paddingBottom="10dp"
-				android:text="Total perubahan modal"
-				android:textColor="#000000"
-				android:textSize="14sp"
-				android:textStyle="bold" />
-
-			<TextView
-				android:id="@+id/total_perubahan_modal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="0"
-				android:paddingLeft="16dp"
-				android:paddingTop="10dp"
-				android:paddingRight="16dp"
-				android:paddingBottom="10dp"
-				android:text="Rp0"
-				android:textColor="#000000"
-				android:textSize="14sp"
-				android:textStyle="bold" />
-
-		</LinearLayout>
-	</LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -74,6 +74,30 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                     }
                 }
             }
+
+            "Tanam Modal" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Kas & Bank") {
+                        list.add(data)
+                    }
+                }
+            }
+
+            "Tarik Modal" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Modal") {
+                        list.add(data)
+                    }
+                }
+            }
+
+            "Transfer Uang" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Kas & Bank") {
+                        list.add(data)
+                    }
+                }
+            }
         }
         val adapter = AdapterDataAkun(list, this)
         return adapter
@@ -109,6 +133,30 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
             "Piutang" -> {
                 for (data in akunList) {
                     if (data.kategori == "Kas & Bank" || data.kategori == "Persediaan" || data.kategori == "Harta Lancar Lainnya" || data.kategori == "Pendapatan" || data.kategori == "Pendapatan Lainnya" || data.kategori == "Modal") {
+                        list.add(data)
+                    }
+                }
+            }
+
+            "Tanam Modal" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Modal") {
+                        list.add(data)
+                    }
+                }
+            }
+
+            "Tarik Modal" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Kas & Bank") {
+                        list.add(data)
+                    }
+                }
+            }
+
+            "Transfer Uang" -> {
+                for (data in akunList) {
+                    if (data.kategori == "Kas & Bank") {
                         list.add(data)
                     }
                 }

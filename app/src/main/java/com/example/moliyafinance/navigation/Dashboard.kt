@@ -1,6 +1,5 @@
 package com.example.moliyafinance.navigation
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -14,6 +13,8 @@ import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.UserModel
 import com.example.moliyafinance.models.getFilteredTransaksi
+import com.google.firebase.Timestamp
+import java.util.Calendar
 
 class Dashboard : AppCompatActivity() {
     private lateinit var bind: ActivityDashboardBinding
@@ -24,32 +25,43 @@ class Dashboard : AppCompatActivity() {
         lateinit var listTransaksi: List<Transaksi>
         var userData = UserModel()
         var isLoaded = false
-        @SuppressLint("NotifyDataSetChanged")
-        fun showDialog(context: Context, dialogBinding: DialogTanggalBinding, adapter:AdapterTransaksi) {
-            var startDate: String = ""
-            var endDate: String = ""
+
+        fun showDialog(
+            context: Context,
+            dialogBinding: DialogTanggalBinding,
+            adapter: AdapterTransaksi
+        ) {
+            var startDateTimestamp: Timestamp? = null
+            var endDateTimestamp: Timestamp? = null
             val b = AlertDialog.Builder(context)
             b.setView(dialogBinding.root)
+
             dialogBinding.start.init(
                 dialogBinding.start.year, dialogBinding.start.month, dialogBinding.start.dayOfMonth
             ) { _, year, month, day ->
-                val selectedDate = "$year/${month + 1}/$day"
-                startDate = selectedDate
+                val calendar = Calendar.getInstance()
+                calendar.set(year, month, day, 0, 0, 0) // Set time to 00:00:00 for start of day
+                startDateTimestamp = Timestamp(calendar.time)
             }
 
             dialogBinding.end.init(
                 dialogBinding.end.year, dialogBinding.end.month, dialogBinding.end.dayOfMonth
             ) { _, year, month, day ->
-                val selectedDate = "$year/${month + 1}/$day"
-                endDate = selectedDate
+                val calendar = Calendar.getInstance()
+                calendar.set(year, month, day, 23, 59, 59) // Set time to 23:59:59 for end of day
+                endDateTimestamp = Timestamp(calendar.time)
             }
 
             val dialog = b.create()
             dialog.show()
 
             dialogBinding.simpan.setOnClickListener {
-                getFilteredTransaksi(context, startDate, endDate)
-                adapter.notifyDataSetChanged()
+                if (startDateTimestamp != null && endDateTimestamp != null) {
+                    getFilteredTransaksi(context, startDateTimestamp!!, endDateTimestamp!!, adapter)
+                    println("Start: $startDateTimestamp End: $endDateTimestamp")
+                } else {
+                    println("Error: Start or End date is not selected")
+                }
                 dialog.dismiss()
             }
         }

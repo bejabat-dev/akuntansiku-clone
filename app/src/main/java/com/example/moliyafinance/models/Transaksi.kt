@@ -6,7 +6,9 @@ import android.content.Context
 import android.view.View
 import android.widget.Toast
 import com.example.moliyafinance.LoadingDialog
+import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.navigation.Dashboard
+import com.example.moliyafinance.navigation.Home
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.NumberFormat
@@ -150,14 +152,18 @@ fun getTransaksi(
 
 fun getFilteredTransaksi(
     context: Context,
-    start:String,end:String
+    start: Timestamp, end: Timestamp,adapter:AdapterTransaksi
 ) {
+
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     val db = FirebaseFirestore.getInstance().collection("Transactions")
-    db.whereEqualTo("uid", User.userData.uid).whereGreaterThanOrEqualTo("timestamp",start).whereLessThanOrEqualTo("timestamp",end).get()
+
+    db.whereEqualTo("uid", User.userData.uid).whereGreaterThanOrEqualTo("timestamp", start)
+        .whereLessThanOrEqualTo("timestamp", end).get()
         .addOnSuccessListener { querySnapshot ->
             val transaksiList = querySnapshot.documents.mapNotNull { document ->
                 val dateString = document.getString("tanggal") ?: ""
+                println(dateString)
                 val date = dateFormat.parse(dateString)
                 document.toObject(Transaksi::class.java)?.apply {
                     this.date = date
@@ -165,10 +171,13 @@ fun getFilteredTransaksi(
             }
             val sortedList = transaksiList.sortedBy { it.date }
             Dashboard.listTransaksi = sortedList
+            Home().setRecyclerAdapter(sortedList)
         }
         .addOnFailureListener { exception ->
             showToast(context, exception.toString())
+            println(exception.toString())
         }
+
 }
 
 fun formatToRupiah(amount: Int): String {

@@ -22,7 +22,6 @@ import com.example.moliyafinance.pages.TambahTransaksi
 
 class Home : Fragment() {
     private lateinit var bind: FragmentHomeBinding
-    private lateinit var dialogTanggalBinding: DialogTanggalBinding
     private lateinit var adapter: AdapterTransaksi
     private var firstLaunch = true
     override fun onCreateView(
@@ -50,6 +49,11 @@ class Home : Fragment() {
         init()
         initClicks()
         initSearch()
+    }
+
+    fun setRecyclerAdapter(list:List<Transaksi>){
+        val adapterTransaksi = context?.let { AdapterTransaksi(it,list) }
+        bind.recycler.adapter = adapterTransaksi
     }
 
     private fun initSearch() {

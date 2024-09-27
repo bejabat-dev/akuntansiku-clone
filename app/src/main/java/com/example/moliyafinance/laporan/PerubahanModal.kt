@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.databinding.ActivityPerubahanModalBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
+import com.example.moliyafinance.navigation.Dashboard
 
 class PerubahanModal : AppCompatActivity() {
     private lateinit var bind : ActivityPerubahanModalBinding
@@ -20,6 +21,10 @@ class PerubahanModal : AppCompatActivity() {
         }
         bind.back.setOnClickListener {
             finish()
+        }
+
+        for(data in Dashboard.listTransaksi){
+           println(data)
         }
     }
 }

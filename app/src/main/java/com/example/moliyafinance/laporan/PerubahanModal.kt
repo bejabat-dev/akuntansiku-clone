@@ -2,8 +2,11 @@ package com.example.moliyafinance.laporan
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.adapters.AdapterPerubahanModal
 import com.example.moliyafinance.databinding.ActivityPerubahanModalBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
+import com.example.moliyafinance.models.formatToRupiah
 import com.example.moliyafinance.navigation.Dashboard
 
 class PerubahanModal : AppCompatActivity() {
@@ -25,16 +28,25 @@ class PerubahanModal : AppCompatActivity() {
             finish()
         }
 
-        val adapterModal = ArrayList<PerubahanModal>()
+        val listModal = ArrayList<PerubahanModal>()
 
         for (data in Dashboard.listTransaksi) {
             if (data.kategoriDebit == "Modal") {
                 val modal = PerubahanModal(data.debit, data.nominal, 0)
-                adapterModal.add(modal)
+                listModal.add(modal)
             } else if (data.kategoriKredit == "Modal") {
                 val modal = PerubahanModal(data.kredit, 0, data.nominal)
-                adapterModal.add(modal)
+                listModal.add(modal)
             }
+        }
+
+        val adapterModal = AdapterPerubahanModal(listModal)
+        bind.recycler.adapter = adapterModal
+        bind.recycler.layoutManager = LinearLayoutManager(this)
+        bind.recycler.post {
+            val total = adapterModal.getTotal()
+            bind.totalModal.text = formatToRupiah(total)
+            bind.totalPerubahanModal.text = formatToRupiah(total)
         }
     }
 }

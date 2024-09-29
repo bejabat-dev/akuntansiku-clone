@@ -32,8 +32,7 @@ class Periode : AppCompatActivity() {
         val periodeList = ArrayList<Periode>()
 
         for (data in Dashboard.listTransaksi) {
-            kategori.add(data.debit)
-            kategori.add(data.kredit)
+            //if()
         }
         kategori.sort()
         for (data in kategori) {
@@ -49,6 +48,8 @@ class Periode : AppCompatActivity() {
         val adapter = AdapterPeriode(this, periodeList)
         bind.recycler.adapter = adapter
         bind.recycler.layoutManager = LinearLayoutManager(this)
+            bind.recycler.post {
 
+            }
     }
 }

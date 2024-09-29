@@ -1,5 +1,6 @@
 package com.example.moliyafinance.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
 import com.example.moliyafinance.laporan.Periode
 import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.models.formatToRupiah
 
 class AdapterPeriode(
     private val context: Context,
@@ -60,15 +62,16 @@ class InnerAdapterPeriode(
         return total
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(view: ViewHolder, pos: Int) {
         val data = dataSet[pos]
         if(data.debit==checker){
-            total+=data.nominal
+          view.saldo.text = formatToRupiah(data.nominal)
         }
         if(data.kredit==checker){
-            total-=data.nominal
+            val s =formatToRupiah(data.nominal)
+            view.saldo.text = "($s)"
         }
-
     }
 
     override fun getItemCount() = dataSet.size

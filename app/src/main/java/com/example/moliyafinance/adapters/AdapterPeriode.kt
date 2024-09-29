@@ -29,7 +29,7 @@ class AdapterPeriode(
     }
 
     override fun onBindViewHolder(v: ViewHolder, pos: Int) {
-        val adapter = InnerAdapterPeriode(dataSet[pos].innerAdapter)
+        val adapter = InnerAdapterPeriode(dataSet[pos].kategori,dataSet[pos].innerAdapter)
         v.kategori.text = dataSet[pos].kategori
         v.innerRecyclerView.adapter = adapter
         v.innerRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -39,9 +39,11 @@ class AdapterPeriode(
 }
 
 class InnerAdapterPeriode(
+    private val checker : String,
     private val dataSet: List<Transaksi>
 ) :
     RecyclerView.Adapter<InnerAdapterPeriode.ViewHolder>() {
+        private var total = 0
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tanggal: TextView = view.findViewById(R.id.tanggal)
@@ -54,7 +56,18 @@ class InnerAdapterPeriode(
         return ViewHolder(view)
     }
 
+    fun getTotal():Int{
+        return total
+    }
+
     override fun onBindViewHolder(view: ViewHolder, pos: Int) {
+        val data = dataSet[pos]
+        if(data.debit==checker){
+            total+=data.nominal
+        }
+        if(data.kredit==checker){
+            total-=data.nominal
+        }
 
     }
 

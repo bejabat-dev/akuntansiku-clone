@@ -15,7 +15,7 @@ import com.example.moliyafinance.models.formatToRupiah
 
 class AdapterPeriode(
     private val context: Context,
-    private val dataSet: List<Periode.Periode>
+    private val dataSet: List<Periode.ModelPeriode>
 ) :
     RecyclerView.Adapter<AdapterPeriode.ViewHolder>() {
 

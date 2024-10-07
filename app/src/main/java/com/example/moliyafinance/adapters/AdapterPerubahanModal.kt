@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
-import com.example.moliyafinance.laporan.PerubahanModal
+import com.example.moliyafinance.models.PerubahanModal
 import com.example.moliyafinance.models.formatToRupiah
 
-class AdapterPerubahanModal(private val dataSet: List<PerubahanModal.PerubahanModal>) :
+class AdapterPerubahanModal(private val dataSet: List<PerubahanModal>) :
     RecyclerView.Adapter<AdapterPerubahanModal.ViewHolder>() {
 
     private var total = 0

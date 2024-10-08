@@ -23,7 +23,7 @@ class NeracaSaldo : AppCompatActivity() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
         }
-        fadeIn(bind.recycer)
+        fadeIn(bind.recycler)
         bind.back.setOnClickListener {
             finish()
         }
@@ -37,8 +37,8 @@ class NeracaSaldo : AppCompatActivity() {
         }
         val adapter = AdapterNeracaSaldo(listStringTransaksi, innerTransaksi)
 
-        bind.recycer.adapter = adapter
-        bind.recycer.layoutManager = LinearLayoutManager(this)
+        bind.recycler.adapter = adapter
+        bind.recycler.layoutManager = LinearLayoutManager(this)
     }
 
     private fun extractString(transaksiList: List<Transaksi>): List<String> {

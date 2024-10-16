@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.moliyafinance.databinding.FragmentMasterDataBinding
-import com.example.moliyafinance.pages.Aset
 import com.example.moliyafinance.pages.DaftarAkun
+import com.example.moliyafinance.pages.TambahAset
 
 class MasterData : Fragment() {
     private lateinit var bind: FragmentMasterDataBinding
@@ -31,7 +31,7 @@ class MasterData : Fragment() {
             startActivity(Intent(requireContext(), DaftarAkun::class.java))
         }
         bind.aset.setOnClickListener {
-            startActivity(Intent(requireContext(), Aset::class.java))
+            startActivity(Intent(requireContext(), TambahAset::class.java))
         }
     }
 }

@@ -40,7 +40,6 @@ class PerubahanModal : AppCompatActivity() {
                 listPerubahan.add(newData)
             }
         }
-        print(listPerubahan)
-        print("loaded")
+
     }
 }

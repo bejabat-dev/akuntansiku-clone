@@ -3,11 +3,12 @@ package com.example.moliyafinance.laporan
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterNeracaSaldo
 import com.example.moliyafinance.databinding.ActivityNeracaSaldoBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.fadeIn
+
 import com.example.moliyafinance.navigation.Dashboard
 
 class NeracaSaldo : AppCompatActivity() {
@@ -23,7 +24,7 @@ class NeracaSaldo : AppCompatActivity() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
         }
-        fadeIn(bind.recycler)
+        Utils().fadeIn(bind.recycler)
         bind.back.setOnClickListener {
             finish()
         }

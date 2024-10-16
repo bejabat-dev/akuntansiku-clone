@@ -10,14 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.LoadingDialog
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.databinding.FragmentHomeBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.User
-import com.example.moliyafinance.models.fadeIn
-import com.example.moliyafinance.models.getTransaksi
-import com.example.moliyafinance.models.showToast
+
 import com.example.moliyafinance.pages.TambahTransaksi
 
 class Home : Fragment() {
@@ -51,8 +50,8 @@ class Home : Fragment() {
         initSearch()
     }
 
-    fun setRecyclerAdapter(list:List<Transaksi>){
-        val adapterTransaksi = context?.let { AdapterTransaksi(it,list) }
+    fun setRecyclerAdapter(list: List<Transaksi>) {
+        val adapterTransaksi = context?.let { AdapterTransaksi(it, list) }
         bind.recycler.adapter = adapterTransaksi
     }
 
@@ -95,13 +94,13 @@ class Home : Fragment() {
                         Dashboard.userData = data
                         bind.nama.text = data.nama
 
-                        getTransaksi(requireContext(), onResult = { list ->
+                        Utils().getTransaksi(requireContext(), onResult = { list ->
                             run {
                                 if (isAdded) {
                                     Dashboard.isLoaded = true
                                     Dashboard.listTransaksi = list
                                     adapter = AdapterTransaksi(requireContext(), list)
-                                    fadeIn(bind.recycler)
+                                    Utils().fadeIn(bind.recycler)
                                     bind.recycler.adapter = adapter
                                     bind.recycler.layoutManager =
                                         LinearLayoutManager(requireContext())
@@ -131,7 +130,7 @@ class Home : Fragment() {
                                 LoadingDialog.dialog.dismiss()
                             }
                             bind.swipe.isRefreshing = false
-                            showToast(requireContext(), "Terjadi kesalahan")
+                            Utils().showToast(requireContext(), "Terjadi kesalahan")
                         })
                     }
                 }

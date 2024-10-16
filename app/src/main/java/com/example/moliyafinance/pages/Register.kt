@@ -4,8 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.LoadingDialog
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.databinding.ActivityRegisterBinding
-import com.example.moliyafinance.models.showToast
+
 import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,10 +27,10 @@ class Register : AppCompatActivity() {
             val password = bind.password.text.toString()
             val repassword = bind.repassword.text.toString()
             if (email.isBlank() || password.isBlank() || repassword.isBlank() || nama.isBlank()) {
-                showToast(this, "Harap penuhi semua kolom")
+                Utils().showToast(this, "Harap penuhi semua kolom")
             } else {
                 if (password.trim() != repassword.trim()) {
-                    showToast(this, "Kata sandi tidak sama")
+                    Utils().showToast(this, "Kata sandi tidak sama")
                 } else {
                     register(email, password, nama)
                 }
@@ -46,18 +47,19 @@ class Register : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
             if (it.user != null) {
                 val uid = it.user!!.uid
-                val map  = hashMapOf("nama" to nama,"uid" to uid,"email" to email)
-                FirebaseFirestore.getInstance().collection("Users").document(uid).set(map).addOnSuccessListener {
-                    val i = Intent(this,Dashboard::class.java)
-                    startActivity(i)
-                    finish()
-                }
+                val map = hashMapOf("nama" to nama, "uid" to uid, "email" to email)
+                FirebaseFirestore.getInstance().collection("Users").document(uid).set(map)
+                    .addOnSuccessListener {
+                        val i = Intent(this, Dashboard::class.java)
+                        startActivity(i)
+                        finish()
+                    }
 
             }
         }.addOnFailureListener { e ->
             run {
                 LoadingDialog.dialog.dismiss()
-                showToast(this, e.toString())
+                Utils().showToast(this, e.toString())
             }
         }
     }

@@ -3,11 +3,12 @@ package com.example.moliyafinance.laporan
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterBukuBesar
 import com.example.moliyafinance.databinding.ActivityBukuBesarBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.fadeIn
+
 import com.example.moliyafinance.navigation.Dashboard
 import com.example.moliyafinance.navigation.Dashboard.Companion.isLoaded
 
@@ -30,7 +31,7 @@ class BukuBesar : AppCompatActivity() {
     }
 
     private fun init() {
-        fadeIn(bind.recycer)
+        Utils().fadeIn(bind.recycer)
         bind.back.setOnClickListener {
             finish()
         }

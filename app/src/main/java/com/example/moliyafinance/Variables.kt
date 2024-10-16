@@ -41,9 +41,24 @@ object Variables {
         DataAkun("1-10402", "Biaya Dibayar Di Muka", "Harta Lancar Lainnya", "Debit"),
         DataAkun("1-10403", "Uang Muka", "Harta Lancar Lainnya", "Debit"),
         DataAkun("1-10500", "PPN Masukan", "Harta Lancar Lainnya", "Debit"),
-        DataAkun("1-10501", "Pajak Penghasilan Dibayar Di Muka - PPh 22", "Harta Lancar Lainnya", "Debit"),
-        DataAkun("1-10502", "Pajak Penghasilan Dibayar Di Muka - PPh 23", "Harta Lancar Lainnya", "Debit"),
-        DataAkun("1-10503", "Pajak Penghasilan Dibayar Di Muka - PPh 25", "Harta Lancar Lainnya", "Debit"),
+        DataAkun(
+            "1-10501",
+            "Pajak Penghasilan Dibayar Di Muka - PPh 22",
+            "Harta Lancar Lainnya",
+            "Debit"
+        ),
+        DataAkun(
+            "1-10502",
+            "Pajak Penghasilan Dibayar Di Muka - PPh 23",
+            "Harta Lancar Lainnya",
+            "Debit"
+        ),
+        DataAkun(
+            "1-10503",
+            "Pajak Penghasilan Dibayar Di Muka - PPh 25",
+            "Harta Lancar Lainnya",
+            "Debit"
+        ),
         DataAkun("1-10700", "Aktiva Tetap - Tanah", "Harta Tetap", "Debit"),
         DataAkun("1-10701", "Aset Tetap - Bangunan", "Harta Tetap", "Debit"),
         DataAkun("1-10702", "Aset Tetap - Pengembangan Bangunan", "Harta Tetap", "Debit"),
@@ -53,11 +68,36 @@ object Variables {
         DataAkun("1-10706", "Aset Tetap - Aset Sewaan", "Harta Tetap", "Debit"),
         DataAkun("1-10707", "Aset Tidak Berwujud", "Harta Tetap", "Debit"),
         DataAkun("1-10751", "Akumulasi Penyusutan - Bangunan", "Depresiasi & Armotisasi", "Kredit"),
-        DataAkun("1-10752", "Akumulasi Penyusutan - Pengembangan Bangunan", "Depresiasi & Armotisasi", "Kredit"),
-        DataAkun("1-10753", "Akumulasi Penyusutan - Kendaraan", "Depresiasi & Armotisasi", "Kredit"),
-        DataAkun("1-10754", "Akumulasi Penyusutan - Mesin & Peralatan", "Depresiasi & Armotisasi", "Kredit"),
-        DataAkun("1-10755", "Akumulasi Penyusutan - Peralatan Kantor", "Depresiasi & Armotisasi", "Kredit"),
-        DataAkun("1-10756", "Akumulasi Penyusutan - Aset Sewaan", "Depresiasi & Armotisasi", "Kredit"),
+        DataAkun(
+            "1-10752",
+            "Akumulasi Penyusutan - Pengembangan Bangunan",
+            "Depresiasi & Armotisasi",
+            "Kredit"
+        ),
+        DataAkun(
+            "1-10753",
+            "Akumulasi Penyusutan - Kendaraan",
+            "Depresiasi & Armotisasi",
+            "Kredit"
+        ),
+        DataAkun(
+            "1-10754",
+            "Akumulasi Penyusutan - Mesin & Peralatan",
+            "Depresiasi & Armotisasi",
+            "Kredit"
+        ),
+        DataAkun(
+            "1-10755",
+            "Akumulasi Penyusutan - Peralatan Kantor",
+            "Depresiasi & Armotisasi",
+            "Kredit"
+        ),
+        DataAkun(
+            "1-10756",
+            "Akumulasi Penyusutan - Aset Sewaan",
+            "Depresiasi & Armotisasi",
+            "Kredit"
+        ),
         DataAkun("1-10757", "Akumulasi Armotisasi", "Depresiasi & Armotisasi", "Kredit"),
         DataAkun("1-10800", "Investasi", "Harta Lainnya", "Debit"),
         DataAkun("2-20100", "Hutang Usaha", "Akun Hutang", "Kredit"),
@@ -150,7 +190,12 @@ object Variables {
         DataAkun("7-70099", "Pendapatan Lainnya", "Pendapatan Lainnya", "Kredit"),
         DataAkun("8-80000", "Beban Bunga", "Beban Lainnya", "Debit"),
         DataAkun("8-80001", "Persediaan", "Beban Lainnya", "Debit"),
-        DataAkun("8-80002", "(Keuntungan) / Kerugian Pembuangan Aset Tetap", "Beban Lainnya", "Debit"),
+        DataAkun(
+            "8-80002",
+            "(Keuntungan) / Kerugian Pembuangan Aset Tetap",
+            "Beban Lainnya",
+            "Debit"
+        ),
         DataAkun("8-80100", "Penyesuaian Persediaan", "Beban Lainnya", "Debit"),
         DataAkun("8-80999", "Biaya Lainnya", "Beban Lainnya", "Debit"),
         DataAkun("9-90000", "Pajak Penghasilan - Saat Ini", "Beban Lainnya", "Debit"),

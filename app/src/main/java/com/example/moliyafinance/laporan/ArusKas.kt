@@ -6,7 +6,7 @@ import com.example.moliyafinance.databinding.ActivityArusKasBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 
 class ArusKas : AppCompatActivity() {
-    private lateinit var bind : ActivityArusKasBinding
+    private lateinit var bind: ActivityArusKasBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityArusKasBinding.inflate(layoutInflater)
@@ -14,7 +14,7 @@ class ArusKas : AppCompatActivity() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
         bind.back.setOnClickListener {
             finish()
         }

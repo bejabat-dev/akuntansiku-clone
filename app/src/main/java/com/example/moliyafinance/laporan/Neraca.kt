@@ -2,8 +2,14 @@ package com.example.moliyafinance.laporan
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.Utils
+import com.example.moliyafinance.adapters.AdapterPerubahanModal
 import com.example.moliyafinance.databinding.ActivityNeracaBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
+import com.example.moliyafinance.models.PerubahanModal
+import com.example.moliyafinance.models.Transaksi
+
 import com.example.moliyafinance.navigation.Dashboard
 
 class Neraca : AppCompatActivity() {
@@ -13,6 +19,7 @@ class Neraca : AppCompatActivity() {
         bind = ActivityNeracaBinding.inflate(layoutInflater)
         setContentView(bind.root)
         initClicks()
+        init()
     }
 
     private fun initClicks() {
@@ -25,12 +32,47 @@ class Neraca : AppCompatActivity() {
     }
 
     private fun init() {
-        val listPerubahanModal = ArrayList<PerubahanModal>()
+        val adapterModal = getAdapterModal()
+        bind.recyclerModal.adapter = adapterModal
+        bind.recyclerModal.layoutManager = LinearLayoutManager(this)
+        bind.recyclerModal.post {
+            bind.totalModal.text = Utils().formatToRupiah(adapterModal.getTotal())
+        }
+    }
+
+    private fun getAdapterModal(): AdapterPerubahanModal {
+        val listPerubahanModal = ArrayList<String>()
+        val arrayPerubahanModal = ArrayList<Transaksi>()
         for (data in Dashboard.listTransaksi) {
-            if(data.jenisTransaksi == "Tambah Modal"){
-                val perubahanModal = PerubahanModal()
+            if (data.jenisTransaksi == "Tanam Modal") {
+                listPerubahanModal.add(data.kredit)
+                arrayPerubahanModal.add(data)
+            }
+            if (data.jenisTransaksi == "Tarik Modal") {
+                listPerubahanModal.add(data.debit)
+                arrayPerubahanModal.add(data)
             }
         }
+
+        val arrayListPerubahanModal = ArrayList<PerubahanModal>()
+        for (data in listPerubahanModal.distinct()) {
+            var total = 0
+            var nomor = ""
+            for (perubahan in arrayPerubahanModal) {
+                if (perubahan.kredit == data) {
+                    nomor = perubahan.nomorKredit
+                    total += perubahan.nominal
+                }
+                if (perubahan.debit == data) {
+                    nomor = perubahan.nomorDebit
+                    total -= perubahan.nominal
+                }
+            }
+            val newData = PerubahanModal("$nomor | $data", total)
+            arrayListPerubahanModal.add(newData)
+        }
+        val adapterPerubahanModal = AdapterPerubahanModal(arrayListPerubahanModal)
+        return adapterPerubahanModal
     }
 
 }

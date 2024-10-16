@@ -24,7 +24,7 @@ class TambahAset : AppCompatActivity() {
         val arraySpinnerAset = ArrayList<String>()
         for (data in Variables.akunList) {
             if (data.kategori == "Harta Tetap") {
-                arraySpinnerAset.add( data.nama)
+                arraySpinnerAset.add(data.nama)
             }
         }
         val akunList = ArrayList<String>()

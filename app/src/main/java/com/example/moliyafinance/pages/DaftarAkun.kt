@@ -41,14 +41,14 @@ class DaftarAkun : AppCompatActivity() {
 
     }
 
-    private fun initSearch(){
-        bind.search.addTextChangedListener(object : TextWatcher{
+    private fun initSearch() {
+        bind.search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 filterSearch(s.toString())
-                if(s.toString().isBlank()){
+                if (s.toString().isBlank()) {
                     init()
                 }
             }
@@ -59,12 +59,12 @@ class DaftarAkun : AppCompatActivity() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun filterSearch(s:String){
+    private fun filterSearch(s: String) {
         val newData = ArrayList<Variables.DataAkun>()
         val adapter = AdapterDaftarAkun(newData)
         bind.recycler.adapter = adapter
-        for(data in akunList){
-            if(data.nama.lowercase().contains(s.lowercase())){
+        for (data in akunList) {
+            if (data.nama.lowercase().contains(s.lowercase())) {
                 newData.add(data)
             }
         }

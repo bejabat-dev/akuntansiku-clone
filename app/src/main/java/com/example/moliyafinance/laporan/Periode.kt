@@ -26,6 +26,5 @@ class Periode : AppCompatActivity() {
         }
 
 
-
     }
 }

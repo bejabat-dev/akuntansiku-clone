@@ -7,12 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.moliyafinance.R
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.ActivityDashboardBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.UserModel
-import com.example.moliyafinance.models.getFilteredTransaksi
+
 import com.google.firebase.Timestamp
 import java.util.Calendar
 
@@ -57,7 +58,12 @@ class Dashboard : AppCompatActivity() {
 
             dialogBinding.simpan.setOnClickListener {
                 if (startDateTimestamp != null && endDateTimestamp != null) {
-                    getFilteredTransaksi(context, startDateTimestamp!!, endDateTimestamp!!, adapter)
+                    Utils().getFilteredTransaksi(
+                        context,
+                        startDateTimestamp!!,
+                        endDateTimestamp!!,
+                        adapter
+                    )
                     println("Start: $startDateTimestamp End: $endDateTimestamp")
                 } else {
                     println("Error: Start or End date is not selected")

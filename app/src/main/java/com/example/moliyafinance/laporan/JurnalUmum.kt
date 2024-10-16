@@ -3,11 +3,11 @@ package com.example.moliyafinance.laporan
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterJurnalUmum
 import com.example.moliyafinance.databinding.ActivityJurnalUmumBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
-import com.example.moliyafinance.models.fadeIn
-import com.example.moliyafinance.models.formatToRupiah
+
 import com.example.moliyafinance.navigation.Dashboard
 import com.example.moliyafinance.navigation.Dashboard.Companion.isLoaded
 
@@ -26,7 +26,7 @@ class JurnalUmum : AppCompatActivity() {
 
     private fun init() {
         val adapter = AdapterJurnalUmum(Dashboard.listTransaksi)
-        fadeIn(bind.recycler)
+        Utils().fadeIn(bind.recycler)
         bind.back.setOnClickListener {
             finish()
         }
@@ -34,8 +34,8 @@ class JurnalUmum : AppCompatActivity() {
         bind.recycler.layoutManager = LinearLayoutManager(this)
 
         bind.recycler.post {
-            bind.totalDebit.text = formatToRupiah(adapter.getTotalDebit())
-            bind.totalKredit.text = formatToRupiah(adapter.getTotalKredit())
+            bind.totalDebit.text = Utils().formatToRupiah(adapter.getTotalDebit())
+            bind.totalKredit.text = Utils().formatToRupiah(adapter.getTotalKredit())
         }
     }
 

@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.formatToRupiah
 
 class AdapterBebanOperasional(private val dataSet: List<Transaksi>) :
     RecyclerView.Adapter<AdapterBebanOperasional.ViewHolder>() {
@@ -32,7 +32,7 @@ class AdapterBebanOperasional(private val dataSet: List<Transaksi>) :
     override fun onBindViewHolder(v: ViewHolder, pos: Int) {
         val data = dataSet[pos]
         v.akun.text = data.debit
-        v.nominal.text = formatToRupiah(data.nominal)
+        v.nominal.text = Utils().formatToRupiah(data.nominal)
         total += data.nominal
     }
 

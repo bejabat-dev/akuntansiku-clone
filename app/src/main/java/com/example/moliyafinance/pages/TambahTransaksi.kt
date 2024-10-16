@@ -19,9 +19,7 @@ import com.example.moliyafinance.databinding.ActivityTambahTransaksiBinding
 import com.example.moliyafinance.databinding.DialogTransaksiBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.TransaksiDetails
-import com.example.moliyafinance.models.createTimestamp
-import com.example.moliyafinance.models.tambahTransaksi
-import com.example.moliyafinance.models.updateTransaksi
+
 import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth
 
@@ -339,9 +337,9 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                             nominal,
                             selectedNomorDebit,
                             selectedNomorKredit,
-                            createTimestamp(tanggal, waktu)
+                            Utils().createTimestamp(tanggal, waktu)
                         )
-                        updateTransaksi(this, data)
+                        Utils().updateTransaksi(this, data)
                     } else {
                         val id = System.currentTimeMillis()
                         val data = Transaksi(
@@ -357,9 +355,9 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                             nominal,
                             selectedNomorDebit,
                             selectedNomorKredit,
-                            createTimestamp(tanggal, waktu)
+                            Utils().createTimestamp(tanggal, waktu)
                         )
-                        tambahTransaksi(this, data)
+                        Utils().tambahTransaksi(this, data)
                     }
                 }
             }

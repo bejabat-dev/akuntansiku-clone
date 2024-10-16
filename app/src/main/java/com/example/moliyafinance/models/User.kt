@@ -1,11 +1,12 @@
 package com.example.moliyafinance.models
 
 import android.content.Context
+import com.example.moliyafinance.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 object User {
-    var userData = UserModel("", "", "","")
+    var userData = UserModel("", "", "", "")
     fun getUserData(
         context: Context, onResult: (UserModel?) -> Unit
     ) {
@@ -18,7 +19,7 @@ object User {
                 onResult(user)
             }
             .addOnFailureListener { e ->
-                showToast(context, e.toString())
+                Utils().showToast(context, e.toString())
             }
     }
 }

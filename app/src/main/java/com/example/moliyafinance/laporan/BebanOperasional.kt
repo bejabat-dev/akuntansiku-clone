@@ -3,11 +3,12 @@ package com.example.moliyafinance.laporan
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterBebanOperasional
 import com.example.moliyafinance.databinding.ActivityBebanOperasionalBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.formatToRupiah
+
 import com.example.moliyafinance.navigation.Dashboard
 
 class BebanOperasional : AppCompatActivity() {
@@ -42,7 +43,7 @@ class BebanOperasional : AppCompatActivity() {
         bind.recyclerBebanOperasional.adapter = adapter
         bind.recyclerBebanOperasional.layoutManager = LinearLayoutManager(this)
         bind.recyclerBebanOperasional.post {
-            bind.total.text = formatToRupiah(adapter.getTotal())
+            bind.total.text = Utils().formatToRupiah(adapter.getTotal())
         }
     }
 }

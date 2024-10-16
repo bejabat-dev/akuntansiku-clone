@@ -34,7 +34,7 @@
 	<ScrollView
 		android:id="@+id/vscroll1"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		android:layout_weight="1"
 		android:background="#F2F2F2">
 
@@ -119,122 +119,125 @@
 						android:textColor="#000000"
 						android:textSize="14sp" />
 
-					<TextView
-						android:id="@+id/textview7"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="32dp"
-						android:text="Total Harta Lancar"
-						android:textColor="#000000"
-						android:textSize="14sp" />
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/recycler_harta_lancar"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content" />
 
-					<TextView
-						android:id="@+id/textview9"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="16dp"
-						android:paddingLeft="32dp"
-						android:text="Harta Tetap"
-						android:textColor="#000000"
-						android:textSize="14sp" />
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="horizontal">
 
-					<TextView
-						android:id="@+id/textview10"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="32dp"
-						android:text="Total Harta Tetap"
-						android:textColor="#000000"
-						android:textSize="14sp" />
+						<TextView
+							android:id="@+id/textview7"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:paddingLeft="32dp"
+							android:text="Total Harta Lancar"
+							android:textColor="#000000"
+							android:textSize="14sp" />
 
-					<TextView
-						android:id="@+id/textview11"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="16dp"
-						android:paddingTop="10dp"
-						android:paddingRight="16dp"
-						android:paddingBottom="10dp"
-						android:text="Total Harta"
-						android:textColor="#000000"
-						android:textSize="14sp"
-						android:textStyle="bold" />
-				</LinearLayout>
+						<TextView
 
-				<LinearLayout
-					android:id="@+id/linear7"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginBottom="2dp"
-					android:background="#FFFFFF"
-					android:gravity="right"
-					android:orientation="vertical">
+							android:id="@+id/total_harta_lancar"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
 
-					<TextView
-						android:id="@+id/textview12"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="16dp"
-						android:paddingTop="10dp"
-						android:paddingRight="16dp"
-						android:paddingBottom="10dp"
-						android:text=" "
-						android:textColor="#000000"
-						android:textSize="16sp"
-						android:textStyle="bold" />
+							android:layout_marginRight="16dp"
+							android:gravity="end"
+							android:text="Rp0"
+							android:textColor="#000000"
+							android:textSize="14sp" />
 
-					<TextView
-						android:id="@+id/textview13"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="32dp"
-						android:text=" "
-						android:textColor="#000000"
-						android:textSize="14sp" />
+					</LinearLayout>
 
-					<TextView
-						android:id="@+id/textview14"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:gravity="right"
-						android:paddingRight="16dp"
-						android:text="Rp0"
-						android:textColor="#000000"
-						android:textSize="14sp" />
-
-					<TextView
-						android:id="@+id/textview15"
-						android:layout_width="wrap_content"
+					<LinearLayout
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="16dp"
-						android:paddingLeft="32dp"
-						android:text=" "
-						android:textColor="#000000"
-						android:textSize="14sp" />
+						android:orientation="horizontal">
 
-					<TextView
-						android:id="@+id/textview16"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:gravity="right"
-						android:paddingRight="16dp"
-						android:text="Rp0"
-						android:textColor="#000000"
-						android:textSize="14sp" />
+						<TextView
+							android:id="@+id/textview9"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:paddingLeft="32dp"
+							android:text="Harta Tetap"
+							android:textColor="#000000"
+							android:textSize="14sp" />
 
-					<TextView
-						android:id="@+id/textview17"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="16dp"
-						android:paddingTop="10dp"
-						android:paddingRight="16dp"
-						android:paddingBottom="10dp"
-						android:text="Rp500000"
-						android:textColor="#000000"
-						android:textSize="14sp"
-						android:textStyle="bold" />
+					</LinearLayout>
+
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/recycler_harta_tetap"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content" />
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="horizontal">
+
+						<TextView
+							android:id="@+id/textview10"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="32dp"
+							android:text="Total Harta Tetap"
+							android:textColor="#000000"
+							android:textSize="14sp" />
+
+						<TextView
+							android:id="@+id/total_harta_tetap"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="16dp"
+							android:layout_weight="1"
+							android:gravity="right"
+							android:text="Rp0"
+							android:textColor="#000000"
+							android:textSize="14sp" />
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="horizontal">
+
+						<TextView
+							android:id="@+id/textview11"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:paddingLeft="16dp"
+							android:paddingTop="10dp"
+							android:paddingRight="16dp"
+							android:paddingBottom="10dp"
+							android:text="Total Harta"
+							android:textColor="#000000"
+							android:textSize="14sp"
+							android:textStyle="bold" />
+
+						<TextView
+							android:id="@+id/total_harta"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="16dp"
+							android:paddingTop="10dp"
+							android:paddingRight="16dp"
+							android:paddingBottom="10dp"
+							android:text="Rp500000"
+							android:textColor="#000000"
+							android:textSize="14sp"
+							android:textStyle="bold" />
+
+					</LinearLayout>
 				</LinearLayout>
+
 			</LinearLayout>
 
 			<LinearLayout
@@ -275,14 +278,36 @@
 						android:textColor="#000000"
 						android:textSize="14sp" />
 
-					<TextView
-						android:id="@+id/textview20"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="32dp"
-						android:text="Total Kewajiban"
-						android:textColor="#000000"
-						android:textSize="14sp" />
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/recycler_kewajiban"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content" />
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="horizontal">
+
+						<TextView
+							android:id="@+id/textview20"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:paddingLeft="32dp"
+							android:text="Total Kewajiban"
+							android:textColor="#000000"
+							android:textSize="14sp" />
+
+						<TextView
+							android:id="@+id/total_kewajiban"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:gravity="right"
+							android:paddingRight="16dp"
+							android:text="Rp0"
+							android:textColor="#000000"
+							android:textSize="14sp" />
+					</LinearLayout>
 
 					<TextView
 						android:id="@+id/textview21"
@@ -294,122 +319,75 @@
 						android:textColor="#000000"
 						android:textSize="14sp" />
 
-					<TextView
-						android:id="@+id/textview22"
-						android:layout_width="wrap_content"
+					<androidx.recyclerview.widget.RecyclerView
+						android:paddingStart="16dp"
+						android:id="@+id/recycler_modal"
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:paddingLeft="48dp"
-						android:text="Laba Bersih"
-						android:textColor="#1976D3"
-						android:textSize="14sp" />
+                        tools:ignore="RtlSymmetry" />
 
-					<TextView
-						android:id="@+id/textview30"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="32dp"
-						android:text="Total Modal"
-						android:textColor="#000000"
-						android:textSize="14sp" />
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="horizontal">
 
-					<TextView
-						android:id="@+id/textview23"
-						android:layout_width="wrap_content"
+						<TextView
+							android:id="@+id/textview30"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:paddingStart="32dp"
+							android:text="Total Modal"
+							android:textColor="#000000"
+							android:textSize="14sp" />
+
+						<TextView
+							android:id="@+id/total_modal"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:gravity="right"
+							android:paddingRight="16dp"
+							android:text="Rp0"
+							android:textColor="#000000"
+							android:textSize="14sp" />
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:paddingLeft="16dp"
-						android:paddingTop="10dp"
-						android:paddingRight="16dp"
-						android:paddingBottom="10dp"
-						android:text="Total Kewajiban dan Modal"
-						android:textColor="#000000"
-						android:textSize="14sp"
-						android:textStyle="bold" />
+						android:orientation="horizontal">
+
+						<TextView
+							android:id="@+id/textview23"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:paddingLeft="16dp"
+							android:paddingTop="10dp"
+							android:paddingRight="16dp"
+							android:paddingBottom="10dp"
+							android:text="Total Kewajiban dan Modal"
+							android:textColor="#000000"
+							android:textSize="14sp"
+							android:textStyle="bold" />
+
+						<TextView
+							android:id="@+id/textview12"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="0"
+							android:paddingLeft="16dp"
+							android:paddingTop="10dp"
+							android:paddingRight="16dp"
+							android:paddingBottom="10dp"
+							android:text="Rp500000"
+							android:textColor="#000000"
+							android:textSize="14sp"
+							android:textStyle="bold" />
+
+					</LinearLayout>
 				</LinearLayout>
 
-				<LinearLayout
-					android:id="@+id/linear10"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginBottom="2dp"
-					android:background="#FFFFFF"
-					android:gravity="right"
-					android:orientation="vertical">
-
-					<TextView
-						android:id="@+id/textview24"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="16dp"
-						android:paddingTop="10dp"
-						android:paddingRight="16dp"
-						android:paddingBottom="10dp"
-						android:text=" "
-						android:textColor="#000000"
-						android:textSize="16sp"
-						android:textStyle="bold" />
-
-					<TextView
-						android:id="@+id/textview25"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="32dp"
-						android:text=" "
-						android:textColor="#000000"
-						android:textSize="14sp" />
-
-					<TextView
-						android:id="@+id/textview26"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:gravity="right"
-						android:paddingRight="16dp"
-						android:text="Rp0"
-						android:textColor="#000000"
-						android:textSize="14sp" />
-
-					<TextView
-						android:id="@+id/textview27"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="16dp"
-						android:paddingLeft="32dp"
-						android:text=" "
-						android:textColor="#000000"
-						android:textSize="14sp" />
-
-					<TextView
-						android:id="@+id/textview28"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:gravity="right"
-						android:paddingRight="16dp"
-						android:text="Rp0"
-						android:textColor="#000000"
-						android:textSize="14sp" />
-
-					<TextView
-						android:id="@+id/textview32"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:gravity="right"
-						android:paddingRight="16dp"
-						android:text="Rp0"
-						android:textColor="#000000"
-						android:textSize="14sp" />
-
-					<TextView
-						android:id="@+id/textview29"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="16dp"
-						android:paddingTop="10dp"
-						android:paddingRight="16dp"
-						android:paddingBottom="10dp"
-						android:text="Rp500000"
-						android:textColor="#000000"
-						android:textSize="14sp"
-						android:textStyle="bold" />
-				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>

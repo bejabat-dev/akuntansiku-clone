@@ -8,9 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.formatTanggalBukuBesar
-import com.example.moliyafinance.models.formatToRupiah
 
 class AdapterBukuBesar(
     private val dataSet: List<String>,
@@ -49,10 +48,10 @@ class AdapterBukuBesar(
             }
         }
         if (total < 0) {
-            val newTotal = formatToRupiah(total).replace("-", "")
+            val newTotal = Utils().formatToRupiah(total).replace("-", "")
             v.saldoAkhir.text = newTotal
         } else {
-            v.saldoAkhir.text = formatToRupiah(total)
+            v.saldoAkhir.text = Utils().formatToRupiah(total)
         }
     }
 
@@ -83,20 +82,20 @@ class InnerAdapter(private val dataSet: List<Transaksi>, private val checker: St
         val transaksi = dataSet[pos]
         if (transaksi.debit == checker) {
             saldo += transaksi.nominal
-            view.debit.text = transaksi.nominal.toString().replace("-","")
+            view.debit.text = transaksi.nominal.toString().replace("-", "")
         }
         if (transaksi.kredit == checker) {
             saldo -= transaksi.nominal
-            view.kredit.text = transaksi.nominal.toString().replace("-","")
+            view.kredit.text = transaksi.nominal.toString().replace("-", "")
         }
         if (saldo < 0) {
-            val totalSaldo = saldo.toString().replace("-","")
+            val totalSaldo = saldo.toString().replace("-", "")
             view.saldo.text = totalSaldo
         } else {
-            view.saldo.text = saldo.toString().replace("-","")
+            view.saldo.text = saldo.toString().replace("-", "")
         }
         view.catatan.text = transaksi.catatan
-        view.tanggal.text = formatTanggalBukuBesar(transaksi.tanggal)
+        view.tanggal.text = Utils().formatTanggalBukuBesar(transaksi.tanggal)
     }
 
     override fun getItemCount() = dataSet.size

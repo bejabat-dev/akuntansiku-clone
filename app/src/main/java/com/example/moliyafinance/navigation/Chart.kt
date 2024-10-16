@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.moliyafinance.Colors
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.databinding.FragmentChartBinding
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.getMonth
+
 import com.github.mikephil.charting.charts.ScatterChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Description
@@ -49,8 +50,8 @@ class Chart : Fragment() {
     private fun initKasDanBank() {
         val transaksiList = Dashboard.listTransaksi
         val entries = mutableListOf<Entry>()
-        for (data in transaksiList){
-            entries.add(Entry(getMonth(data.tanggal).toFloat(),data.nominal.toFloat()))
+        for (data in transaksiList) {
+            entries.add(Entry(Utils().getMonth(data.tanggal).toFloat(), data.nominal.toFloat()))
         }
 
         val dataset = ScatterDataSet(entries, "Bulan")

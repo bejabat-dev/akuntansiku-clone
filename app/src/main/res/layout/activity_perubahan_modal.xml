@@ -110,34 +110,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textview35"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="24dp"
-                android:paddingEnd="8dp"
-                android:text="Total Modal"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/total_modal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:paddingStart="24dp"
-                android:paddingEnd="16dp"
-                android:text="Rp0"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
                 android:id="@+id/textview37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

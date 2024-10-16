@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.formatNominal
+
 
 class AdapterNeracaSaldo(
     private val dataSet: List<String>,
@@ -45,10 +46,10 @@ class AdapterNeracaSaldo(
             }
         }
         if (total < 0) {
-            sTotal = formatNominal(total).replace("-", "")
+            sTotal = Utils().formatNominal(total).replace("-", "")
             v.saldoKredit.text = sTotal
         } else {
-            v.saldoDebit.text = formatNominal(total)
+            v.saldoDebit.text = Utils().formatNominal(total)
         }
     }
 

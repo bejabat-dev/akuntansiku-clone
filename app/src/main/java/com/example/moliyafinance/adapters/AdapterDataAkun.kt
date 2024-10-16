@@ -18,7 +18,8 @@ class AdapterDataAkun(
         fun onItemClick(item: Variables.DataAkun)
     }
 
-    inner class ViewHolder(view: View, private val itemClickListener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View, private val itemClickListener: OnItemClickListener) :
+        RecyclerView.ViewHolder(view) {
         val namaAkun: TextView = view.findViewById(R.id.nama_akun)
         val kategori: TextView = view.findViewById(R.id.kategori)
 

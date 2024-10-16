@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.databinding.ActivityDetailTransaksiBinding
 import com.example.moliyafinance.models.TransaksiDetails
 import com.example.moliyafinance.models.User
-import com.example.moliyafinance.models.formatToRupiah
-import com.example.moliyafinance.models.hapusTransaksi
+
 import com.example.moliyafinance.navigation.Dashboard
 
 class DetailTransaksi : AppCompatActivity() {
@@ -30,8 +30,8 @@ class DetailTransaksi : AppCompatActivity() {
         bind.judulDebit.text = ts.debit
         bind.judulKredit.text = ts.kredit
         bind.waktu.text = ts.waktu
-        bind.debit.text = formatToRupiah(ts.nominal)
-        bind.kredit.text = formatToRupiah(ts.nominal)
+        bind.debit.text = Utils().formatToRupiah(ts.nominal)
+        bind.kredit.text = Utils().formatToRupiah(ts.nominal)
     }
 
     private fun initClicks() {
@@ -43,7 +43,7 @@ class DetailTransaksi : AppCompatActivity() {
 
             b.setPositiveButton("Ya") { _, _ ->
                 run {
-                    hapusTransaksi(this,id)
+                    Utils().hapusTransaksi(this, id)
                 }
             }
             b.setNegativeButton("Batal") { dialog, _ ->

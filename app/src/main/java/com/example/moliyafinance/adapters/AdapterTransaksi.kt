@@ -9,13 +9,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.TransaksiDetails
-import com.example.moliyafinance.models.formatToRupiah
+
 import com.example.moliyafinance.pages.DetailTransaksi
 
 
-class AdapterTransaksi(private val context:Context, private val dataSet: List<Transaksi>) :
+class AdapterTransaksi(private val context: Context, private val dataSet: List<Transaksi>) :
     RecyclerView.Adapter<AdapterTransaksi.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -34,14 +35,14 @@ class AdapterTransaksi(private val context:Context, private val dataSet: List<Tr
     }
 
     override fun onBindViewHolder(v: ViewHolder, pos: Int) {
-        val nominal = formatToRupiah(dataSet[pos].nominal)
+        val nominal = Utils().formatToRupiah(dataSet[pos].nominal)
         v.catatan.text = dataSet[pos].catatan
         v.nominal.text = nominal
         v.tanggal.text = dataSet[pos].tanggal
         v.jenisTransaksi.text = dataSet[pos].jenisTransaksi
         v.card.setOnClickListener {
             TransaksiDetails.detailTransaksi = dataSet[pos]
-            val i = Intent(context,DetailTransaksi::class.java)
+            val i = Intent(context, DetailTransaksi::class.java)
             context.startActivity(i)
         }
     }

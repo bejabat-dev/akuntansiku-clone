@@ -3,11 +3,12 @@ package com.example.moliyafinance.laporan
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterPendapatan
 import com.example.moliyafinance.databinding.ActivityLabaRugiBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.formatToRupiah
+
 import com.example.moliyafinance.navigation.Dashboard
 
 class LabaRugi : AppCompatActivity() {
@@ -50,7 +51,7 @@ class LabaRugi : AppCompatActivity() {
         bind.innerPendapatanPenjualan.layoutManager = LinearLayoutManager(this)
         bind.innerPendapatanPenjualan.post {
             totalLabaKotor += adapter.getTotal()
-            val totalPendapatan = formatToRupiah(adapter.getTotal())
+            val totalPendapatan = Utils().formatToRupiah(adapter.getTotal())
             bind.totalPendapatanPenjualan.text = totalPendapatan
             bind.pendapatanDariPenjualan.text = totalPendapatan
         }
@@ -69,10 +70,10 @@ class LabaRugi : AppCompatActivity() {
         bind.innerHargaPokok.layoutManager = LinearLayoutManager(this)
         bind.innerHargaPokok.post {
             totalLabaKotor -= adapter.getTotal()
-            val totalPengeluaran = formatToRupiah(adapter.getTotal())
+            val totalPengeluaran = Utils().formatToRupiah(adapter.getTotal())
             bind.totalHargaPokokPenjualan.text = totalPengeluaran
             bind.hargaPokokPenjualan.text = totalPengeluaran
-            bind.labaKotor.text = formatToRupiah(totalLabaKotor)
+            bind.labaKotor.text = Utils().formatToRupiah(totalLabaKotor)
         }
     }
 
@@ -88,15 +89,15 @@ class LabaRugi : AppCompatActivity() {
         bind.innerBebanOperasional.adapter = adapter
         bind.innerBebanOperasional.layoutManager = LinearLayoutManager(this)
         bind.innerBebanOperasional.post {
-            val totalPengeluaran = formatToRupiah(adapter.getTotal())
+            val totalPengeluaran = Utils().formatToRupiah(adapter.getTotal())
             bind.totalBebanOperasional.text = totalPengeluaran
             bind.bebanOperasional.text = totalPengeluaran
             totalLabaBebanOperasional = totalLabaKotor - adapter.getTotal()
             if (totalLabaBebanOperasional < 0) {
-                val total = "(${formatToRupiah(totalLabaBebanOperasional)})"
+                val total = "(${Utils().formatToRupiah(totalLabaBebanOperasional)})"
                 bind.labaBebanOperasional.text = total
             } else {
-                bind.labaBebanOperasional.text = formatToRupiah(totalLabaBebanOperasional)
+                bind.labaBebanOperasional.text = Utils().formatToRupiah(totalLabaBebanOperasional)
             }
         }
     }
@@ -114,8 +115,8 @@ class LabaRugi : AppCompatActivity() {
         bind.innerPendapatanLainnya.layoutManager = LinearLayoutManager(this)
         bind.innerPendapatanLainnya.post {
             totalPendapatanLainnya = adapter.getTotal()
-            bind.totalPendapatanLainnya.text = formatToRupiah(adapter.getTotal())
-            bind.pendapatanLainnya.text = formatToRupiah(adapter.getTotal())
+            bind.totalPendapatanLainnya.text = Utils().formatToRupiah(adapter.getTotal())
+            bind.pendapatanLainnya.text = Utils().formatToRupiah(adapter.getTotal())
         }
     }
 
@@ -132,15 +133,15 @@ class LabaRugi : AppCompatActivity() {
         bind.innerBebanLainnya.layoutManager = LinearLayoutManager(this)
         bind.innerBebanLainnya.post {
             totalBebanLainnya = adapter.getTotal()
-            bind.bebanLainnya.text = formatToRupiah(totalBebanLainnya)
-            bind.totalBebanLainnya.text = formatToRupiah(totalBebanLainnya)
+            bind.bebanLainnya.text = Utils().formatToRupiah(totalBebanLainnya)
+            bind.totalBebanLainnya.text = Utils().formatToRupiah(totalBebanLainnya)
 
             val labaBersih = totalLabaBebanOperasional + totalPendapatanLainnya - totalBebanLainnya
             if (labaBersih < 0) {
-                val total = "(${formatToRupiah(labaBersih)})"
+                val total = "(${Utils().formatToRupiah(labaBersih)})"
                 bind.labaBersih.text = total
             } else {
-                bind.labaBersih.text = formatToRupiah(labaBersih)
+                bind.labaBersih.text = Utils().formatToRupiah(labaBersih)
             }
         }
     }

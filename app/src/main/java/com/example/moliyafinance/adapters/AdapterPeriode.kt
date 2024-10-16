@@ -9,9 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.laporan.Periode
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.formatToRupiah
+
 
 class AdapterPeriode(
     private val context: Context,
@@ -31,7 +32,7 @@ class AdapterPeriode(
     }
 
     override fun onBindViewHolder(v: ViewHolder, pos: Int) {
-        val adapter = InnerAdapterPeriode(dataSet[pos].kategori,dataSet[pos].innerAdapter)
+        val adapter = InnerAdapterPeriode(dataSet[pos].kategori, dataSet[pos].innerAdapter)
         v.kategori.text = dataSet[pos].kategori
         v.innerRecyclerView.adapter = adapter
         v.innerRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -41,11 +42,11 @@ class AdapterPeriode(
 }
 
 class InnerAdapterPeriode(
-    private val checker : String,
+    private val checker: String,
     private val dataSet: List<Transaksi>
 ) :
     RecyclerView.Adapter<InnerAdapterPeriode.ViewHolder>() {
-        private var total = 0
+    private var total = 0
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tanggal: TextView = view.findViewById(R.id.tanggal)
@@ -58,18 +59,18 @@ class InnerAdapterPeriode(
         return ViewHolder(view)
     }
 
-    fun getTotal():Int{
+    fun getTotal(): Int {
         return total
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(view: ViewHolder, pos: Int) {
         val data = dataSet[pos]
-        if(data.debit==checker){
-          view.saldo.text = formatToRupiah(data.nominal)
+        if (data.debit == checker) {
+            view.saldo.text = Utils().formatToRupiah(data.nominal)
         }
-        if(data.kredit==checker){
-            val s =formatToRupiah(data.nominal)
+        if (data.kredit == checker) {
+            val s = Utils().formatToRupiah(data.nominal)
             view.saldo.text = "($s)"
         }
     }

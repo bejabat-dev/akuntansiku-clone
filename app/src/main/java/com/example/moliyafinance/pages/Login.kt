@@ -3,9 +3,9 @@ package com.example.moliyafinance.pages
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.moliyafinance.databinding.ActivityLoginBinding
 import com.example.moliyafinance.LoadingDialog
-import com.example.moliyafinance.models.showToast
+import com.example.moliyafinance.Utils
+import com.example.moliyafinance.databinding.ActivityLoginBinding
 import com.example.moliyafinance.navigation.Dashboard
 import com.google.firebase.auth.FirebaseAuth
 
@@ -23,9 +23,9 @@ class Login : AppCompatActivity() {
             val email = bind.email.text.toString()
             val password = bind.password.text.toString()
             if (email.isBlank() || password.isBlank()) {
-                showToast(this, "Harap penuhi semua kolom")
+                Utils().showToast(this, "Harap penuhi semua kolom")
             } else {
-                login(email,password)
+                login(email, password)
             }
         }
         bind.register.setOnClickListener {
@@ -35,7 +35,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun login(email: String, password: String) {
-        LoadingDialog.showDialog(this,"Sedang masuk")
+        LoadingDialog.showDialog(this, "Sedang masuk")
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             if (it.user != null) {
@@ -46,7 +46,7 @@ class Login : AppCompatActivity() {
         }.addOnFailureListener { e ->
             run {
                 LoadingDialog.dialog.dismiss()
-                showToast(this, e.toString())
+                Utils().showToast(this, e.toString())
             }
         }
     }

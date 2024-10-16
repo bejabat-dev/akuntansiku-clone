@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.formatToRupiah
+
 
 class AdapterJurnalUmum(private val dataSet: List<Transaksi>) :
     RecyclerView.Adapter<AdapterJurnalUmum.ViewHolder>() {
@@ -39,7 +40,7 @@ class AdapterJurnalUmum(private val dataSet: List<Transaksi>) :
         val data = dataSet[pos]
         totalDebit += data.nominal
         totalKredit += data.nominal
-        val nominal = formatToRupiah(data.nominal)
+        val nominal = Utils().formatToRupiah(data.nominal)
         v.jenisTransaksi.text = data.jenisTransaksi
         v.catatan.text = data.catatan
         v.debit.text = "${data.debit} (D)"

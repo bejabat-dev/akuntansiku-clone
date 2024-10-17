@@ -29,8 +29,5 @@ class MasterData : Fragment() {
         bind.daftarAkun.setOnClickListener {
             startActivity(Intent(requireContext(), DaftarAkun::class.java))
         }
-        bind.aset.setOnClickListener {
-            startActivity(Intent(requireContext(), TambahAset::class.java))
-        }
     }
 }

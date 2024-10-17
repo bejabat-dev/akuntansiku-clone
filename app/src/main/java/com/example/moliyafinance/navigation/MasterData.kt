@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.moliyafinance.databinding.FragmentMasterDataBinding
 import com.example.moliyafinance.pages.DaftarAkun
-import com.example.moliyafinance.pages.TambahAset
 
 class MasterData : Fragment() {
     private lateinit var bind: FragmentMasterDataBinding

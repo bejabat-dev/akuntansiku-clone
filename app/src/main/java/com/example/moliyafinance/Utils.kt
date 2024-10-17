@@ -239,6 +239,8 @@ class Utils {
         val db = FirebaseFirestore.getInstance().collection("Transactions")
         Dashboard.date =
             "${dateFormat.format(start.toDate())} - ${dateFormat.format(end.toDate())}"
+        Dashboard.startDate = start
+        Dashboard.endDate = end
         db.whereEqualTo("uid", User.userData.uid).whereGreaterThanOrEqualTo("timestamp", start)
             .whereLessThanOrEqualTo("timestamp", end).get()
             .addOnSuccessListener { querySnapshot ->

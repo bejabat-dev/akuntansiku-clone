@@ -8,6 +8,7 @@ import com.example.moliyafinance.R
 import com.example.moliyafinance.databinding.ActivityDashboardBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.User
+import com.google.firebase.Timestamp
 
 class Dashboard : AppCompatActivity() {
     private lateinit var bind: ActivityDashboardBinding
@@ -19,6 +20,8 @@ class Dashboard : AppCompatActivity() {
         var userData = User()
         var isLoaded = false
         var date = ""
+        var startDate: Timestamp? = null
+        var endDate: Timestamp? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

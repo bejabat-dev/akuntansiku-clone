@@ -78,9 +78,7 @@ class Home : Fragment() {
     }
 
     private fun init() {
-        if (Dashboard.date.isNotEmpty()) {
-            bind.tanggal.text = Dashboard.date
-        }
+
         bind.swipe.isRefreshing = true
         User.getUserData(requireContext(), onResult = { data ->
             run {
@@ -104,6 +102,20 @@ class Home : Fragment() {
                                     if (firstLaunch) {
                                         firstLaunch = false
                                         LoadingDialog.dialog.dismiss()
+                                    }
+                                    if (Dashboard.date.isNotEmpty()) {
+                                        bind.nama.text = Dashboard.userData.nama
+                                        bind.tanggal.text = Dashboard.date
+                                        LoadingDialog.dialog.dismiss()
+                                        val filteredTransaksi = ArrayList<Transaksi>()
+                                        for (newData in Dashboard.listTransaksi) {
+                                            if (newData.timestamp!! >= Dashboard.startDate!! && newData.timestamp <= Dashboard.endDate!!) {
+                                                filteredTransaksi.add(newData)
+                                            }
+                                        }
+                                        adapter =
+                                            AdapterTransaksi(requireContext(), filteredTransaksi)
+                                        bind.recycler.adapter = adapter
                                     }
                                 }
                             }

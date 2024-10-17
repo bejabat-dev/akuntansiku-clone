@@ -15,7 +15,10 @@
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        tools:ignore="RtlSymmetry">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="40dp"
@@ -34,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Konek rebus"
+                android:text="Username"
                 android:textColor="@color/button"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />

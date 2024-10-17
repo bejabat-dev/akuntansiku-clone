@@ -210,9 +210,7 @@ class Utils {
         val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         val db = FirebaseFirestore.getInstance().collection("Transactions")
 
-        db.whereEqualTo("uid", User.userData.uid)
-            .whereGreaterThanOrEqualTo("timestamp", startOfMonth)
-            .whereLessThanOrEqualTo("timestamp", endOfMonth).get()
+        db.whereEqualTo("uid", User.userData.uid).get()
             .addOnSuccessListener { querySnapshot ->
                 val transaksiList = querySnapshot.documents.mapNotNull { document ->
                     val dateString = document.getString("tanggal") ?: ""

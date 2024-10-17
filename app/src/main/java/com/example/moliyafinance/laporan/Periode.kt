@@ -2,9 +2,15 @@ package com.example.moliyafinance.laporan
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.moliyafinance.Utils
 import com.example.moliyafinance.databinding.ActivityPeriodeBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
-import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.models.InnerPeriode
+import com.example.moliyafinance.navigation.Dashboard
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Periode : AppCompatActivity() {
     private lateinit var bind: ActivityPeriodeBinding
@@ -15,14 +21,40 @@ class Periode : AppCompatActivity() {
         init()
     }
 
-    data class ModelPeriode(val kategori: String, val innerAdapter: List<Transaksi>)
-
     private fun init() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Utils().showDateDialog(this, dialogTanggalBinding)
+        }
+        if (Dashboard.date.isNotEmpty()) {
+            bind.hari.text = Dashboard.date
         }
         bind.back.setOnClickListener {
             finish()
+        }
+
+        lifecycleScope.launch {
+            val adapterPeriode = withContext(Dispatchers.IO) {
+                getAdapterPeriode()
+            }
+        }
+    }
+
+    private fun getAdapterPeriode() {
+        val listPeriode = ArrayList<String>()
+        val arrayListPeriode = ArrayList<Periode>()
+        for (data in Dashboard.listTransaksi) {
+            listPeriode.add(data.kategoriDebit)
+            listPeriode.add(data.kategoriKredit)
+        }
+        for(data in listPeriode.distinct()){
+            val arrayInnerPeriode = ArrayList<InnerPeriode>()
+
+            for(newData in Dashboard.listTransaksi){
+                if(newData.kategoriDebit==data){
+
+                }
+            }
         }
     }
 }

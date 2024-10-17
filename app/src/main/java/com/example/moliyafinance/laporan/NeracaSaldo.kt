@@ -23,6 +23,10 @@ class NeracaSaldo : AppCompatActivity() {
     private fun init() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Utils().showDateDialog(this, dialogTanggalBinding)
+        }
+        if (Dashboard.date.isNotEmpty()) {
+            bind.bulan.text = Dashboard.date
         }
         Utils().fadeIn(bind.recycler)
         bind.back.setOnClickListener {

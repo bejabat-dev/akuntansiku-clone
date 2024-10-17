@@ -1,3 +1,3 @@
 package com.example.moliyafinance.models
 
-data class Periode(val kategori: String, val innerAdapter: List<Transaksi>)
+data class Periode(val namaAkun: String, val innerAdapter: List<InnerPeriode>)

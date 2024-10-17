@@ -31,6 +31,10 @@ class Neraca : AppCompatActivity() {
     private fun initClicks() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Utils().showDateDialog(this, dialogTanggalBinding)
+        }
+        if (Dashboard.date.isNotEmpty()) {
+            bind.hari.text = Dashboard.date
         }
         bind.back.setOnClickListener {
             finish()

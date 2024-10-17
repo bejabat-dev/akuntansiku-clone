@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
 import com.example.moliyafinance.Utils
-import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.models.InnerPeriode
+import com.example.moliyafinance.models.Periode
 
-class MAdapterPeriode{
+class MAdapterPeriode {
 
     class AdapterPeriode(
         private val context: Context,
-        private val dataSet: List<String>
+        private val dataSet: List<Periode>
     ) :
         RecyclerView.Adapter<AdapterPeriode.ViewHolder>() {
 
@@ -31,22 +33,24 @@ class MAdapterPeriode{
         }
 
         override fun onBindViewHolder(v: ViewHolder, pos: Int) {
-            v.namaAkun.text = dataSet[pos]
+            val dataset = dataSet[pos]
+            v.namaAkun.text = dataset.namaAkun
+            v.innerRecyclerView.adapter = InnerAdapterPeriode(dataset.innerAdapter)
+            v.innerRecyclerView.layoutManager = LinearLayoutManager(context)
         }
 
         override fun getItemCount() = dataSet.size
     }
 
     class InnerAdapterPeriode(
-        private val checker: String,
-        private val dataSet: List<Transaksi>
+        private val dataSet: List<InnerPeriode>
     ) :
         RecyclerView.Adapter<InnerAdapterPeriode.ViewHolder>() {
         private var total = 0
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val tanggal: TextView = view.findViewById(R.id.tanggal)
-            val saldo: TextView = view.findViewById(R.id.saldo)
+            val namaAkun: TextView = view.findViewById(R.id.nama_akun)
+            val nominal: TextView = view.findViewById(R.id.nominal)
         }
 
         override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -62,13 +66,8 @@ class MAdapterPeriode{
         @SuppressLint("SetTextI18n")
         override fun onBindViewHolder(view: ViewHolder, pos: Int) {
             val data = dataSet[pos]
-            if (data.debit == checker) {
-                view.saldo.text = Utils().formatToRupiah(data.nominal)
-            }
-            if (data.kredit == checker) {
-                val s = Utils().formatToRupiah(data.nominal)
-                view.saldo.text = "($s)"
-            }
+            view.namaAkun.text = data.namaAkun
+            view.nominal.text = Utils().formatToRupiah(data.nominal)
         }
 
         override fun getItemCount() = dataSet.size

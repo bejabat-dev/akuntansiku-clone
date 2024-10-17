@@ -6,24 +6,24 @@
     android:orientation="horizontal">
 
     <TextView
-        android:textColor="@color/blue"
-        android:id="@+id/tanggal"
+        android:id="@+id/nama_akun"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingStart="20dp"
         android:text="TextView"
+        android:textColor="@color/blue"
         tools:ignore="RtlSymmetry" />
 
     <TextView
-        android:textColor="@color/blacker"
-        android:id="@+id/saldo"
+        android:id="@+id/nominal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end"
         android:paddingEnd="16dp"
         android:text="TextView"
+        android:textColor="@color/blacker"
         tools:ignore="RtlSymmetry" />
 
 

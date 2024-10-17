@@ -230,7 +230,7 @@
 							android:paddingTop="10dp"
 							android:paddingRight="16dp"
 							android:paddingBottom="10dp"
-							android:text="Rp500000"
+							android:text="Rp0"
 							android:textColor="#000000"
 							android:textSize="14sp"
 							android:textStyle="bold" />
@@ -372,7 +372,7 @@
 							android:textStyle="bold" />
 
 						<TextView
-							android:id="@+id/textview12"
+							android:id="@+id/total_kewajiban_dan_modal"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_weight="0"
@@ -380,7 +380,7 @@
 							android:paddingTop="10dp"
 							android:paddingRight="16dp"
 							android:paddingBottom="10dp"
-							android:text="Rp500000"
+							android:text="Rp0"
 							android:textColor="#000000"
 							android:textSize="14sp"
 							android:textStyle="bold" />

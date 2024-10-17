@@ -30,7 +30,7 @@ class BukuBesar : AppCompatActivity() {
     }
 
     private fun init() {
-        Utils().fadeIn(bind.recycer)
+        Utils().fadeIn(bind.recycler)
         bind.back.setOnClickListener {
             finish()
         }
@@ -43,8 +43,8 @@ class BukuBesar : AppCompatActivity() {
             innerTransaksi.add(newData)
         }
         val adapter = MAdapterBukuBesar.AdapterBukuBesar(listStringTransaksi, innerTransaksi)
-        bind.recycer.adapter = adapter
-        bind.recycer.layoutManager = LinearLayoutManager(this)
+        bind.recycler.adapter = adapter
+        bind.recycler.layoutManager = LinearLayoutManager(this)
     }
 
     private fun extractString(transaksiList: List<Transaksi>): List<String> {

@@ -67,7 +67,7 @@
             android:src="@drawable/calendar_month_24px" />
 
         <TextView
-            android:id="@+id/hari"
+            android:id="@+id/tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

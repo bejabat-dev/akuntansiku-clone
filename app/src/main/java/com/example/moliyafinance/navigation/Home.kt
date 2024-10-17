@@ -78,6 +78,9 @@ class Home : Fragment() {
     }
 
     private fun init() {
+        if (Dashboard.date.isNotEmpty()) {
+            bind.tanggal.text = Dashboard.date
+        }
         bind.swipe.isRefreshing = true
         User.getUserData(requireContext(), onResult = { data ->
             run {

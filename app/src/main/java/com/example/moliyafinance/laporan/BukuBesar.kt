@@ -35,7 +35,9 @@ class BukuBesar : AppCompatActivity() {
 
     private fun init() {
         Utils().fadeIn(bind.recycler)
-
+        if (Dashboard.date.isNotEmpty()) {
+            bind.bulan.text = Dashboard.date
+        }
         val transaksiList = Dashboard.listTransaksi
         val listStringTransaksi = extractString(transaksiList)
         val innerTransaksi = ArrayList<List<Transaksi>>()

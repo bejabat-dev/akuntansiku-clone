@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.databinding.ActivityDetailTransaksiBinding
 import com.example.moliyafinance.models.TransaksiDetails
-import com.example.moliyafinance.models.User
+import com.example.moliyafinance.objects.User
 
 import com.example.moliyafinance.navigation.Dashboard
 

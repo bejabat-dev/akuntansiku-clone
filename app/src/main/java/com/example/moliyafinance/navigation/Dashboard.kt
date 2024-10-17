@@ -12,7 +12,7 @@ import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.ActivityDashboardBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.UserModel
+import com.example.moliyafinance.models.User
 
 import com.google.firebase.Timestamp
 import java.util.Calendar
@@ -24,7 +24,7 @@ class Dashboard : AppCompatActivity() {
     companion object {
         var editing = false
         lateinit var listTransaksi: List<Transaksi>
-        var userData = UserModel()
+        var userData = User()
         var isLoaded = false
 
         fun showDialog(

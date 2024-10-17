@@ -1,4 +1,4 @@
-package com.example.moliyafinance
+package com.example.moliyafinance.objects
 
 import android.content.Context
 import android.view.LayoutInflater

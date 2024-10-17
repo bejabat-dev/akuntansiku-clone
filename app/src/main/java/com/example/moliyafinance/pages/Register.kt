@@ -3,7 +3,7 @@ package com.example.moliyafinance.pages
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.moliyafinance.LoadingDialog
+import com.example.moliyafinance.objects.LoadingDialog
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.databinding.ActivityRegisterBinding
 

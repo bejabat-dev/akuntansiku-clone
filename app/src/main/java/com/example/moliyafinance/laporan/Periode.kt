@@ -24,7 +24,5 @@ class Periode : AppCompatActivity() {
         bind.back.setOnClickListener {
             finish()
         }
-
-
     }
 }

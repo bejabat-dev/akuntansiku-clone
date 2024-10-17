@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
 import com.example.moliyafinance.Utils
-import com.example.moliyafinance.Variables
-import com.example.moliyafinance.Variables.akunList
+import com.example.moliyafinance.objects.Variables
+import com.example.moliyafinance.objects.Variables.akunList
 import com.example.moliyafinance.adapters.AdapterDataAkun
 import com.example.moliyafinance.databinding.ActivityTambahTransaksiBinding
 import com.example.moliyafinance.databinding.DialogTransaksiBinding

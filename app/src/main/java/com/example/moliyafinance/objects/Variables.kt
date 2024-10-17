@@ -1,4 +1,4 @@
-package com.example.moliyafinance
+package com.example.moliyafinance.objects
 
 object Variables {
     val jenis_transaksi = listOf(

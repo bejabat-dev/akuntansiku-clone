@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.moliyafinance.Colors
+import com.example.moliyafinance.objects.Colors
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.databinding.FragmentChartBinding
 import com.example.moliyafinance.models.Transaksi

@@ -9,13 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moliyafinance.LoadingDialog
+import com.example.moliyafinance.objects.LoadingDialog
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.databinding.FragmentHomeBinding
 import com.example.moliyafinance.models.Transaksi
-import com.example.moliyafinance.models.User
+import com.example.moliyafinance.objects.User
 
 import com.example.moliyafinance.pages.TambahTransaksi
 

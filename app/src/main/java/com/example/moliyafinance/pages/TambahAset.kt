@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moliyafinance.R
-import com.example.moliyafinance.Variables
+import com.example.moliyafinance.objects.Variables
 import com.example.moliyafinance.databinding.ActivityTambahAsetBinding
 
 class TambahAset : AppCompatActivity() {

@@ -4,11 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moliyafinance.Utils
-import com.example.moliyafinance.adapters.AdapterBukuBesar
+import com.example.moliyafinance.adapters.MAdapterBukuBesar
 import com.example.moliyafinance.databinding.ActivityBukuBesarBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
-
 import com.example.moliyafinance.navigation.Dashboard
 import com.example.moliyafinance.navigation.Dashboard.Companion.isLoaded
 
@@ -43,7 +42,7 @@ class BukuBesar : AppCompatActivity() {
             val newData = transaksiList.filter { it.debit == s || it.kredit == s }
             innerTransaksi.add(newData)
         }
-        val adapter = AdapterBukuBesar(listStringTransaksi, innerTransaksi)
+        val adapter = MAdapterBukuBesar.AdapterBukuBesar(listStringTransaksi, innerTransaksi)
         bind.recycer.adapter = adapter
         bind.recycer.layoutManager = LinearLayoutManager(this)
     }

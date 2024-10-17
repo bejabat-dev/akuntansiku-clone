@@ -7,8 +7,8 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moliyafinance.Variables
-import com.example.moliyafinance.Variables.akunList
+import com.example.moliyafinance.objects.Variables
+import com.example.moliyafinance.objects.Variables.akunList
 import com.example.moliyafinance.adapters.AdapterDaftarAkun
 import com.example.moliyafinance.databinding.ActivityDaftarAkunBinding
 import kotlinx.coroutines.CoroutineScope

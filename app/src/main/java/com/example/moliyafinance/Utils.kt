@@ -201,9 +201,18 @@ class Utils {
         onResult: (List<Transaksi>) -> Unit,
         onError: (Exception) -> Unit
     ) {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+        val startOfMonth = Timestamp(calendar.time)
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
+
+        val endOfMonth = Timestamp(calendar.time)
         val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         val db = FirebaseFirestore.getInstance().collection("Transactions")
-        db.whereEqualTo("uid", User.userData.uid).get()
+
+        db.whereEqualTo("uid", User.userData.uid)
+            .whereGreaterThanOrEqualTo("timestamp", startOfMonth)
+            .whereLessThanOrEqualTo("timestamp", endOfMonth).get()
             .addOnSuccessListener { querySnapshot ->
                 val transaksiList = querySnapshot.documents.mapNotNull { document ->
                     val dateString = document.getString("tanggal") ?: ""

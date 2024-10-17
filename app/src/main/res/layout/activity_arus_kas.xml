@@ -64,19 +64,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginStart="8dp"
-					android:text="September"
-					android:textColor="@color/button" />
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text=" " />
-
-				<TextView
-					android:id="@+id/tanggal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="2024"
+					android:text="Bulan ini"
 					android:textColor="@color/button" />
 
 			</LinearLayout>

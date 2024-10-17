@@ -70,6 +70,7 @@ class Home : Fragment() {
                 adapter = AdapterTransaksi(requireContext(), filteredList)
                 bind.recycler.adapter = adapter
             }
+
             override fun afterTextChanged(p0: Editable?) {
             }
 
@@ -100,20 +101,6 @@ class Home : Fragment() {
                                     if (firstLaunch) {
                                         firstLaunch = false
                                         LoadingDialog.dialog.dismiss()
-                                    }
-                                    val groupedByDebit: Map<String, List<Transaksi>> =
-                                        list.groupBy { it.debit }
-
-                                    val listOfMaps: List<Map<String, Any>> =
-                                        groupedByDebit.map { (debit, transactions) ->
-                                            mapOf(
-                                                "debit" to debit,
-                                                "transactions" to transactions
-                                            )
-                                        }
-
-                                    listOfMaps.forEach { map ->
-                                        println(map)
                                     }
                                 }
                             }

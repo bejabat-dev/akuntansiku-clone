@@ -42,6 +42,7 @@ class JurnalUmum : AppCompatActivity() {
     private fun initClicks() {
         bind.pilihTanggal.setOnClickListener {
             dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Utils().showDateDialog(this, dialogTanggalBinding)
         }
     }
 }

@@ -9,14 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moliyafinance.objects.LoadingDialog
 import com.example.moliyafinance.Utils
 import com.example.moliyafinance.adapters.AdapterTransaksi
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.databinding.FragmentHomeBinding
 import com.example.moliyafinance.models.Transaksi
+import com.example.moliyafinance.objects.LoadingDialog
 import com.example.moliyafinance.objects.User
-
 import com.example.moliyafinance.pages.TambahTransaksi
 
 class Home : Fragment() {
@@ -50,11 +49,6 @@ class Home : Fragment() {
         initSearch()
     }
 
-    fun setRecyclerAdapter(list: List<Transaksi>) {
-        val adapterTransaksi = context?.let { AdapterTransaksi(it, list) }
-        bind.recycler.adapter = adapterTransaksi
-    }
-
     private fun initSearch() {
         bind.search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -75,9 +69,7 @@ class Home : Fragment() {
                 }
                 adapter = AdapterTransaksi(requireContext(), filteredList)
                 bind.recycler.adapter = adapter
-
             }
-
             override fun afterTextChanged(p0: Editable?) {
             }
 
@@ -143,7 +135,7 @@ class Home : Fragment() {
     private fun initClicks() {
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
-            Dashboard.showDialog(requireContext(), dialogTanggalBinding, adapter)
+            Utils().showDateDialog(requireContext(), dialogTanggalBinding)
         }
         bind.tambahTransaksi.setOnClickListener {
             Dashboard.editing = false

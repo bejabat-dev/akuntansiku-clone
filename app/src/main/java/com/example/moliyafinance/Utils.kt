@@ -1,6 +1,7 @@
 package com.example.moliyafinance
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -9,11 +10,10 @@ import android.icu.util.Calendar
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import com.example.moliyafinance.adapters.AdapterTransaksi
+import androidx.appcompat.app.AlertDialog
+import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Transaksi
-
 import com.example.moliyafinance.navigation.Dashboard
-import com.example.moliyafinance.navigation.Home
 import com.example.moliyafinance.objects.LoadingDialog
 import com.example.moliyafinance.objects.User
 import com.google.firebase.Timestamp
@@ -26,12 +26,63 @@ import java.util.Locale
 class Utils {
     private val calendar = Calendar.getInstance()
 
+    fun showDateDialog(
+        context: Context,
+        dialogBinding: DialogTanggalBinding
+    ) {
+        val calendar = java.util.Calendar.getInstance()
+
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+
+        var startDateTimestamp = Timestamp(calendar.time)
+
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
+
+        var endDateTimestamp = Timestamp(calendar.time)
+
+        val b = AlertDialog.Builder(context)
+        b.setView(dialogBinding.root)
+
+        dialogBinding.start.init(
+            dialogBinding.start.year, dialogBinding.start.month, dialogBinding.start.dayOfMonth
+        ) { _, year, month, day ->
+            calendar.set(year, month, day, 0, 0, 0) // Set time to 00:00:00 for start of day
+            startDateTimestamp = Timestamp(calendar.time)
+        }
+
+        dialogBinding.end.init(
+            dialogBinding.end.year, dialogBinding.end.month, dialogBinding.end.dayOfMonth
+        ) { _, year, month, day ->
+            calendar.set(year, month, day, 23, 59, 59) // Set time to 23:59:59 for end of day
+            endDateTimestamp = Timestamp(calendar.time)
+        }
+
+        val dialog = b.create()
+        dialog.show()
+
+        dialogBinding.simpan.setOnClickListener {
+            Utils().getFilteredTransaksi(
+                context,
+                startDateTimestamp,
+                endDateTimestamp
+            )
+            println("Start: $startDateTimestamp End: $endDateTimestamp")
+            dialog.dismiss()
+        }
+    }
+
     fun showDatePickerDialog(context: Context, textView: TextView) {
         val datePickerDialog = DatePickerDialog(
             context,
             { _, year, month, dayOfMonth ->
                 calendar.set(year, month, dayOfMonth)
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
                 textView.text = dateFormat.format(calendar.time)
             },
             calendar.get(Calendar.YEAR),
@@ -59,7 +110,7 @@ class Utils {
     }
 
     fun createTimestamp(dateString: String, timeString: String): Timestamp {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
         val dateTimeString = "$dateString $timeString"
         val date: Date? = dateFormat.parse(dateTimeString)
         return if (date != null) {
@@ -150,7 +201,7 @@ class Utils {
         onResult: (List<Transaksi>) -> Unit,
         onError: (Exception) -> Unit
     ) {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         val db = FirebaseFirestore.getInstance().collection("Transactions")
         db.whereEqualTo("uid", User.userData.uid).get()
             .addOnSuccessListener { querySnapshot ->
@@ -170,12 +221,12 @@ class Utils {
             }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun getFilteredTransaksi(
         context: Context,
-        start: Timestamp, end: Timestamp, adapter: AdapterTransaksi
+        start: Timestamp, end: Timestamp
     ) {
-
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         val db = FirebaseFirestore.getInstance().collection("Transactions")
 
         db.whereEqualTo("uid", User.userData.uid).whereGreaterThanOrEqualTo("timestamp", start)
@@ -183,15 +234,14 @@ class Utils {
             .addOnSuccessListener { querySnapshot ->
                 val transaksiList = querySnapshot.documents.mapNotNull { document ->
                     val dateString = document.getString("tanggal") ?: ""
-                    println(dateString)
                     val date = dateFormat.parse(dateString)
                     document.toObject(Transaksi::class.java)?.apply {
                         this.date = date
                     }
                 }
-                val sortedList = transaksiList.sortedBy { it.date }
-                Dashboard.listTransaksi = sortedList
-                Home().setRecyclerAdapter(sortedList)
+                Dashboard.listTransaksi = transaksiList
+                val activity = (context as? Activity)
+                activity?.recreate()
             }
             .addOnFailureListener { exception ->
                 showToast(context, exception.toString())

@@ -12,16 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moliyafinance.R
 import com.example.moliyafinance.Utils
-import com.example.moliyafinance.objects.Variables
-import com.example.moliyafinance.objects.Variables.akunList
 import com.example.moliyafinance.adapters.AdapterDataAkun
 import com.example.moliyafinance.databinding.ActivityTambahTransaksiBinding
 import com.example.moliyafinance.databinding.DialogTransaksiBinding
 import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.models.TransaksiDetails
-
 import com.example.moliyafinance.navigation.Dashboard
+import com.example.moliyafinance.objects.Variables
+import com.example.moliyafinance.objects.Variables.akunList
 import com.google.firebase.auth.FirebaseAuth
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener {
     private lateinit var selectedJenisTransaksi: String
@@ -177,6 +179,14 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
     }
 
     private fun init() {
+        val calendar = Calendar.getInstance()
+        val date = calendar.time
+        val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        val hourFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+        bind.tanggal.setText(dateFormat.format(date))
+        bind.waktu.setText(hourFormat.format(date))
+
         val adapterJenisTransaki =
             ArrayAdapter(this, R.layout.spinner_jenis_transaksi, Variables.jenis_transaksi)
         adapterJenisTransaki.setDropDownViewResource(R.layout.spinner_dropdown_jenis_transaksi)
@@ -237,7 +247,6 @@ class TambahTransaksi : AppCompatActivity(), AdapterDataAkun.OnItemClickListener
                     bind.debit.text.clear()
                     bind.kredit.text.clear()
                 }
-
                 override fun onNothingSelected(p0: AdapterView<*>?) {
 
                 }

@@ -244,7 +244,8 @@ class Utils {
                 val transaksiList = querySnapshot.documents.mapNotNull { document ->
                     val dateString = document.getString("tanggal") ?: ""
                     val date = dateFormat.parse(dateString)
-                    Dashboard.date = "${dateFormat.format(start)} - ${dateFormat.format(end)}"
+                    Dashboard.date =
+                        "${dateFormat.format(start.toDate())} - ${dateFormat.format(end.toDate())}"
                     document.toObject(Transaksi::class.java)?.apply {
                         this.date = date
                     }

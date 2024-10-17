@@ -18,6 +18,7 @@ class Dashboard : AppCompatActivity() {
         lateinit var listTransaksi: List<Transaksi>
         var userData = User()
         var isLoaded = false
+        var date = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

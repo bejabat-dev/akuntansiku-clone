@@ -244,6 +244,7 @@ class Utils {
                 val transaksiList = querySnapshot.documents.mapNotNull { document ->
                     val dateString = document.getString("tanggal") ?: ""
                     val date = dateFormat.parse(dateString)
+                    Dashboard.date = "${dateFormat.format(start)} - ${dateFormat.format(end)}"
                     document.toObject(Transaksi::class.java)?.apply {
                         this.date = date
                     }
@@ -268,8 +269,9 @@ class Utils {
     }
 
     fun formatTanggalBukuBesar(s: String): String? {
+        val originalFormat = SimpleDateFormat("dd MMM yy", Locale.getDefault())
         val dateFormat = SimpleDateFormat("dd/MM/yy", Locale.getDefault())
-        val date = dateFormat.parse(s)
+        val date = originalFormat.parse(s)
         return date?.let { dateFormat.format(it) }
     }
 

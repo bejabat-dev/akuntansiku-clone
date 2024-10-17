@@ -51,7 +51,7 @@
             app:srcCompat="@drawable/calendar_month_24px" />
 
         <TextView
-            android:id="@+id/bulan"
+            android:id="@+id/tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"

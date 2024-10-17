@@ -25,6 +25,9 @@ class JurnalUmum : AppCompatActivity() {
     }
 
     private fun init() {
+        if (Dashboard.date.isNotEmpty()) {
+            bind.tanggal.text = Dashboard.date
+        }
         val adapter = AdapterJurnalUmum(Dashboard.listTransaksi)
         Utils().fadeIn(bind.recycler)
         bind.back.setOnClickListener {

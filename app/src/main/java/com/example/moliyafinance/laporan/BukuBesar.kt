@@ -24,16 +24,18 @@ class BukuBesar : AppCompatActivity() {
     }
 
     private fun initClicks() {
+        bind.back.setOnClickListener {
+            finish()
+        }
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
+            Utils().showDateDialog(this, dialogTanggalBinding)
         }
     }
 
     private fun init() {
         Utils().fadeIn(bind.recycler)
-        bind.back.setOnClickListener {
-            finish()
-        }
+
         val transaksiList = Dashboard.listTransaksi
         val listStringTransaksi = extractString(transaksiList)
         val innerTransaksi = ArrayList<List<Transaksi>>()
@@ -42,6 +44,7 @@ class BukuBesar : AppCompatActivity() {
             val newData = transaksiList.filter { it.debit == s || it.kredit == s }
             innerTransaksi.add(newData)
         }
+
         val adapter = MAdapterBukuBesar.AdapterBukuBesar(listStringTransaksi, innerTransaksi)
         bind.recycler.adapter = adapter
         bind.recycler.layoutManager = LinearLayoutManager(this)

@@ -113,6 +113,7 @@ class Home : Fragment() {
                                                 filteredTransaksi.add(newData)
                                             }
                                         }
+                                        Dashboard.listTransaksi = filteredTransaksi
                                         adapter =
                                             AdapterTransaksi(requireContext(), filteredTransaksi)
                                         bind.recycler.adapter = adapter

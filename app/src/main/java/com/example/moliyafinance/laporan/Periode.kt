@@ -9,6 +9,7 @@ import com.example.moliyafinance.adapters.MAdapterPeriode
 import com.example.moliyafinance.databinding.ActivityPeriodeBinding
 import com.example.moliyafinance.databinding.DialogTanggalBinding
 import com.example.moliyafinance.models.Periode
+import com.example.moliyafinance.models.Transaksi
 import com.example.moliyafinance.navigation.Dashboard
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,11 +25,14 @@ class Periode : AppCompatActivity() {
     }
 
     private fun init() {
+
         bind.pilihTanggal.setOnClickListener {
             val dialogTanggalBinding = DialogTanggalBinding.inflate(layoutInflater)
-            Utils().showDateDialog(this, dialogTanggalBinding)
+            Utils().showDateDialog(this,
+                dialogTanggalBinding
+            )
         }
-        if (Dashboard.date.isNotEmpty()) {
+        if(Dashboard.date.isNotEmpty()) {
             bind.hari.text = Dashboard.date
         }
         bind.back.setOnClickListener {
@@ -41,28 +45,33 @@ class Periode : AppCompatActivity() {
             }
             bind.recycler.adapter = adapterPeriode
             bind.recycler.layoutManager = LinearLayoutManager(this@Periode)
+
+            Utils().fadeIn(bind.recycler)
         }
     }
 
     private fun getAdapterPeriode(): MAdapterPeriode.AdapterPeriode {
         val listPeriode = ArrayList<String>()
-        val listKategori = ArrayList<String>()
-        val adapterList = ArrayList<Periode>()
         for (data in Dashboard.listTransaksi) {
             listPeriode.add(data.kategoriDebit)
             listPeriode.add(data.kategoriKredit)
         }
-        for (data in listPeriode.distinct()) {
+        val listPeriodeDistict = listPeriode.distinct()
+        val arrayPeriode = ArrayList<Periode>()
+        for (data in listPeriodeDistict) {
+            val innerTransaksi = ArrayList<Transaksi>()
             for (newData in Dashboard.listTransaksi) {
-                if (newData.kategoriDebit == data) {
-                    listKategori.add(newData.debit)
+                if(newData.kategoriDebit == data) {
+                    innerTransaksi.add(newData)
                 }
-                if (newData.kategoriKredit == data) {
-                    listKategori.add(newData.kredit)
+                if(newData.kategoriKredit == data) {
+                    innerTransaksi.add(newData)
                 }
             }
+            val periode = Periode(data,innerTransaksi)
+            arrayPeriode.add(periode)
         }
-        val adapter = MAdapterPeriode.AdapterPeriode(this, adapterList)
+        val adapter = MAdapterPeriode.AdapterPeriode(this,arrayPeriode)
         return adapter
     }
 }
